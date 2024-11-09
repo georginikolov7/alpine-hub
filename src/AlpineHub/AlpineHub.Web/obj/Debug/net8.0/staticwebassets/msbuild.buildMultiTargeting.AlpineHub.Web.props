@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\AlpineHub.Web.props" />
+</Project>

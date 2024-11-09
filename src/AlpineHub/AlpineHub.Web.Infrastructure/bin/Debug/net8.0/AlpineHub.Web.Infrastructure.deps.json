@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "AlpineHub.Web.Infrastructure/1.0.0": {
+        "runtime": {
+          "AlpineHub.Web.Infrastructure.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "AlpineHub.Web.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

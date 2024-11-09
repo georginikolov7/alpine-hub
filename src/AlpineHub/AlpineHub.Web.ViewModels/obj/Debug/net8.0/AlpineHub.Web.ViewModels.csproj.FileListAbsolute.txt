@@ -1,0 +1,12 @@
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.ViewModels\bin\Debug\net8.0\AlpineHub.Web.ViewModels.deps.json
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.ViewModels\bin\Debug\net8.0\AlpineHub.Web.ViewModels.dll
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.ViewModels\bin\Debug\net8.0\AlpineHub.Web.ViewModels.pdb
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.ViewModels\obj\Debug\net8.0\AlpineHub.Web.ViewModels.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.ViewModels\obj\Debug\net8.0\AlpineHub.Web.ViewModels.AssemblyInfoInputs.cache
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.ViewModels\obj\Debug\net8.0\AlpineHub.Web.ViewModels.AssemblyInfo.cs
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.ViewModels\obj\Debug\net8.0\AlpineHub.Web.ViewModels.csproj.CoreCompileInputs.cache
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.ViewModels\obj\Debug\net8.0\AlpineHub.Web.ViewModels.sourcelink.json
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.ViewModels\obj\Debug\net8.0\AlpineHub.Web.ViewModels.dll
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.ViewModels\obj\Debug\net8.0\refint\AlpineHub.Web.ViewModels.dll
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.ViewModels\obj\Debug\net8.0\AlpineHub.Web.ViewModels.pdb
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.ViewModels\obj\Debug\net8.0\ref\AlpineHub.Web.ViewModels.dll

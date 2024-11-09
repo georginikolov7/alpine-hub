@@ -1,0 +1,12 @@
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Common\bin\Debug\net8.0\AlpineHub.Common.deps.json
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Common\bin\Debug\net8.0\AlpineHub.Common.dll
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Common\bin\Debug\net8.0\AlpineHub.Common.pdb
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Common\obj\Debug\net8.0\AlpineHub.Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Common\obj\Debug\net8.0\AlpineHub.Common.AssemblyInfoInputs.cache
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Common\obj\Debug\net8.0\AlpineHub.Common.AssemblyInfo.cs
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Common\obj\Debug\net8.0\AlpineHub.Common.csproj.CoreCompileInputs.cache
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Common\obj\Debug\net8.0\AlpineHub.Common.sourcelink.json
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Common\obj\Debug\net8.0\AlpineHub.Common.dll
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Common\obj\Debug\net8.0\refint\AlpineHub.Common.dll
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Common\obj\Debug\net8.0\AlpineHub.Common.pdb
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Common\obj\Debug\net8.0\ref\AlpineHub.Common.dll

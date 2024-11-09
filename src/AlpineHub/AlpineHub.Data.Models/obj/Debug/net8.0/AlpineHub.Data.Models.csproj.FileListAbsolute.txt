@@ -1,0 +1,13 @@
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Data.Models\bin\Debug\net8.0\AlpineHub.Data.Models.deps.json
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Data.Models\bin\Debug\net8.0\AlpineHub.Data.Models.dll
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Data.Models\bin\Debug\net8.0\AlpineHub.Data.Models.pdb
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Data.Models\obj\Debug\net8.0\AlpineHub.Data.Models.csproj.AssemblyReference.cache
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Data.Models\obj\Debug\net8.0\AlpineHub.Data.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Data.Models\obj\Debug\net8.0\AlpineHub.Data.Models.AssemblyInfoInputs.cache
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Data.Models\obj\Debug\net8.0\AlpineHub.Data.Models.AssemblyInfo.cs
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Data.Models\obj\Debug\net8.0\AlpineHub.Data.Models.csproj.CoreCompileInputs.cache
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Data.Models\obj\Debug\net8.0\AlpineHub.Data.Models.sourcelink.json
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Data.Models\obj\Debug\net8.0\AlpineHub.Data.Models.dll
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Data.Models\obj\Debug\net8.0\refint\AlpineHub.Data.Models.dll
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Data.Models\obj\Debug\net8.0\AlpineHub.Data.Models.pdb
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Data.Models\obj\Debug\net8.0\ref\AlpineHub.Data.Models.dll

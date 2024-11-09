@@ -1,0 +1,12 @@
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.Infrastructure\bin\Debug\net8.0\AlpineHub.Web.Infrastructure.deps.json
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.Infrastructure\bin\Debug\net8.0\AlpineHub.Web.Infrastructure.dll
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.Infrastructure\bin\Debug\net8.0\AlpineHub.Web.Infrastructure.pdb
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.Infrastructure\obj\Debug\net8.0\AlpineHub.Web.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.Infrastructure\obj\Debug\net8.0\AlpineHub.Web.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.Infrastructure\obj\Debug\net8.0\AlpineHub.Web.Infrastructure.AssemblyInfo.cs
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.Infrastructure\obj\Debug\net8.0\AlpineHub.Web.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.Infrastructure\obj\Debug\net8.0\AlpineHub.Web.Infrastructure.sourcelink.json
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.Infrastructure\obj\Debug\net8.0\AlpineHub.Web.Infrastructure.dll
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.Infrastructure\obj\Debug\net8.0\refint\AlpineHub.Web.Infrastructure.dll
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.Infrastructure\obj\Debug\net8.0\AlpineHub.Web.Infrastructure.pdb
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.Infrastructure\obj\Debug\net8.0\ref\AlpineHub.Web.Infrastructure.dll
