@@ -16,3 +16,5 @@ C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Data\obj\Debug
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Data\obj\Debug\net8.0\refint\AlpineHub.Data.dll
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Data\obj\Debug\net8.0\AlpineHub.Data.pdb
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Data\obj\Debug\net8.0\ref\AlpineHub.Data.dll
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Data\bin\Debug\net8.0\AlpineHub.Data.runtimeconfig.json
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Data\obj\Debug\net8.0\AlpineHub.Data.genruntimeconfig.cache
