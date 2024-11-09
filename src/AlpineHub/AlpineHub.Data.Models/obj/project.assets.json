@@ -316,6 +316,16 @@
         "build": {
           "buildTransitive/net6.0/_._": {}
         }
+      },
+      "AlpineHub.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/AlpineHub.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AlpineHub.Common.dll": {}
+        }
       }
     }
   },
@@ -807,10 +817,16 @@
         "microsoft.extensions.primitives.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "AlpineHub.Common/1.0.0": {
+      "type": "project",
+      "path": "../AlpineHub.Common/AlpineHub.Common.csproj",
+      "msbuildProject": "../AlpineHub.Common/AlpineHub.Common.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "AlpineHub.Common >= 1.0.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 8.0.10"
     ]
   },
@@ -846,7 +862,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Test\\Documents\\GitHub\\alpine-hub\\src\\AlpineHub\\AlpineHub.Common\\AlpineHub.Common.csproj": {
+              "projectPath": "C:\\Users\\Test\\Documents\\GitHub\\alpine-hub\\src\\AlpineHub\\AlpineHub.Common\\AlpineHub.Common.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

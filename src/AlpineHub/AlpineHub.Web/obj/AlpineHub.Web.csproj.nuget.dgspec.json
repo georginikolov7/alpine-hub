@@ -97,7 +97,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\Test\\Documents\\GitHub\\alpine-hub\\src\\AlpineHub\\AlpineHub.Common\\AlpineHub.Common.csproj": {
+                "projectPath": "C:\\Users\\Test\\Documents\\GitHub\\alpine-hub\\src\\AlpineHub\\AlpineHub.Common\\AlpineHub.Common.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
