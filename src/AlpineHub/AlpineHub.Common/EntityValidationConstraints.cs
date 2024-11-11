@@ -19,6 +19,16 @@ namespace AlpineHub.Common
         public const byte LiftNameMinLength = 3;
         public const byte LiftNameMaxLength = 64;
 
+        //Pass Period:
+        public const byte PassPeriodNameMinLength = 3;
+        public const byte PassPeriodNameMaxLength = 20;
 
+        //Pass type:
+        public const byte PassTypeNameMinLength = 5;
+        public const byte PassTypeNameMaxLength = 32;
+
+        //Pass age group:
+        public const byte PassAgeGroupMinLength = 5;
+        public const byte PassAgeGroupMaxLength = 30;
     }
 }

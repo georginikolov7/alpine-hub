@@ -1,9 +1,10 @@
 ﻿namespace AlpineHub.Data.Models
 {
+    using static Common.EntityValidationConstraints;
+    
     using AlpineHub.Common.Enums;
     using Microsoft.EntityFrameworkCore;
     using System.ComponentModel.DataAnnotations;
-    using static AlpineHub.Common.EntityValidationConstraints;
     public class Slope
     {
         [Key]

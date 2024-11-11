@@ -1,10 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
+﻿
 namespace AlpineHub.Data.Models
 {
     using static Common.EntityValidationConstraints;
+
+    using Microsoft.EntityFrameworkCore;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public class Lift
     {
         [Key]

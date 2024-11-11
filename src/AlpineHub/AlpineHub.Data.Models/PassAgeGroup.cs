@@ -5,18 +5,21 @@ namespace AlpineHub.Data.Models
 
     using Microsoft.EntityFrameworkCore;
     using System.ComponentModel.DataAnnotations;
-    public class LiftType
+    public class PassAgeGroup
     {
         [Key]
         [Comment("Primary key of table")]
         public Guid Id { get; set; }
 
         [Required]
-        [MaxLength(LiftTypeNameMaxLength)]
-        [Comment("Name of lift type")]
+        [MaxLength(PassAgeGroupMaxLength)]
+        [Comment("Name of age group")]
         public string Name { get; set; } = null!;
 
-        //Mapping property:
-        public virtual IEnumerable<Lift> Lifts { get; set; } = new HashSet<Lift>();
+        [Comment("Min age of client")]
+        public int MinAge { get; set; }
+
+        [Comment("Max age of client")]
+        public int MaxAge { get; set; }
     }
 }
