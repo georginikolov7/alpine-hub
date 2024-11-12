@@ -23,12 +23,6 @@ namespace AlpineHub.Data.Models
         [Comment("Discount of current pass type")]
         public decimal DiscountPercentage { get; set; }
 
-        [Required]
-        [Comment("Start of validity period")]
-        public DateTime ValidFromDate { get; set; }
-
-        [Required]
-        [Comment("End of validity period")]
-        public DateTime ValidToDate { get; set; }
+        
     }
 }
