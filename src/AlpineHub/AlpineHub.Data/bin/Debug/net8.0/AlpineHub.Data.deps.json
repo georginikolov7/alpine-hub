@@ -980,6 +980,7 @@
       },
       "AlpineHub.Data.Models/1.0.0": {
         "dependencies": {
+          "AlpineHub.Common": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.10"
         },
         "runtime": {

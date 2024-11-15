@@ -11,3 +11,6 @@ C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Data.Models\ob
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Data.Models\obj\Debug\net8.0\refint\AlpineHub.Data.Models.dll
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Data.Models\obj\Debug\net8.0\AlpineHub.Data.Models.pdb
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Data.Models\obj\Debug\net8.0\ref\AlpineHub.Data.Models.dll
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Data.Models\bin\Debug\net8.0\AlpineHub.Common.dll
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Data.Models\bin\Debug\net8.0\AlpineHub.Common.pdb
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Data.Models\obj\Debug\net8.0\AlpineHu.3BA2B638.Up2Date

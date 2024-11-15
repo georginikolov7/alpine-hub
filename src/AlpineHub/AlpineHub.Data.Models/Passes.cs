@@ -15,6 +15,7 @@ namespace AlpineHub.Data.Models
         public Guid Id { get; set; }
 
         [Required]
+        [Column(TypeName = "decimal(18,2)")]
         [Comment("Pass price. Pass type discount is automatically deduced")]
         public decimal Price { get; set; }
 

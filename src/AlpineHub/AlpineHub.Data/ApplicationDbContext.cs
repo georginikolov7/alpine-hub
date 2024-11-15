@@ -8,11 +8,10 @@ namespace AlpineHub.Data
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
     using System.Linq.Expressions;
-    using System.Reflection.Emit;
     using System.Threading;
     using System.Threading.Tasks;
 
-    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
     {
         public DbSet<Slope> Slopes { get; set; }
         public DbSet<Lift> Lifts { get; set; }
@@ -22,26 +21,37 @@ namespace AlpineHub.Data
         public DbSet<PassPeriod> PassPeriods { get; set; }
         public DbSet<PassType> PassTypes { get; set; }
         public DbSet<Passes> Passes { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public ApplicationDbContext()
+        {
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        }
+        public ApplicationDbContext(DbContextOptions options)
             : base(options)
         {
         }
+
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(builder);
-
             builder.ApplyConfigurationsFromAssembly(typeof(SlopesLiftsConfiguration).Assembly);
-
 
             // Apply global query filter only for Soft deletable entities:
             ApplySoftDeleteFilter(builder);
+
+
+            base.OnModelCreating(builder);
         }
 
         public override int SaveChanges()
         {
             OnBeforeSaveChanges();
             return base.SaveChanges();
+        }
+        public override int SaveChanges(bool acceptAllChangesOnSuccess)
+        {
+            OnBeforeSaveChanges();
+            return base.SaveChanges(acceptAllChangesOnSuccess);
         }
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

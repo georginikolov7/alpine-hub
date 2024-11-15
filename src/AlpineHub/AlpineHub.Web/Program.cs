@@ -1,4 +1,5 @@
 using AlpineHub.Data;
+using AlpineHub.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,18 +15,32 @@ namespace AlpineHub.Web
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString));
+            {
+                options.UseSqlServer(connectionString);
+            });
 
-            builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+            // builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+            builder
+                .Services.AddDefaultIdentity<IdentityUser<Guid>>(options => ConfigureIdentity(builder, options))
+        .AddEntityFrameworkStores<ApplicationDbContext>();
+            //builder.Services
+            //.AddIdentity<ApplicationUser, IdentityRole<Guid>>(cfg =>
+            //{
+            //    ConfigureIdentity(builder, cfg);
+            //})
+            //    .AddEntityFrameworkStores<DbContext>()
+            //    .AddRoles<IdentityRole<Guid>>()
+            //    .AddSignInManager<SignInManager<ApplicationUser>>()
+            //    .AddUserManager<UserManager<ApplicationUser>>();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-            .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            //builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //.AddRoles<IdentityRole<Guid>()
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 
             builder.Services.AddControllersWithViews();
-
-
+            builder.Services.AddRazorPages();
 
             var app = builder.Build();
 
@@ -55,6 +70,11 @@ namespace AlpineHub.Web
             app.MapRazorPages();
 
             app.Run();
+        }
+
+        private static void ConfigureIdentity(WebApplicationBuilder builder, IdentityOptions cfg)
+        {
+            //hehe
         }
     }
 }

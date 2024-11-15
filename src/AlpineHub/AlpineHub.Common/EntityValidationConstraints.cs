@@ -8,6 +8,14 @@ namespace AlpineHub.Common
 {
     public static class EntityValidationConstraints
     {
+        //User:
+        public const byte UserFirstNameMinLength = 5;
+        public const byte UserFirstNameMaxLength = 50;
+
+        public const byte UserLastNameMinLength = 5;
+        public const byte UserLastNameMaxLength = 50;
+
+
         //Slope:
         public const byte SlopeNameMinLength = 3;
         public const byte SlopeNameMaxLength = 100;
