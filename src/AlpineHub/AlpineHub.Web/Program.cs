@@ -19,10 +19,21 @@ namespace AlpineHub.Web
                 options.UseSqlServer(connectionString);
             });
 
-            // builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+            builder.Services.AddDatabaseDeveloperPageExceptionFilter();
             builder
-                .Services.AddDefaultIdentity<IdentityUser<Guid>>(options => ConfigureIdentity(builder, options))
-        .AddEntityFrameworkStores<ApplicationDbContext>();
+                .Services
+                .AddIdentity<ApplicationUser, IdentityRole<Guid>>(options => ConfigureIdentity(builder, options))
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddRoles<IdentityRole<Guid>>()
+                .AddRoleManager<RoleManager<IdentityRole<Guid>>>()
+                .AddSignInManager<SignInManager<ApplicationUser>>()
+                .AddUserManager<UserManager<ApplicationUser>>()
+                .AddDefaultTokenProviders();
+
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath()
+            })
             //builder.Services
             //.AddIdentity<ApplicationUser, IdentityRole<Guid>>(cfg =>
             //{
@@ -75,6 +86,7 @@ namespace AlpineHub.Web
         private static void ConfigureIdentity(WebApplicationBuilder builder, IdentityOptions cfg)
         {
             //hehe
+            cfg.SignIn.RequireConfirmedAccount = false;
         }
     }
 }

@@ -10,18 +10,18 @@ namespace AlpineHub.Data.Models
     {
         public ApplicationUser()
         {
-           this.Id = Guid.NewGuid();
+            this.Id = Guid.NewGuid();
         }
 
-
+        [PersonalData]
         [Required]
         [MaxLength(UserFirstNameMaxLength)]
         [Comment("First name of user")]
-        public string FirstName { get; set; } = null!;
+        public string? FirstName { get; set; }
 
-        [Required]
+        [PersonalData]
         [MaxLength(UserLastNameMaxLength)]
         [Comment("Last name of user")]
-        public string LastName { get; set; } = null!;
+        public string? LastName { get; set; }
     }
 }
