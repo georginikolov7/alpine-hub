@@ -13,6 +13,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Test\\Documents\\GitHub\\alpine-hub\\src\\AlpineHub\\AlpineHub.Web\\wwwroot\\img\\mainBackground.jpg",
+      "PackagePath": "staticwebassets\\img\\mainBackground.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Test\\Documents\\GitHub\\alpine-hub\\src\\AlpineHub\\AlpineHub.Web\\wwwroot\\img\\person-skiing-solid.svg",
+      "PackagePath": "staticwebassets\\img\\person-skiing-solid.svg"
+    },
+    {
       "Id": "C:\\Users\\Test\\Documents\\GitHub\\alpine-hub\\src\\AlpineHub\\AlpineHub.Web\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
