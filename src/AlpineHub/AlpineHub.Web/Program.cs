@@ -30,24 +30,6 @@ namespace AlpineHub.Web
                 .AddUserManager<UserManager<ApplicationUser>>()
                 .AddDefaultTokenProviders();
 
-            builder.Services.ConfigureApplicationCookie(options =>
-            {
-                options.LoginPath()
-            })
-            //builder.Services
-            //.AddIdentity<ApplicationUser, IdentityRole<Guid>>(cfg =>
-            //{
-            //    ConfigureIdentity(builder, cfg);
-            //})
-            //    .AddEntityFrameworkStores<DbContext>()
-            //    .AddRoles<IdentityRole<Guid>>()
-            //    .AddSignInManager<SignInManager<ApplicationUser>>()
-            //    .AddUserManager<UserManager<ApplicationUser>>();
-
-
-            //builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-            //.AddRoles<IdentityRole<Guid>()
-            //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 
             builder.Services.AddControllersWithViews();

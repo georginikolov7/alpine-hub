@@ -12,6 +12,9 @@ namespace AlpineHub.Common
         public const byte UserFirstNameMinLength = 5;
         public const byte UserFirstNameMaxLength = 50;
 
+        public const byte PhoneNumberMinLength = 5;
+        public const byte PhoneNumberMaxLength = 15;
+
         public const byte UserLastNameMinLength = 5;
         public const byte UserLastNameMaxLength = 50;
 
