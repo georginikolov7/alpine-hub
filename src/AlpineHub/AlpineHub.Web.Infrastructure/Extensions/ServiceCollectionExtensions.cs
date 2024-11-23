@@ -2,8 +2,8 @@
 using AlpineHub.Data.Contracts;
 using AlpineHub.Data.Models;
 using AlpineHub.Data.Repos;
-using AlpineHub.Services.Data.Contracts;
-using AlpineHub.Services.Data.Services;
+using AlpineHub.Core.Contracts;
+using AlpineHub.Core.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

@@ -8,8 +8,8 @@
     ".NETCoreApp,Version=v8.0": {
       "AlpineHub.Web.Infrastructure/1.0.0": {
         "dependencies": {
+          "AlpineHub.Core": "1.0.0",
           "AlpineHub.Data": "1.0.0",
-          "AlpineHub.Services.Data": "1.0.0",
           "Microsoft.AspNetCore.Identity": "2.2.0",
           "Microsoft.AspNetCore.Mvc.Abstractions": "2.2.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2"
@@ -931,6 +931,17 @@
           }
         }
       },
+      "AlpineHub.Core/1.0.0": {
+        "dependencies": {
+          "AlpineHub.Data": "1.0.0"
+        },
+        "runtime": {
+          "AlpineHub.Core.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "AlpineHub.Data/1.0.0": {
         "dependencies": {
           "AlpineHub.Common": "1.0.0",
@@ -952,17 +963,6 @@
         },
         "runtime": {
           "AlpineHub.Data.Models.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "AlpineHub.Services.Data/1.0.0": {
-        "dependencies": {
-          "AlpineHub.Data": "1.0.0"
-        },
-        "runtime": {
-          "AlpineHub.Services.Data.dll": {
             "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -1576,17 +1576,17 @@
       "serviceable": false,
       "sha512": ""
     },
+    "AlpineHub.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "AlpineHub.Data/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
     "AlpineHub.Data.Models/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "AlpineHub.Services.Data/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

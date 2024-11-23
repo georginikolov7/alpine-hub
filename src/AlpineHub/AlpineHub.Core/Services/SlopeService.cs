@@ -1,0 +1,32 @@
+﻿using AlpineHub.Core.Contracts;
+using AlpineHub.Data.Contracts;
+using AlpineHub.Data.Models;
+using AlpineHub.Core.ViewModels.Slope;
+using Microsoft.EntityFrameworkCore;
+
+namespace AlpineHub.Core.Services
+{
+    public class SlopeService : ISlopeService
+    {
+        private readonly IRepo repo;
+
+        public SlopeService(IRepo repo)
+        {
+            this.repo = repo;
+        }
+
+        public async Task<IEnumerable<AllSlopesViewModel>> GetAllSlopes()
+        {
+            IEnumerable<AllSlopesViewModel> slopes = await repo.GetAllReadonly<Slope>()
+                .Select(s => new AllSlopesViewModel()
+                {
+                    Id = s.Id.ToString(),
+                    Name = s.Name,
+                    Difficulty = s.Difficulty.ToString(),
+                    IsOpen = s.IsOpen,
+                }).ToListAsync();
+
+            return slopes;
+        }
+    }
+}

@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AlpineHub.Core\AlpineHub.Core.csproj" />
     <ProjectReference Include="..\AlpineHub.Data\AlpineHub.Data.csproj" />
-    <ProjectReference Include="..\AlpineHub.Services.Data\AlpineHub.Services.Data.csproj" />
   </ItemGroup>
 
 

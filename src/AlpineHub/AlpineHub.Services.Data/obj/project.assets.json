@@ -2982,9 +2982,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Test\\Documents\\GitHub\\alpine-hub\\src\\AlpineHub\\AlpineHub.Services.Data\\AlpineHub.Services.Data.csproj",
-      "projectName": "AlpineHub.Services.Data",
-      "projectPath": "C:\\Users\\Test\\Documents\\GitHub\\alpine-hub\\src\\AlpineHub\\AlpineHub.Services.Data\\AlpineHub.Services.Data.csproj",
+      "projectUniqueName": "C:\\Users\\Test\\Documents\\GitHub\\alpine-hub\\src\\AlpineHub\\AlpineHub.Services.Data\\AlpineHub.Core.csproj",
+      "projectName": "AlpineHub.Core",
+      "projectPath": "C:\\Users\\Test\\Documents\\GitHub\\alpine-hub\\src\\AlpineHub\\AlpineHub.Services.Data\\AlpineHub.Core.csproj",
       "packagesPath": "C:\\Users\\Test\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Test\\Documents\\GitHub\\alpine-hub\\src\\AlpineHub\\AlpineHub.Services.Data\\obj\\",
       "projectStyle": "PackageReference",

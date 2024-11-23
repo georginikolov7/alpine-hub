@@ -1,5 +1,5 @@
-﻿using AlpineHub.Services.Data.Contracts;
-using AlpineHub.Services.Data.ViewModels.Slope;
+﻿using AlpineHub.Core.Contracts;
+using AlpineHub.Core.ViewModels.Slope;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlpineHub.Web.Controllers

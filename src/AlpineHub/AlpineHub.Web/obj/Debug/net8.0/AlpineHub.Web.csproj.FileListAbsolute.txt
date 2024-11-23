@@ -7,9 +7,9 @@ C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\obj\Debug\
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\obj\Debug\net8.0\AlpineHub.Web.RazorAssemblyInfo.cache
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\obj\Debug\net8.0\AlpineHub.Web.RazorAssemblyInfo.cs
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\obj\Debug\net8.0\AlpineHub.Web.sourcelink.json
-C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\obj\Debug\net8.0\AlpineHub.Web.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\appsettings.json
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\libman.json
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\AlpineHub.Web.staticwebassets.runtime.json
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\AlpineHub.Web.exe
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\AlpineHub.Web.deps.json
@@ -276,15 +276,16 @@ C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\AlpineHub.Common.dll
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\AlpineHub.Core.dll
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\AlpineHub.Data.dll
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\AlpineHub.Data.Models.dll
-C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\AlpineHub.Services.Data.dll
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\AlpineHub.Web.Infrastructure.dll
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\AlpineHub.Common.pdb
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\AlpineHub.Data.pdb
-C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\AlpineHub.Services.Data.pdb
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\AlpineHub.Web.Infrastructure.pdb
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\AlpineHub.Core.pdb
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\AlpineHub.Data.Models.pdb
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\obj\Debug\net8.0\AlpineHub.Web.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\obj\Debug\net8.0\staticwebassets\msbuild.AlpineHub.Web.Microsoft.AspNetCore.StaticWebAssets.props
@@ -301,4 +302,3 @@ C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\obj\Debug\
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\obj\Debug\net8.0\AlpineHub.Web.pdb
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\obj\Debug\net8.0\AlpineHub.Web.genruntimeconfig.cache
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\obj\Debug\net8.0\ref\AlpineHub.Web.dll
-C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\libman.json
