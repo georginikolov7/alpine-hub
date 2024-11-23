@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AlpineHub.Data.Models")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a316a977e2e7f50187277f75215f820b8a5cbadb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eea20b24436fb88c7a725a3836a3645e7bfda23f")]
 [assembly: System.Reflection.AssemblyProductAttribute("AlpineHub.Data.Models")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AlpineHub.Data.Models")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

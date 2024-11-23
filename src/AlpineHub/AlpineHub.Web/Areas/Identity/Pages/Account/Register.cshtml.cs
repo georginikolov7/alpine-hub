@@ -3,7 +3,7 @@
 #nullable disable
 
 using System.ComponentModel.DataAnnotations;
-using System.Reflection;
+using System.Security.Claims;
 using System.Text;
 using AlpineHub.Data.Models;
 using Microsoft.AspNetCore.Authentication;
@@ -11,8 +11,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.CodeAnalysis.Options;
 using static AlpineHub.Common.EntityValidationConstraints;
+using static AlpineHub.Web.Infrastructure.Constants.CustomClaims;
 namespace AlpineHub.Web.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
@@ -144,6 +144,9 @@ namespace AlpineHub.Web.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+
+                    //Add custom claim for fullname:
+                    await _userManager.AddClaimAsync(user, new Claim(UserFullNameClaim, $"{user.FirstName} {user.LastName}"));
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

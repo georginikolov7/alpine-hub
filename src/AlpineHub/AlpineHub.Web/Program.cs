@@ -86,10 +86,5 @@ namespace AlpineHub.Web
 
             app.Run();
         }
-
-        private static void ConfigureIdentity(WebApplicationBuilder builder, IdentityOptions cfg)
-        {
-
-        }
     }
 }

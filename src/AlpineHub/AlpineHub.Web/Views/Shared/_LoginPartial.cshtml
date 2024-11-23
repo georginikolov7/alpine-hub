@@ -2,15 +2,45 @@
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+
+
 <div class="dropdown profile-dropdown">
-    <button class="btn btn-sm btn-primary" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-        <div class="container d-flex flex-row align-items-center justify-content-center">
-            <i class="fa-solid fa-right-to-bracket"></i>
-            <span class="ms-2">MyHub</span>
-        </div>
-    </button>
-    <ul class="dropdown-menu bg-secondary">
-        <li><a class="dropdown-item text-light" asp-area="Identity" asp-page="/Account/Login">Login</a></li>
-        <li> <a class="dropdown-item text-light" asp-area="Identity" asp-page="/Account/Register">Register</a></li>
-    </ul>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        string fullName = User.FindFirst(AlpineHub.Web.Infrastructure.Constants.CustomClaims.UserFullNameClaim)?.Value ?? string.Empty;
+        <button class="btn btn-sm btn-primary" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+
+
+            <div class="container d-flex flex-row align-items-center justify-content-center">
+                <i class="fa-solid fa-user"></i>
+                <span class="ms-2">@fullName</span>
+            </div>
+
+        </button>
+        <ul class="dropdown-menu bg-secondary">
+            <li><a class="dropdown-item text-light" asp-area="Identity" asp-page="/Account/Login">Manage Account</a></li>
+            <li> <a class="dropdown-item text-light" asp-area="Identity" asp-page="/Account/Register">My Orders</a></li>
+            <li>
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button type="submit" class="dropdown-item text-light">Logout</button>
+                </form>
+            </li>
+        </ul>
+    }
+    else
+    {
+        <button class="btn btn-sm btn-primary" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="container d-flex flex-row align-items-center justify-content-center">
+                <i class="fa-solid fa-right-to-bracket"></i>
+
+                <span class="ms-2">MyHub</span>
+            </div>
+        </button>
+        <ul class="dropdown-menu bg-secondary">
+            <li><a class="dropdown-item text-light" asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+            <li> <a class="dropdown-item text-light" asp-area="Identity" asp-page="/Account/Register">Register</a></li>
+        </ul>
+    }
 </div>
+
+

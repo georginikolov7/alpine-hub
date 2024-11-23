@@ -1,9 +1,9 @@
 ﻿
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System.Globalization;
 
 namespace AlpineHub.Web.Infrastructure.Binders
 {
+    using Microsoft.AspNetCore.Mvc.ModelBinding;
+    using System.Globalization;
     public class DateTimeModelBinder : IModelBinder
     {
         private readonly string customFormat;
@@ -14,7 +14,7 @@ namespace AlpineHub.Web.Infrastructure.Binders
         public Task BindModelAsync(ModelBindingContext bindingContext)
         {
             ValueProviderResult value = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
-            if (value != ValueProviderResult.None && string.IsNullOrEmpty(value.FirstValue))
+            if (value != ValueProviderResult.None && !string.IsNullOrEmpty(value.FirstValue))
             {
                 string valueString = value.FirstValue;
 

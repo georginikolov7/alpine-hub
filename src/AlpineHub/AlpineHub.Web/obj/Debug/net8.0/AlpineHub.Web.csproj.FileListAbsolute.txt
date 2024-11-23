@@ -303,3 +303,4 @@ C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\obj\Debug\
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\obj\Debug\net8.0\AlpineHub.Web.pdb
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\obj\Debug\net8.0\AlpineHub.Web.genruntimeconfig.cache
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\obj\Debug\net8.0\ref\AlpineHub.Web.dll
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\libman.json
