@@ -1,0 +1,11 @@
+﻿namespace AlpineHub.Services.Data.ViewModels.Slope
+{
+    public class AllSlopesViewModel
+    {
+        public string Guid { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public string Difficulty { get; set; } = string.Empty;
+        public string SlopeCondition { get; set; } = null!;
+        public bool IsOpen { get; set; }
+    }
+}
