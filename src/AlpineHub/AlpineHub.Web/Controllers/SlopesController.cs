@@ -1,0 +1,23 @@
+﻿using AlpineHub.Services.Data.Contracts;
+using AlpineHub.Services.Data.ViewModels.Slope;
+using Microsoft.AspNetCore.Mvc;
+
+namespace AlpineHub.Web.Controllers
+{
+    public class SlopesController : BaseController
+    {
+        private readonly ISlopeService slopeService;
+
+        public SlopesController(ISlopeService slopeService)
+        {
+            this.slopeService = slopeService;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            IEnumerable<AllSlopesViewModel> model = await slopeService.GetAllSlopes();
+            return View(model);
+        }
+    }
+}

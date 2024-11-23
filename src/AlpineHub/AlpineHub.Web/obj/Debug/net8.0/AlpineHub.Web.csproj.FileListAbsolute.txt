@@ -280,12 +280,10 @@ C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\AlpineHub.Data.Models.dll
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\AlpineHub.Services.Data.dll
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\AlpineHub.Web.Infrastructure.dll
-C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\AlpineHub.Web.ViewModels.dll
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\AlpineHub.Common.pdb
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\AlpineHub.Data.pdb
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\AlpineHub.Services.Data.pdb
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\AlpineHub.Web.Infrastructure.pdb
-C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\AlpineHub.Web.ViewModels.pdb
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\bin\Debug\net8.0\AlpineHub.Data.Models.pdb
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web\obj\Debug\net8.0\staticwebassets.development.json

@@ -1,0 +1,39 @@
+﻿@using AlpineHub.Services.Data.ViewModels.Slope
+@model IEnumerable<AllSlopesViewModel>
+@{
+    ViewData["Title"] = "Slopes information";
+}
+<h1 class="text-center py-5 mt-5">Slopes Information</h1>
+
+<div class="container">
+    <table class="table table-borderless  custom-table">
+        <thead class="table-active">
+            <tr>
+                <th>Name</th>
+                <th>Difficulty</th>
+                <th>Condition</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var slope in Model)
+            {
+                <tr>
+                    <td>@slope.Name</td>
+                    <td>@slope.Difficulty</td>
+                    <td>@slope.SlopeCondition</td>
+                    <td>
+                        @if (slope.IsOpen)
+                        {
+                            <span class="badge bg-success">Open</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Closed</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

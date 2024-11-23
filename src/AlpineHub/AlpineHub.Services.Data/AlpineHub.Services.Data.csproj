@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AlpineHub.Data\AlpineHub.Data.csproj" />
+  </ItemGroup>
+
 </Project>

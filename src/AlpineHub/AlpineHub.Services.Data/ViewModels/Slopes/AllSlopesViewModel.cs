@@ -2,7 +2,7 @@
 {
     public class AllSlopesViewModel
     {
-        public string Guid { get; set; } = string.Empty;
+        public string Id { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
         public string Difficulty { get; set; } = string.Empty;
         public string SlopeCondition { get; set; } = null!;

@@ -2,6 +2,8 @@
 using AlpineHub.Data.Contracts;
 using AlpineHub.Data.Models;
 using AlpineHub.Data.Repos;
+using AlpineHub.Services.Data.Contracts;
+using AlpineHub.Services.Data.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -13,7 +15,7 @@ namespace AlpineHub.Web.Infrastructure.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-
+            services.AddScoped<ISlopeService, SlopeService>();
             return services;
         }
         public static IServiceCollection AddAppDbContext(this IServiceCollection services, IConfiguration config)

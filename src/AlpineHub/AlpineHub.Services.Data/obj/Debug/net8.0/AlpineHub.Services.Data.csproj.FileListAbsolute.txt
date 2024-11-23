@@ -10,3 +10,11 @@ C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Services.Data\
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Services.Data\obj\Debug\net8.0\refint\AlpineHub.Services.Data.dll
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Services.Data\obj\Debug\net8.0\AlpineHub.Services.Data.pdb
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Services.Data\obj\Debug\net8.0\ref\AlpineHub.Services.Data.dll
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Services.Data\bin\Debug\net8.0\AlpineHub.Common.dll
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Services.Data\bin\Debug\net8.0\AlpineHub.Data.dll
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Services.Data\bin\Debug\net8.0\AlpineHub.Data.Models.dll
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Services.Data\bin\Debug\net8.0\AlpineHub.Data.pdb
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Services.Data\bin\Debug\net8.0\AlpineHub.Common.pdb
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Services.Data\bin\Debug\net8.0\AlpineHub.Data.Models.pdb
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Services.Data\obj\Debug\net8.0\AlpineHub.Services.Data.csproj.AssemblyReference.cache
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Services.Data\obj\Debug\net8.0\AlpineHu.BCC69B8A.Up2Date

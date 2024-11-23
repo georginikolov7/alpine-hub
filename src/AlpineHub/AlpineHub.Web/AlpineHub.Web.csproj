@@ -26,9 +26,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AlpineHub.Common\AlpineHub.Common.csproj" />
     <ProjectReference Include="..\AlpineHub.Data\AlpineHub.Data.csproj" />
-    <ProjectReference Include="..\AlpineHub.Services.Data\AlpineHub.Services.Data.csproj" />
     <ProjectReference Include="..\AlpineHub.Web.Infrastructure\AlpineHub.Web.Infrastructure.csproj" />
-    <ProjectReference Include="..\AlpineHub.Web.ViewModels\AlpineHub.Web.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

@@ -3542,6 +3542,9 @@
       "AlpineHub.Services.Data/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "AlpineHub.Data": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/AlpineHub.Services.Data.dll": {}
         },
@@ -3554,6 +3557,7 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "AlpineHub.Data": "1.0.0",
+          "AlpineHub.Services.Data": "1.0.0",
           "Microsoft.AspNetCore.Identity": "2.2.0",
           "Microsoft.AspNetCore.Mvc.Abstractions": "2.2.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2"
@@ -3563,16 +3567,6 @@
         },
         "runtime": {
           "bin/placeholder/AlpineHub.Web.Infrastructure.dll": {}
-        }
-      },
-      "AlpineHub.Web.ViewModels/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "compile": {
-          "bin/placeholder/AlpineHub.Web.ViewModels.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/AlpineHub.Web.ViewModels.dll": {}
         }
       }
     }
@@ -9404,20 +9398,13 @@
       "type": "project",
       "path": "../AlpineHub.Web.Infrastructure/AlpineHub.Web.Infrastructure.csproj",
       "msbuildProject": "../AlpineHub.Web.Infrastructure/AlpineHub.Web.Infrastructure.csproj"
-    },
-    "AlpineHub.Web.ViewModels/1.0.0": {
-      "type": "project",
-      "path": "../AlpineHub.Web.ViewModels/AlpineHub.Web.ViewModels.csproj",
-      "msbuildProject": "../AlpineHub.Web.ViewModels/AlpineHub.Web.ViewModels.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
       "AlpineHub.Common >= 1.0.0",
       "AlpineHub.Data >= 1.0.0",
-      "AlpineHub.Services.Data >= 1.0.0",
       "AlpineHub.Web.Infrastructure >= 1.0.0",
-      "AlpineHub.Web.ViewModels >= 1.0.0",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 8.0.10",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 8.0.10",
       "Microsoft.AspNetCore.Identity.UI >= 8.0.10",
@@ -9468,14 +9455,8 @@
             "C:\\Users\\Test\\Documents\\GitHub\\alpine-hub\\src\\AlpineHub\\AlpineHub.Data\\AlpineHub.Data.csproj": {
               "projectPath": "C:\\Users\\Test\\Documents\\GitHub\\alpine-hub\\src\\AlpineHub\\AlpineHub.Data\\AlpineHub.Data.csproj"
             },
-            "C:\\Users\\Test\\Documents\\GitHub\\alpine-hub\\src\\AlpineHub\\AlpineHub.Services.Data\\AlpineHub.Services.Data.csproj": {
-              "projectPath": "C:\\Users\\Test\\Documents\\GitHub\\alpine-hub\\src\\AlpineHub\\AlpineHub.Services.Data\\AlpineHub.Services.Data.csproj"
-            },
             "C:\\Users\\Test\\Documents\\GitHub\\alpine-hub\\src\\AlpineHub\\AlpineHub.Web.Infrastructure\\AlpineHub.Web.Infrastructure.csproj": {
               "projectPath": "C:\\Users\\Test\\Documents\\GitHub\\alpine-hub\\src\\AlpineHub\\AlpineHub.Web.Infrastructure\\AlpineHub.Web.Infrastructure.csproj"
-            },
-            "C:\\Users\\Test\\Documents\\GitHub\\alpine-hub\\src\\AlpineHub\\AlpineHub.Web.ViewModels\\AlpineHub.Web.ViewModels.csproj": {
-              "projectPath": "C:\\Users\\Test\\Documents\\GitHub\\alpine-hub\\src\\AlpineHub\\AlpineHub.Web.ViewModels\\AlpineHub.Web.ViewModels.csproj"
             }
           }
         }

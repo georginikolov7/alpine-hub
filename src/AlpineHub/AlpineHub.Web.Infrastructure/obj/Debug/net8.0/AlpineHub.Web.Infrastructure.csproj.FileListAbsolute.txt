@@ -11,3 +11,12 @@ C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.Infrastruc
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.Infrastructure\obj\Debug\net8.0\AlpineHub.Web.Infrastructure.pdb
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.Infrastructure\obj\Debug\net8.0\ref\AlpineHub.Web.Infrastructure.dll
 C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.Infrastructure\obj\Debug\net8.0\AlpineHub.Web.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.Infrastructure\bin\Debug\net8.0\AlpineHub.Common.dll
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.Infrastructure\bin\Debug\net8.0\AlpineHub.Data.dll
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.Infrastructure\bin\Debug\net8.0\AlpineHub.Data.Models.dll
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.Infrastructure\bin\Debug\net8.0\AlpineHub.Data.pdb
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.Infrastructure\bin\Debug\net8.0\AlpineHub.Common.pdb
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.Infrastructure\bin\Debug\net8.0\AlpineHub.Data.Models.pdb
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.Infrastructure\obj\Debug\net8.0\AlpineHu.8BBC09DF.Up2Date
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.Infrastructure\bin\Debug\net8.0\AlpineHub.Services.Data.dll
+C:\Users\Test\Documents\GitHub\alpine-hub\src\AlpineHub\AlpineHub.Web.Infrastructure\bin\Debug\net8.0\AlpineHub.Services.Data.pdb
