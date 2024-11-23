@@ -1,23 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AlpineHub.Common
+﻿namespace AlpineHub.Common
 {
     public static class EntityValidationConstraints
     {
         //User:
-        public const byte UserFirstNameMinLength = 5;
-        public const byte UserFirstNameMaxLength = 50;
+        public const byte UserFirstNameMinLength = 1;
+        public const byte UserFirstNameMaxLength = 100;
 
         public const byte PhoneNumberMinLength = 5;
         public const byte PhoneNumberMaxLength = 15;
 
-        public const byte UserLastNameMinLength = 5;
-        public const byte UserLastNameMaxLength = 50;
+        public const byte UserLastNameMinLength = 1;
+        public const byte UserLastNameMaxLength = 100;
 
+        public const byte PasswordMinLength = 8;
+        public const byte PasswordMaxLength = 100;
 
         //Slope:
         public const byte SlopeNameMinLength = 3;

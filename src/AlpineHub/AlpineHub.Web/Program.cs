@@ -1,10 +1,11 @@
-using AlpineHub.Data;
-using AlpineHub.Data.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 namespace AlpineHub.Web
 {
+    using AlpineHub.Data;
+    using AlpineHub.Data.Models;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
+    using static Common.EntityValidationConstraints;
     public class Program
     {
         public static void Main(string[] args)
@@ -22,7 +23,15 @@ namespace AlpineHub.Web
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
             builder
                 .Services
-                .AddIdentity<ApplicationUser, IdentityRole<Guid>>(options => ConfigureIdentity(builder, options))
+                .AddIdentity<ApplicationUser, IdentityRole<Guid>>(options =>
+                {
+                    options.SignIn.RequireConfirmedAccount = false;
+                    options.Password.RequireDigit = true;
+                    options.Password.RequireLowercase = true;
+                    options.Password.RequireUppercase = true;
+                    options.Password.RequiredLength = PasswordMinLength;
+                    options.Password.RequireNonAlphanumeric = false;
+                })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddRoles<IdentityRole<Guid>>()
                 .AddRoleManager<RoleManager<IdentityRole<Guid>>>()
@@ -31,6 +40,11 @@ namespace AlpineHub.Web
                 .AddDefaultTokenProviders();
 
 
+            builder.Services.ConfigureApplicationCookie(cfg =>
+            {
+                cfg.LoginPath = "/User/Login";
+                cfg.AccessDeniedPath = "/Home/Error/401";
+            });
 
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
@@ -67,8 +81,7 @@ namespace AlpineHub.Web
 
         private static void ConfigureIdentity(WebApplicationBuilder builder, IdentityOptions cfg)
         {
-            //hehe
-            cfg.SignIn.RequireConfirmedAccount = false;
+
         }
     }
 }

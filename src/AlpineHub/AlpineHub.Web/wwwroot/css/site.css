@@ -7,7 +7,7 @@ html {
 
 @media (min-width: 768px) {
     html {
-        font-size: 18px;
+        font-size: 16px;
     }
 }
 
@@ -23,7 +23,6 @@ html {
 body {
     margin-bottom: 60px;
 }
-
 
 .navbar {
     background-color: rgba(7, 40, 72, 0.9);
@@ -41,7 +40,7 @@ body {
 .navbar-logo-container {
     display: inline-block;
     position: absolute;
-    top: 36px;
+    top: 2.1em;
     left: 50%;
     z-index: 2;
     transform: translate(-50%, -50%);
@@ -54,6 +53,10 @@ body {
 .nav-item:hover {
     background: rgb(2, 32, 61);
     transition: background-color 0.3s ease-in;
+}
+
+.navbar-brand {
+    margin-right: 0;
 }
 
 .number-info {
@@ -73,6 +76,18 @@ body {
     top: 50%;
     left: 0%;
     transform: translate(50%,50%)
+}
+
+.profile-dropdown {
+    position: absolute;
+    right: 5%;
+    transform: translate();
+}
+
+
+/*Register/Navbar:*/
+.register-login-form-container {
+    height: 95vh;
 }
 
 .hero-section {
