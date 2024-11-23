@@ -2,12 +2,14 @@
 {
     public static class EntityValidationConstraints
     {
+        public const string DateTimeFormat = "dd/MM/YYYY";
         //User:
         public const byte UserFirstNameMinLength = 1;
         public const byte UserFirstNameMaxLength = 100;
 
         public const byte PhoneNumberMinLength = 5;
         public const byte PhoneNumberMaxLength = 15;
+        public const string PhoneNumberValidationRegex = $"[0-9]{{5,15}}";
 
         public const byte UserLastNameMinLength = 1;
         public const byte UserLastNameMaxLength = 100;

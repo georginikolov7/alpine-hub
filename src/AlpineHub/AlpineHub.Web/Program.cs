@@ -3,6 +3,7 @@ namespace AlpineHub.Web
 {
     using AlpineHub.Data;
     using AlpineHub.Data.Models;
+    using AlpineHub.Web.Infrastructure.Binders;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using static Common.EntityValidationConstraints;
@@ -25,12 +26,16 @@ namespace AlpineHub.Web
                 .Services
                 .AddIdentity<ApplicationUser, IdentityRole<Guid>>(options =>
                 {
-                    options.SignIn.RequireConfirmedAccount = false;
-                    options.Password.RequireDigit = true;
-                    options.Password.RequireLowercase = true;
-                    options.Password.RequireUppercase = true;
-                    options.Password.RequiredLength = PasswordMinLength;
-                    options.Password.RequireNonAlphanumeric = false;
+                    options.SignIn.RequireConfirmedAccount =
+                        builder.Configuration.GetValue<bool>("Identity:SignIn:RequireConfirmedAccount");
+                    options.Password.RequireLowercase =
+                        builder.Configuration.GetValue<bool>("Identity:Password:RequireLowercase");
+                    options.Password.RequireUppercase =
+                        builder.Configuration.GetValue<bool>("Identity:Password:RequireUppercase");
+                    options.Password.RequireNonAlphanumeric =
+                        builder.Configuration.GetValue<bool>("Identity:Password:RequireNonAlphanumeric");
+                    options.Password.RequiredLength =
+                        builder.Configuration.GetValue<int>("Identity:Password:RequiredLength");
                 })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddRoles<IdentityRole<Guid>>()
@@ -46,7 +51,10 @@ namespace AlpineHub.Web
                 cfg.AccessDeniedPath = "/Home/Error/401";
             });
 
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews(cfg =>
+            {
+                cfg.ModelBinderProviders.Insert(0, new DateTimeModelBinderProvider(DateTimeFormat));
+            });
             builder.Services.AddRazorPages();
 
             var app = builder.Build();

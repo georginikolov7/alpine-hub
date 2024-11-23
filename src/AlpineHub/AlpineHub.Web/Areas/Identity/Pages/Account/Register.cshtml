@@ -9,8 +9,13 @@
         <div class="col-md-6">
             <h2 class="text-center mb-4">Register</h2>
             <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-
+                <div asp-validation-summary="All" class="text-danger" role="alert"></div>
+                <!--Email-->
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Email" required class="form-control" aria-required="true" placeholder="example@skifun.com" />
+                    <label asp-for="Input.Email">*Email</label>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
                 <!-- First Name -->
                 <div class="form-floating mb-3">
                     <input asp-for="Input.FirstName" required class="form-control" autocomplete="firstname" aria-required="true" placeholder="John" />

@@ -23,5 +23,9 @@ namespace AlpineHub.Data.Models
         [MaxLength(UserLastNameMaxLength)]
         [Comment("Last name of user")]
         public string? LastName { get; set; }
+
+        [PersonalData]
+        [Comment("Birthdate of user")]
+        public DateTime? Birthdate { get; set; }
     }
 }

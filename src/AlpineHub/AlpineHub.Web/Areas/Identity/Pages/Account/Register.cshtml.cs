@@ -85,6 +85,7 @@ namespace AlpineHub.Web.Areas.Identity.Pages.Account
             [Required]
             [DataType(DataType.PhoneNumber)]
             [Display(Name = "Phone number")]
+            [RegularExpression(PhoneNumberValidationRegex, ErrorMessage = "Incorrect phone number format. Please enter in format: 0000000000")]
             [StringLength(PhoneNumberMaxLength, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = PhoneNumberMinLength)]
             public string PhoneNumber { get; set; }
 
@@ -92,7 +93,7 @@ namespace AlpineHub.Web.Areas.Identity.Pages.Account
             [Required(ErrorMessage = "Invalid date format.")]
             [DataType(DataType.Date)]
             [Display(Name = "Birthdate")]
-            public string Birthdate { get; set; }
+            public DateTime? Birthdate { get; set; }
 
 
             /// <summary>
@@ -113,6 +114,7 @@ namespace AlpineHub.Web.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare(nameof(Password), ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
         }
 
 
@@ -128,10 +130,15 @@ namespace AlpineHub.Web.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = CreateUser();
+                ApplicationUser user = CreateUser();
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+
+                user.FirstName = Input.FirstName;
+                user.LastName = Input.LastName;
+                user.PhoneNumber = Input.PhoneNumber;
+                user.Birthdate = Input.Birthdate;
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
@@ -192,5 +199,7 @@ namespace AlpineHub.Web.Areas.Identity.Pages.Account
             }
             return (IUserEmailStore<ApplicationUser>)_userStore;
         }
+
+
     }
 }
