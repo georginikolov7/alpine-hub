@@ -325,7 +325,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\Test\\Documents\\GitHub\\alpine-hub\\src\\AlpineHub\\AlpineHub.Data\\AlpineHub.Data.csproj": {
+                "projectPath": "C:\\Users\\Test\\Documents\\GitHub\\alpine-hub\\src\\AlpineHub\\AlpineHub.Data\\AlpineHub.Data.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -343,9 +347,17 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.AspNetCore.Mvc.Abstractions": {
               "target": "Package",
               "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.2, )"
             }
           },
           "imports": [

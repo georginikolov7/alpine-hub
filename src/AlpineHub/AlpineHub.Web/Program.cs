@@ -4,8 +4,8 @@ namespace AlpineHub.Web
     using AlpineHub.Data;
     using AlpineHub.Data.Models;
     using AlpineHub.Web.Infrastructure.Binders;
+    using AlpineHub.Web.Infrastructure.Extensions;
     using Microsoft.AspNetCore.Identity;
-    using Microsoft.EntityFrameworkCore;
     using static Common.EntityValidationConstraints;
     public class Program
     {
@@ -14,35 +14,12 @@ namespace AlpineHub.Web
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            builder.Services.AddAppDbContext(builder.Configuration);
 
-            builder.Services.AddDbContext<ApplicationDbContext>(options =>
-            {
-                options.UseSqlServer(connectionString);
-            });
+            builder.Services.AddAppIdentity();
+            builder.Services.AddApplicationServices();
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-            builder
-                .Services
-                .AddIdentity<ApplicationUser, IdentityRole<Guid>>(options =>
-                {
-                    options.SignIn.RequireConfirmedAccount =
-                        builder.Configuration.GetValue<bool>("Identity:SignIn:RequireConfirmedAccount");
-                    options.Password.RequireLowercase =
-                        builder.Configuration.GetValue<bool>("Identity:Password:RequireLowercase");
-                    options.Password.RequireUppercase =
-                        builder.Configuration.GetValue<bool>("Identity:Password:RequireUppercase");
-                    options.Password.RequireNonAlphanumeric =
-                        builder.Configuration.GetValue<bool>("Identity:Password:RequireNonAlphanumeric");
-                    options.Password.RequiredLength =
-                        builder.Configuration.GetValue<int>("Identity:Password:RequiredLength");
-                })
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddRoles<IdentityRole<Guid>>()
-                .AddRoleManager<RoleManager<IdentityRole<Guid>>>()
-                .AddSignInManager<SignInManager<ApplicationUser>>()
-                .AddUserManager<UserManager<ApplicationUser>>()
-                .AddDefaultTokenProviders();
 
 
             builder.Services.ConfigureApplicationCookie(cfg =>
