@@ -17,16 +17,23 @@ namespace AlpineHub.Core.Services
                     Id = l.Id.ToString(),
                     Name = l.Name,
                     AscendTime = l.AverageAscendTime,
-                    OpeningHours = string.Format(OpenningHoursFormat, l.OpenningHour.Hour,
-                                                                      l.OpenningHour.Minute,
-                                                                      l.ClosingHour.Hour,
-                                                                      l.ClosingHour.Minute),
+                    OpeningHours = string.Format(OpenningHoursFormat, l.OpenningHour.ToShortTimeString(), l.ClosingHour.ToShortTimeString()),
                     IsOpen = l.IsOpen,
                     Type = l.LiftType.Name
                 })
                 .ToListAsync();
 
             return allLifts;
+        }
+
+        public async Task<int> GetNumberOfOpenLifts()
+        {
+            return await repo.GetAllReadonly<Lift>().CountAsync(l => l.IsOpen);
+        }
+
+        public async Task<int> GetTotalNumberOfLifts()
+        {
+            return await repo.GetAllReadonly<Lift>().CountAsync();
         }
     }
 }

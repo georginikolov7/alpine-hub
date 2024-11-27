@@ -22,5 +22,15 @@ namespace AlpineHub.Core.Services
 
             return slopes;
         }
+
+        public async Task<int> GetNumberOfOpenSlopes()
+        {
+            return await repo.GetAllReadonly<Slope>().CountAsync(s => s.IsOpen);
+        }
+
+        public async Task<int> GetTotalNumberOfSlopes()
+        {
+            return await repo.GetAllReadonly<Slope>().CountAsync();s
+        }
     }
 }

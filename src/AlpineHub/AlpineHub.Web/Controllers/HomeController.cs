@@ -1,21 +1,17 @@
+using AlpineHub.Core.Contracts;
 using AlpineHub.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace AlpineHub.Web.Controllers
 {
-    public class HomeController : BaseController
+    public class HomeController(ILogger<HomeController> _logger) : BaseController(_logger)
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             return View();
+
         }
 
         public IActionResult Privacy()

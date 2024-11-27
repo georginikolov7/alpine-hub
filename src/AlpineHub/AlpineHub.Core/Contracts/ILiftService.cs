@@ -5,5 +5,7 @@ namespace AlpineHub.Core.Contracts
     public interface ILiftService
     {
         Task<IEnumerable<AllLiftsViewModel>> GetAllLifts();
+        Task<int> GetNumberOfOpenLifts();
+        Task<int> GetTotalNumberOfLifts();
     }
 }

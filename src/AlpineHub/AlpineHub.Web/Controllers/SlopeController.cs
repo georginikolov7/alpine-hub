@@ -4,14 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AlpineHub.Web.Controllers
 {
-    public class SlopeController : BaseController
+    public class SlopeController(ILogger<SlopeController> logger, ISlopeService slopeService) : BaseController(logger)
     {
-        private readonly ISlopeService slopeService;
-
-        public SlopeController(ISlopeService slopeService)
-        {
-            this.slopeService = slopeService;
-        }
 
         [HttpGet]
         public async Task<IActionResult> Index()

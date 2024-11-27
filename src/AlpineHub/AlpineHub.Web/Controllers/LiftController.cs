@@ -3,13 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AlpineHub.Web.Controllers
 {
-    public class LiftController : BaseController
+    public class LiftController(ILogger<LiftController> logger, ILiftService liftService) : BaseController(logger)
     {
-        private readonly ILiftService liftService;
-        public LiftController(ILiftService liftService)
-        {
-            this.liftService = liftService;
-        }
+
         public async Task<IActionResult> Index()
         {
             var model = await liftService.GetAllLifts();
