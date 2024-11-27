@@ -2,7 +2,8 @@
 {
     public enum SlopeDifficulty
     {
-        Easy = 0,
+        Beginner = 0,
+        Easy,
         Intermediate,
         Hard,
         Expert

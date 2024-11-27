@@ -18,10 +18,11 @@ namespace AlpineHub.Core.Services
                     Name = l.Name,
                     AscendTime = l.AverageAscendTime,
                     OpeningHours = string.Format(OpenningHoursFormat, l.OpenningHour.Hour,
-                                                                     l.OpenningHour.Minute,
-                                                                     l.ClosingHour.Hour,
-                                                                     l.ClosingHour.Minute),
-                    IsOpen = l.IsOpen
+                                                                      l.OpenningHour.Minute,
+                                                                      l.ClosingHour.Hour,
+                                                                      l.ClosingHour.Minute),
+                    IsOpen = l.IsOpen,
+                    Type = l.LiftType.Name
                 })
                 .ToListAsync();
 

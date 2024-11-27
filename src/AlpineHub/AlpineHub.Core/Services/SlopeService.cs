@@ -16,6 +16,7 @@ namespace AlpineHub.Core.Services
                     Id = s.Id.ToString(),
                     Name = s.Name,
                     Difficulty = s.Difficulty.ToString(),
+                    SlopeCondition = s.SlopeCondition.ToString(),
                     IsOpen = s.IsOpen,
                 }).ToListAsync();
 

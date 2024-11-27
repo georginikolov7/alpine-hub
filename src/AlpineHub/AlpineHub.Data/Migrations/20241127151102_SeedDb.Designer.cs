@@ -4,6 +4,7 @@ using AlpineHub.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AlpineHub.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241127151102_SeedDb")]
+    partial class SeedDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -160,13 +163,13 @@ namespace AlpineHub.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("2161da1d-ce7a-4046-b746-6a561edd8b00"),
+                            Id = new Guid("b8e3e16a-df12-4a92-8fd3-0d28482c6ccd"),
                             AverageAscendTime = 25,
                             CapacityPerHour = 2000,
                             ClosingHour = new TimeOnly(16, 30, 0),
                             IsOpen = true,
                             Length = 2500,
-                            LiftTypeId = new Guid("bcfe0a51-7088-451a-a02d-0c46c9a9ed6b"),
+                            LiftTypeId = new Guid("eb42a879-b6b2-4c50-b8d4-4336e97e67a6"),
                             Name = "Mountain Gondola",
                             NumberOfSeats = 8,
                             OpenningHour = new TimeOnly(8, 30, 0),
@@ -174,13 +177,13 @@ namespace AlpineHub.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("394b2841-38ba-4a4c-bfe8-18ca181f1053"),
+                            Id = new Guid("74dfc2a7-0ed4-42ca-a0e1-99070021ab0c"),
                             AverageAscendTime = 10,
                             CapacityPerHour = 1300,
                             ClosingHour = new TimeOnly(16, 30, 0),
                             IsOpen = true,
                             Length = 1300,
-                            LiftTypeId = new Guid("dde8a2c0-a446-48b1-9da9-f3cb095b1662"),
+                            LiftTypeId = new Guid("458000dd-f5b8-455c-b0be-71db4ec53f1f"),
                             Name = "Spring rider",
                             NumberOfSeats = 6,
                             OpenningHour = new TimeOnly(8, 30, 0),
@@ -188,13 +191,13 @@ namespace AlpineHub.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("288f7ebf-47e4-425c-8ee6-60fa2335bff2"),
+                            Id = new Guid("5279b012-1187-4ef8-bad2-440d3c2dca45"),
                             AverageAscendTime = 12,
                             CapacityPerHour = 1200,
                             ClosingHour = new TimeOnly(16, 0, 0),
                             IsOpen = false,
                             Length = 1500,
-                            LiftTypeId = new Guid("dde8a2c0-a446-48b1-9da9-f3cb095b1662"),
+                            LiftTypeId = new Guid("458000dd-f5b8-455c-b0be-71db4ec53f1f"),
                             Name = "Lakavator",
                             NumberOfSeats = 8,
                             OpenningHour = new TimeOnly(8, 45, 0),
@@ -222,12 +225,12 @@ namespace AlpineHub.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("bcfe0a51-7088-451a-a02d-0c46c9a9ed6b"),
+                            Id = new Guid("e400e024-3f0f-4ad6-84b5-b6392c1a7cfd"),
                             Name = "Gondola"
                         },
                         new
                         {
-                            Id = new Guid("dde8a2c0-a446-48b1-9da9-f3cb095b1662"),
+                            Id = new Guid("6c670604-4c9a-4066-b0b1-5974955ef7f9"),
                             Name = "Chairlift"
                         });
                 });
@@ -399,7 +402,7 @@ namespace AlpineHub.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("7adbe39f-9e3a-4608-b6c1-db8eab26f5fd"),
+                            Id = new Guid("c99d8323-b7ae-48b6-b299-739ffc547e1b"),
                             Difficulty = 4,
                             IsOpen = true,
                             Length = 2000,
@@ -410,7 +413,7 @@ namespace AlpineHub.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("74b264c6-994d-4a16-bd53-8ecc5403da03"),
+                            Id = new Guid("870a9ac9-153b-4f33-94d7-c9c70c455393"),
                             Difficulty = 2,
                             IsOpen = true,
                             Length = 800,
@@ -421,7 +424,7 @@ namespace AlpineHub.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("fb6aa1f3-9a41-4b37-80e9-286739dd9735"),
+                            Id = new Guid("b307d0ac-a44a-4e9f-bb00-8cabad6d0afb"),
                             Difficulty = 0,
                             IsOpen = true,
                             Length = 300,

@@ -23,8 +23,14 @@ namespace AlpineHub.Data.Models
         [Comment("Vertical ascend of lift in meters")]
         public int VerticalAscend { get; set; }
 
+        [Comment("Max number of people per hour")]
+        public int CapacityPerHour { get; set; }
+
         [Comment("Average ascend time in minutes")]
         public int AverageAscendTime { get; set; }
+
+        [Comment("Number of seats of lift")]
+        public int NumberOfSeats { get; set; }
 
         [Required]
         [Comment("Openning hour of lift")]
@@ -37,14 +43,6 @@ namespace AlpineHub.Data.Models
         [Required]
         [Comment("Lift status flag")]
         public bool IsOpen { get; set; }
-
-        [Required]
-        [Comment("Last time to ride lift from bottom station")]
-        public TimeOnly LastRideFromBottomStationTime { get; set; }
-
-        [Required]
-        [Comment("Last time to ride lift from top station")]
-        public TimeOnly LastRideFromTopStationTime { get; set; }
 
         [Required]
         [Comment("Foreign key for lift type relation")]

@@ -56,7 +56,5 @@ namespace AlpineHub.Data.Models
         [ForeignKey(nameof(PassPeriodId))]
         public virtual PassPeriod PassPeriod { get; set; } = null!;
 
-
-
     }
 }

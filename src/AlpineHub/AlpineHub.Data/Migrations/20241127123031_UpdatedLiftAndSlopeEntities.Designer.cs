@@ -4,6 +4,7 @@ using AlpineHub.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AlpineHub.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241127123031_UpdatedLiftAndSlopeEntities")]
+    partial class UpdatedLiftAndSlopeEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -139,10 +142,6 @@ namespace AlpineHub.Data.Migrations
                         .HasColumnType("nvarchar(64)")
                         .HasComment("Name of ski lift");
 
-                    b.Property<int>("NumberOfSeats")
-                        .HasColumnType("int")
-                        .HasComment("Number of seats of lift");
-
                     b.Property<TimeOnly>("OpenningHour")
                         .HasColumnType("time")
                         .HasComment("Openning hour of lift");
@@ -156,50 +155,6 @@ namespace AlpineHub.Data.Migrations
                     b.HasIndex("LiftTypeId");
 
                     b.ToTable("Lifts");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("2161da1d-ce7a-4046-b746-6a561edd8b00"),
-                            AverageAscendTime = 25,
-                            CapacityPerHour = 2000,
-                            ClosingHour = new TimeOnly(16, 30, 0),
-                            IsOpen = true,
-                            Length = 2500,
-                            LiftTypeId = new Guid("bcfe0a51-7088-451a-a02d-0c46c9a9ed6b"),
-                            Name = "Mountain Gondola",
-                            NumberOfSeats = 8,
-                            OpenningHour = new TimeOnly(8, 30, 0),
-                            VerticalAscend = 400
-                        },
-                        new
-                        {
-                            Id = new Guid("394b2841-38ba-4a4c-bfe8-18ca181f1053"),
-                            AverageAscendTime = 10,
-                            CapacityPerHour = 1300,
-                            ClosingHour = new TimeOnly(16, 30, 0),
-                            IsOpen = true,
-                            Length = 1300,
-                            LiftTypeId = new Guid("dde8a2c0-a446-48b1-9da9-f3cb095b1662"),
-                            Name = "Spring rider",
-                            NumberOfSeats = 6,
-                            OpenningHour = new TimeOnly(8, 30, 0),
-                            VerticalAscend = 300
-                        },
-                        new
-                        {
-                            Id = new Guid("288f7ebf-47e4-425c-8ee6-60fa2335bff2"),
-                            AverageAscendTime = 12,
-                            CapacityPerHour = 1200,
-                            ClosingHour = new TimeOnly(16, 0, 0),
-                            IsOpen = false,
-                            Length = 1500,
-                            LiftTypeId = new Guid("dde8a2c0-a446-48b1-9da9-f3cb095b1662"),
-                            Name = "Lakavator",
-                            NumberOfSeats = 8,
-                            OpenningHour = new TimeOnly(8, 45, 0),
-                            VerticalAscend = 400
-                        });
                 });
 
             modelBuilder.Entity("AlpineHub.Data.Models.LiftType", b =>
@@ -218,18 +173,6 @@ namespace AlpineHub.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("LiftTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("bcfe0a51-7088-451a-a02d-0c46c9a9ed6b"),
-                            Name = "Gondola"
-                        },
-                        new
-                        {
-                            Id = new Guid("dde8a2c0-a446-48b1-9da9-f3cb095b1662"),
-                            Name = "Chairlift"
-                        });
                 });
 
             modelBuilder.Entity("AlpineHub.Data.Models.PassAgeGroup", b =>
@@ -395,41 +338,6 @@ namespace AlpineHub.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Slopes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("7adbe39f-9e3a-4608-b6c1-db8eab26f5fd"),
-                            Difficulty = 4,
-                            IsOpen = true,
-                            Length = 2000,
-                            LowerPointAltitude = 1300,
-                            Name = "Wolf ride",
-                            SlopeCondition = 0,
-                            UpperPointAltitude = 2200
-                        },
-                        new
-                        {
-                            Id = new Guid("74b264c6-994d-4a16-bd53-8ecc5403da03"),
-                            Difficulty = 2,
-                            IsOpen = true,
-                            Length = 800,
-                            LowerPointAltitude = 1800,
-                            Name = "Rabbit's hole",
-                            SlopeCondition = 0,
-                            UpperPointAltitude = 2000
-                        },
-                        new
-                        {
-                            Id = new Guid("fb6aa1f3-9a41-4b37-80e9-286739dd9735"),
-                            Difficulty = 0,
-                            IsOpen = true,
-                            Length = 300,
-                            LowerPointAltitude = 1350,
-                            Name = "Lerner's paradise",
-                            SlopeCondition = 1,
-                            UpperPointAltitude = 1450
-                        });
                 });
 
             modelBuilder.Entity("AlpineHub.Data.Models.SlopeLift", b =>

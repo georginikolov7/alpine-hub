@@ -1,7 +1,7 @@
 ﻿namespace AlpineHub.Data.Models
 {
     using static Common.EntityValidationConstraints;
-    
+
     using AlpineHub.Common.Enums;
     using Microsoft.EntityFrameworkCore;
     using System.ComponentModel.DataAnnotations;
@@ -17,6 +17,12 @@
 
         [Comment("Length of the slope in meters")]
         public int Length { get; set; }
+
+        [Comment("Elevation at upmost point of the slope")]
+        public int UpperPointAltitude { get; set; }
+
+        [Comment("Elevation at lowest point of the slope")]
+        public int LowerPointAltitude { get; set; }
 
         [Required]
         [Comment("Slope difficulty enum")]
