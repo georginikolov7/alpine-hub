@@ -32,7 +32,11 @@ namespace AlpineHub.Data.Models
 
         [Required]
         [Comment("Closing hour of lift")]
-        public TimeOnly ClosedHour { get; set; }
+        public TimeOnly ClosingHour { get; set; }
+
+        [Required]
+        [Comment("Lift status flag")]
+        public bool IsOpen { get; set; }
 
         [Required]
         [Comment("Last time to ride lift from bottom station")]

@@ -2,7 +2,6 @@
 {
     public static class EntityValidationConstraints
     {
-        public const string DateTimeFormat = "dd/MM/YYYY";
         //User:
         public const byte UserFirstNameMinLength = 1;
         public const byte UserFirstNameMaxLength = 100;

@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AlpineHub.Web.Controllers
 {
-    public class SlopesController : BaseController
+    public class SlopeController : BaseController
     {
         private readonly ISlopeService slopeService;
 
-        public SlopesController(ISlopeService slopeService)
+        public SlopeController(ISlopeService slopeService)
         {
             this.slopeService = slopeService;
         }

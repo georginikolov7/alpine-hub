@@ -6,15 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AlpineHub.Core.Services
 {
-    public class SlopeService : ISlopeService
+    public class SlopeService(IRepo repo) : BaseService(repo), ISlopeService
     {
-        private readonly IRepo repo;
-
-        public SlopeService(IRepo repo)
-        {
-            this.repo = repo;
-        }
-
         public async Task<IEnumerable<AllSlopesViewModel>> GetAllSlopes()
         {
             IEnumerable<AllSlopesViewModel> slopes = await repo.GetAllReadonly<Slope>()

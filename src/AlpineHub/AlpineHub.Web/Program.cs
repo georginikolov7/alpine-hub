@@ -1,12 +1,9 @@
 
 namespace AlpineHub.Web
 {
-    using AlpineHub.Data;
-    using AlpineHub.Data.Models;
     using AlpineHub.Web.Infrastructure.Binders;
     using AlpineHub.Web.Infrastructure.Extensions;
-    using Microsoft.AspNetCore.Identity;
-    using static Common.EntityValidationConstraints;
+    using static Common.Formats;
     public class Program
     {
         public static void Main(string[] args)
@@ -24,7 +21,7 @@ namespace AlpineHub.Web
 
             builder.Services.ConfigureApplicationCookie(cfg =>
             {
-                cfg.LoginPath = "/User/Login";
+                cfg.LoginPath = "/Identity/Account/Login";
                 cfg.AccessDeniedPath = "/Home/Error/401";
             });
 
