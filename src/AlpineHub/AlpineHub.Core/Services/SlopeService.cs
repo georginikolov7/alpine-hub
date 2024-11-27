@@ -30,7 +30,7 @@ namespace AlpineHub.Core.Services
 
         public async Task<int> GetTotalNumberOfSlopes()
         {
-            return await repo.GetAllReadonly<Slope>().CountAsync();s
+            return await repo.GetAllReadonly<Slope>().CountAsync();
         }
     }
 }
