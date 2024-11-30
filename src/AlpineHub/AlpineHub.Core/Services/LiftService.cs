@@ -6,6 +6,8 @@ namespace AlpineHub.Core.Services
     using AlpineHub.Data.Contracts;
     using AlpineHub.Data.Models;
     using Microsoft.EntityFrameworkCore;
+    using System;
+    using System.Reflection.Metadata.Ecma335;
     using static AlpineHub.Common.Formats;
     public class LiftService(IRepo repo) : BaseService(repo), ILiftService
     {
@@ -17,8 +19,8 @@ namespace AlpineHub.Core.Services
                     Id = l.Id.ToString(),
                     Name = l.Name,
                     AscendTime = l.AverageAscendTime,
-                    OpeningHours = string.Format(OpenningHoursFormat, l.OpenningHour.ToShortTimeString(), l.ClosingHour.ToShortTimeString()),
-                    IsOpen = l.IsOpen,
+                    OpeningHours = string.Format(OpenningHoursFormat, l.OpenningTime.ToShortTimeString(), l.ClosingTime.ToShortTimeString()),
+                    IsOpen = l.IsOpen && IsLiftOpen(l),
                     Type = l.LiftType.Name
                 })
                 .ToListAsync();
@@ -26,14 +28,58 @@ namespace AlpineHub.Core.Services
             return allLifts;
         }
 
+        public async Task<LiftDetailsViewModel?> GetLiftByIdAsync(string id)
+        {
+            if (!IsGuidValid(id, out Guid guid))
+            {
+                return null;
+            }
+
+            Lift? lift = await repo.GetAllReadonly<Lift>()
+                .Include(l => l.LiftType)
+                .FirstOrDefaultAsync(l => l.Id == guid);
+
+            if (lift is null)
+            {
+                return null;
+            }
+
+            LiftDetailsViewModel model = new LiftDetailsViewModel()
+            {
+                Id = lift.Id.ToString(),
+                Name = lift.Name,
+                Type = lift.LiftType.Name,
+                CapacityPerHour = lift.CapacityPerHour,
+                Length = lift.Length,
+                NumberOfSeats = lift.NumberOfSeats,
+                VerticalAscend = lift.VerticalAscend,
+                AverageRideTime = lift.AverageAscendTime,
+                OpeningHours = string.Format(OpenningHoursFormat, lift.OpenningTime.ToShortTimeString(), lift.ClosingTime.ToShortTimeString()),
+                IsOpen = lift.IsOpen && IsLiftOpen(lift),
+            };
+            return model;
+        }
+
         public async Task<int> GetNumberOfOpenLifts()
         {
-            return await repo.GetAllReadonly<Lift>().CountAsync(l => l.IsOpen);
+            return await repo.GetAllReadonly<Lift>().CountAsync(l => l.IsOpen && IsLiftOpen(l));
         }
 
         public async Task<int> GetTotalNumberOfLifts()
         {
             return await repo.GetAllReadonly<Lift>().CountAsync();
+        }
+
+        public async Task<bool> LiftExistsByIdAsync(Guid id)
+        {
+            return await repo.GetAllReadonly<Lift>().AnyAsync(l => l.Id == id);
+        }
+
+        //TODO if isOpen check current time in range of openning and closing hours
+        private static bool IsLiftOpen(Lift lift)
+        {
+            var currentTime = TimeOnly.FromDateTime(DateTime.Now);
+            return currentTime >= lift.OpenningTime && currentTime <= lift.ClosingTime;
         }
     }
 }

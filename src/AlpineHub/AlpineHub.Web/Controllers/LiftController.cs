@@ -1,4 +1,5 @@
 ﻿using AlpineHub.Core.Contracts;
+using AlpineHub.Core.ViewModels.Lift;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlpineHub.Web.Controllers
@@ -10,6 +11,19 @@ namespace AlpineHub.Web.Controllers
         {
             var model = await liftService.GetAllLifts();
             return View(model);
+        }
+
+        public async Task<IActionResult> GetLiftById(string id)
+        {
+
+            LiftDetailsViewModel? model = await liftService.GetLiftByIdAsync(id);
+
+            if (model == null)
+            {
+                return BadRequest();
+            }
+
+            return PartialView("_LiftDetailsModal", model);
         }
     }
 }

@@ -1,0 +1,59 @@
+﻿@using AlpineHub.Core.ViewModels.Lift
+@model LiftDetailsViewModel
+
+<div class="container-fluid">
+    <!-- Name and Type -->
+    <div class="row mb-3">
+        <div class="col-4 text-muted"><strong>Name:</strong></div>
+        <div class="col-8" id="liftName">@Model.Name</div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-4 text-muted"><strong>Type:</strong></div>
+        <div class="col-8" id="liftType">@Model.Type</div>
+    </div>
+    <!-- Length and Vertical Ascend -->
+    <div class="row mb-3">
+        <div class="col-4 text-muted"><strong>Length:</strong></div>
+        <div class="col-8"><span id="liftLength">@Model.Length</span> m</div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-4 text-muted"><strong>Vertical Ascend:</strong></div>
+        <div class="col-8"><span id="liftVerticalAscend">@Model.VerticalAscend</span> m</div>
+    </div>
+    <!-- Average Ride Time and Number of Seats -->
+    <div class="row mb-3">
+        <div class="col-4 text-muted"><strong>Ride Time:</strong></div>
+        <div class="col-8"><span id="liftRideTime">@Model.AverageRideTime</span> minutes</div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-4 text-muted"><strong>Seats:</strong></div>
+        <div class="col-8" id="liftSeats">@Model.NumberOfSeats</div>
+    </div>
+    <!-- Capacity Per Hour and IsOpen -->
+    <div class="row mb-3">
+        <div class="col-4 text-muted"><strong>Capacity/Hour:</strong></div>
+        <div class="col-8" id="liftCapacity">@Model.CapacityPerHour persons/hour</div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-4 text-muted"><strong>Open:</strong></div>
+        <div class="col-8">
+            @{
+                if (Model.IsOpen)
+                {
+                    <span id="liftIsOpen" class="badge bg-success">Open</span>
+                }
+                else
+                {
+                    <span id="liftIsOpen" class="badge bg-danger">Closed</span>
+                }
+            }
+            @*             <span id="liftIsOpen" class="badge">@Model.IsOpen</span>
+            *@
+        </div>
+    </div>
+    <!-- Opening Hours -->
+    <div class="row">
+        <div class="col-4 text-muted"><strong>Opening Hours:</strong></div>
+        <div class="col-8" id="liftOpeningHours">@Model.OpeningHours</div>
+    </div>
+</div>

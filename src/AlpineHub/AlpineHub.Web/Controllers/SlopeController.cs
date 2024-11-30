@@ -18,12 +18,12 @@ namespace AlpineHub.Web.Controllers
         public async Task<IActionResult> GetSlopeById(string id)
         {
             SlopeDetailsViewModel? model = await slopeService.GetSlopeByIdAsync(id);
+
             if(model == null)
             {
-                //TODO: implement message
-                return NotFound();
+                //TODO: implement not found message
+                return BadRequest();
             }
-
             return PartialView("_SlopeDetailsModal", model);
         }
     }

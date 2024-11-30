@@ -7,5 +7,7 @@ namespace AlpineHub.Core.Contracts
         Task<IEnumerable<AllLiftsViewModel>> GetAllLifts();
         Task<int> GetNumberOfOpenLifts();
         Task<int> GetTotalNumberOfLifts();
+        Task<bool> LiftExistsByIdAsync(Guid id);
+        Task<LiftDetailsViewModel?> GetLiftByIdAsync(string id);
     }
 }
