@@ -132,9 +132,25 @@ body {
         padding: 1em 0;
     }
 
-        .custom-table tbody tr:hover {
-            background-color: #eee;
-        }
+    .custom-table tbody tr:hover {
+        background-color: #eee;
+        cursor: pointer;
+    }
+/* Animation for highlighting the row */
+@keyframes rowClickHighlight {
+    0% {
+        background-color: rgba(0, 123, 255, 0.3); /* Light blue */
+    }
+
+    100% {
+        background-color: transparent;
+    }
+}
+
+/* Add a class to apply the animation */
+.row-click-animation {
+    animation: rowClickHighlight 0.5s ease-out;
+}
 
 
 footer {

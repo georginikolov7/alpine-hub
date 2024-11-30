@@ -10,8 +10,21 @@ namespace AlpineHub.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            IEnumerable<AllSlopesViewModel> model = await slopeService.GetAllSlopes();
+            IEnumerable<AllSlopesViewModel> model = await slopeService.GetAllSlopesAsync();
             return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetSlopeById(string id)
+        {
+            SlopeDetailsViewModel? model = await slopeService.GetSlopeByIdAsync(id);
+            if(model == null)
+            {
+                //TODO: implement message
+                return NotFound();
+            }
+
+            return PartialView("_SlopeDetailsModal", model);
         }
     }
 }

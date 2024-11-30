@@ -1,0 +1,70 @@
+﻿@using AlpineHub.Common.Enums
+@using AlpineHub.Core.ViewModels.Slope
+@model SlopeDetailsViewModel
+
+<div class="container-fluid">
+    <!-- Name and Difficulty -->
+    <div class="row mb-3">
+        <div class="col-4 text-muted"><strong>Name:</strong></div>
+        <div class="col-8" id="slopeName">@Model.Name</div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-4 text-muted"><strong>Difficulty:</strong></div>
+        <div class="col-8">
+            @{
+                if(Model.Difficulty == SlopeDifficulty.Beginner.ToString())
+                {
+                    <span id="slopeDifficulty" class="badge bg-success text-white">@Model.Difficulty </span>
+                }
+                else if (Model.Difficulty == SlopeDifficulty.Easy.ToString())
+                {
+                    <span id="slopeDifficulty" class="badge bg-primary text-white">@Model.Difficulty </span>
+                }
+                else if (Model.Difficulty == SlopeDifficulty.Intermediate.ToString())
+                {
+                    <span id="slopeDifficulty" class="badge bg-danger text-white">@Model.Difficulty </span>
+                }
+                else if (Model.Difficulty == SlopeDifficulty.Expert.ToString())
+                {
+                    <span id="slopeDifficulty" class="badge bg-dark text-white">@Model.Difficulty </span>
+                }
+            }
+        </div>
+    </div>
+    <!-- Length and Condition -->
+    <div class="row mb-3">
+        <div class="col-4 text-muted"><strong>Length:</strong></div>
+        <div class="col-8"><span id="slopeLength"> @Model.Length</span> m</div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-4 text-muted"><strong>Condition:</strong></div>
+        <div class="col-8">
+            <span id="slopeCondition">@Model.SlopeCondition</span>
+        </div>
+    </div>
+    <!-- Is Open -->
+    <div class="row mb-3">
+        <div class="col-4 text-muted"><strong>Open:</strong></div>
+        <div class="col-8">
+            @{
+                if (Model.IsOpen)
+                {
+                    <span id="slopeIsOpen" class="badge bg-success">Open</span>
+                }
+                else
+                {
+                    <span id="slopeIsOpen" class="badge bg-danger">Closed</span>
+                }
+            }
+        </div>
+    </div>
+    <!-- Elevations -->
+    <div class="row mb-3">
+        <div class="col-4 text-muted"><strong>Top Elevation:</strong></div>
+        <div class="col-8"><span id="slopeUpperPointElevation">@Model.UpperPointElevation</span> m</div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-4 text-muted"><strong>Bottom Elevation:</strong></div>
+        <div class="col-8"><span id="slopeLowerPointElevation">@Model.LowerPointElevation</span> m</div>
+    </div>
+</div>

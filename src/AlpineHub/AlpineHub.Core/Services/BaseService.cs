@@ -9,5 +9,21 @@ namespace AlpineHub.Core.Services
         {
             this.repo = repo;
         }
+        protected bool IsGuidValid(string id, out Guid guid)
+        {
+            // Non-existing parameter in the URL
+            if (String.IsNullOrWhiteSpace(id))
+            {
+                guid = Guid.Empty;
+                return false;
+            }
+
+            var isValid = Guid.TryParse(id, out guid);
+            if (isValid)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
