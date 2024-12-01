@@ -1,9 +1,11 @@
 
 namespace AlpineHub.Web
 {
+    using AlpineHub.Web.AuthorizationRequirements;
     using AlpineHub.Web.Infrastructure.Binders;
     using AlpineHub.Web.Infrastructure.Extensions;
     using static Common.Formats;
+    using static AlpineHub.Web.Infrastructure.Constants.CustomClaims;
     public class Program
     {
         public static void Main(string[] args)
@@ -24,6 +26,15 @@ namespace AlpineHub.Web
                 cfg.LoginPath = "/Identity/Account/Login";
                 cfg.AccessDeniedPath = "/Home/Error/401";
             });
+
+            builder.Services.AddAuthorization(opt =>
+            {
+                opt.AddPolicy(ManagerPolicyName, policy =>
+                {
+                    policy.Requirements.Add(new ManagerIdRequirement());
+                });
+            });
+
 
             builder.Services.AddControllersWithViews(cfg =>
             {

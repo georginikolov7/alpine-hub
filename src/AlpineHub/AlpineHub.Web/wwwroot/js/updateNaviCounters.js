@@ -1,4 +1,6 @@
-﻿$(function () {
+﻿const slopesCounterElement = $('#slopesCounter');
+const liftsCounterElement = $('#liftsCounter');
+$(function () {
     $.ajax({
         method: 'GET',
         url: 'https://localhost:7103/InfoCounters',
@@ -11,10 +13,11 @@
             const openLifts = data.openLiftsCount;
 
             const span = $('#slopesCounter');
-            $('#slopesCounter').text(`${openSlopes}/${totalSlopes}`);
-            $('#liftsCounter').text(`${openLifts}/${totalLifts}`);
+            slopesCounterElement.text(`${openSlopes}/${totalSlopes}`);
+            liftsCounterElement.text(`${openLifts}/${totalLifts}`);
         })
         .fail(function fail(error) {
-            console.log("Dimitrichko ne beshe tuk");
+            slopesCounterElement.text('!');
+            liftsCounterElement.text('!');
         });
 });

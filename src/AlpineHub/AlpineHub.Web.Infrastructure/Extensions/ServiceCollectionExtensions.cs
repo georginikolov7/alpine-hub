@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using static AlpineHub.Common.EntityValidationConstraints;
+using Microsoft.AspNetCore.Authorization;
+using AlpineHub.Web.AuthorizationHandlers;
 namespace AlpineHub.Web.Infrastructure.Extensions
 {
     public static class ServiceCollectionExtensions
@@ -17,6 +19,8 @@ namespace AlpineHub.Web.Infrastructure.Extensions
         {
             services.AddScoped<ISlopeService, SlopeService>();
             services.AddScoped<ILiftService, LiftService>();
+            services.AddScoped<IManagerService, ManagerService>();
+            services.AddScoped<IAuthorizationHandler, ManagerIdClaimHandler>();
             return services;
         }
         public static IServiceCollection AddAppDbContext(this IServiceCollection services, IConfiguration config)

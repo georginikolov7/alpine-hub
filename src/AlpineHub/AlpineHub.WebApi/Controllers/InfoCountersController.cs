@@ -29,7 +29,7 @@ namespace AlpineHub.WebApi.Controllers
                     OpenLiftsCount = openLiftsCount
                 });
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
                 return NotFound();
             }
