@@ -5,13 +5,12 @@ using System.Diagnostics;
 
 namespace AlpineHub.Web.Controllers
 {
-    public class HomeController(ILogger<HomeController> _logger) : BaseController(_logger)
+    public class HomeController(ILogger<HomeController> _logger, ICountersService countersService) : BaseController(_logger,countersService)
     {
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             return View();
-
         }
 
         public IActionResult Privacy()

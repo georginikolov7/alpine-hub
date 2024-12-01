@@ -23,16 +23,6 @@ namespace AlpineHub.Core.Services
             return slopes;
         }
 
-        public async Task<int> GetNumberOfOpenSlopesAsync()
-        {
-            return await repo.GetAllReadonly<Slope>().CountAsync(s => s.IsOpen);
-        }
-
-        public async Task<int> GetTotalNumberOfSlopesAsync()
-        {
-            return await repo.GetAllReadonly<Slope>().CountAsync();
-        }
-
         public async Task<bool> SlopeExistsByIdAsync(Guid slopeId)
         {
             return await repo.GetAllReadonly<Slope>().AnyAsync(s => s.Id == slopeId);

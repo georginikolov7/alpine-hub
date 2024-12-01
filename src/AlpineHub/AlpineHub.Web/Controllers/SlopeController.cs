@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AlpineHub.Web.Controllers
 {
-    public class SlopeController(ILogger<SlopeController> logger, ISlopeService slopeService) : BaseController(logger)
+    public class SlopeController(ILogger<SlopeController> logger, ISlopeService slopeService, ICountersService countersService) : BaseController(logger, countersService)
     {
 
         [HttpGet]
@@ -19,7 +19,7 @@ namespace AlpineHub.Web.Controllers
         {
             SlopeDetailsViewModel? model = await slopeService.GetSlopeByIdAsync(id);
 
-            if(model == null)
+            if (model == null)
             {
                 //TODO: implement not found message
                 return BadRequest();

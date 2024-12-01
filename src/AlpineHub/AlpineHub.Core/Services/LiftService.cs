@@ -60,26 +60,11 @@ namespace AlpineHub.Core.Services
             return model;
         }
 
-        public async Task<int> GetNumberOfOpenLifts()
-        {
-            return await repo.GetAllReadonly<Lift>().CountAsync(l => l.IsOpen && IsLiftOpen(l));
-        }
-
-        public async Task<int> GetTotalNumberOfLifts()
-        {
-            return await repo.GetAllReadonly<Lift>().CountAsync();
-        }
-
         public async Task<bool> LiftExistsByIdAsync(Guid id)
         {
             return await repo.GetAllReadonly<Lift>().AnyAsync(l => l.Id == id);
         }
 
-        //TODO if isOpen check current time in range of openning and closing hours
-        private static bool IsLiftOpen(Lift lift)
-        {
-            var currentTime = TimeOnly.FromDateTime(DateTime.Now);
-            return currentTime >= lift.OpenningTime && currentTime <= lift.ClosingTime;
-        }
+        
     }
 }

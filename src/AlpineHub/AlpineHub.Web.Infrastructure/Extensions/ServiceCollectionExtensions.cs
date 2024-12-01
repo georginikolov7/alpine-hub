@@ -17,6 +17,7 @@ namespace AlpineHub.Web.Infrastructure.Extensions
         {
             services.AddScoped<ISlopeService, SlopeService>();
             services.AddScoped<ILiftService, LiftService>();
+            services.AddScoped<ICountersService, CounterService>();
             return services;
         }
         public static IServiceCollection AddAppDbContext(this IServiceCollection services, IConfiguration config)

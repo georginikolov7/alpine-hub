@@ -1,4 +1,5 @@
 ﻿using AlpineHub.Data.Contracts;
+using AlpineHub.Data.Models;
 
 namespace AlpineHub.Core.Services
 {
@@ -24,6 +25,13 @@ namespace AlpineHub.Core.Services
                 return true;
             }
             return false;
+        }
+
+        protected static bool IsLiftOpen(Lift lift)
+        {
+            var currentTime = TimeOnly.FromDateTime(DateTime.Now);
+            return currentTime >= lift.OpenningTime && currentTime <= lift.ClosingTime;
+
         }
     }
 }
