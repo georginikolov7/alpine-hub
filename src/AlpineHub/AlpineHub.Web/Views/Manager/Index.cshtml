@@ -1,6 +1,84 @@
-﻿\@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿
 @{
+    ViewData["Title"] = "Manager DashBoard";
+    Layout = "_ManagerLayout";
 }
-Hello There
+@{
+    ViewData["Title"] = "Manager Dashboard";
+}
+
+<div class="container-fluid py-5">
+    <div class="row">
+        <!-- Page Title -->
+        <div class="col-12 mb-4">
+            <h1 class="display-4 text-center">Manager Dashboard</h1>
+            <p class="text-center text-muted">Welcome to the Ski Resort Management Panel. Use the tools below to manage slopes, lifts, and monitor key information.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Card: Manage Slopes -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Manage Slopes</h5>
+                    <p class="card-text text-muted">
+                        Add, edit, and view all the slopes in the resort. Keep their status and condition updated for guests.
+                    </p>
+                    <a href="/manager/slopes" class="btn btn-primary btn-lg">
+                        <i class="fas fa-person-skiing"></i> Go to Slopes
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: Manage Lifts -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Manage Lifts</h5>
+                    <p class="card-text text-muted">
+                        Add, edit, and monitor ski lifts. Keep information about opening hours, status, and capacity updated.
+                    </p>
+                    <a href="/manager/lifts" class="btn btn-primary btn-lg">
+                        <i class="fas fa-cable-car"></i> Go to Lifts
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <!-- Section: Quick Stats -->
+        <div class="col-12">
+            <h3 class="text-center mb-4">Quick Stats TODO: Card Stats</h3>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card bg-light shadow-sm text-center">
+                <div class="card-body">
+                    <h6>Total Slopes</h6>
+                    <h3 class="display-4 text-primary">12</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card bg-light shadow-sm text-center">
+                <div class="card-body">
+                    <h6>Open Slopes</h6>
+                    <h3 class="display-4 text-success">10</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card bg-light shadow-sm text-center">
+                <div class="card-body">
+                    <h6>Open Lifts</h6>
+                    <h3 class="display-4 text-success">8</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
