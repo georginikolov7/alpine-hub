@@ -27,7 +27,15 @@ namespace AlpineHub.Core.Services
 
             return allLifts;
         }
+        public async Task<int> GetNumberOfOpenLiftsAsync()
+        {
+            return (await repo.GetAllReadonly<Lift>().ToListAsync()).Count(l => l.IsOpen && IsLiftOpen(l));
+        }
 
+        public async Task<int> GetTotalNumberOfLiftsAsync()
+        {
+            return await repo.GetAllReadonly<Lift>().CountAsync();
+        }
         public async Task<LiftDetailsViewModel?> GetLiftByIdAsync(string id)
         {
             if (!IsGuidValid(id, out Guid guid))
@@ -64,7 +72,11 @@ namespace AlpineHub.Core.Services
         {
             return await repo.GetAllReadonly<Lift>().AnyAsync(l => l.Id == id);
         }
+        private static bool IsLiftOpen(Lift lift)
+        {
+            var currentTime = TimeOnly.FromDateTime(DateTime.Now);
+            return currentTime >= lift.OpenningTime && currentTime <= lift.ClosingTime;
+        }
 
-        
     }
 }

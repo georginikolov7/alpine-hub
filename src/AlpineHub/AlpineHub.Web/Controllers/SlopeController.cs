@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AlpineHub.Web.Controllers
 {
-    public class SlopeController(ILogger<SlopeController> logger, ISlopeService slopeService, ICountersService countersService) : BaseController(logger, countersService)
+    public class SlopeController(ILogger<SlopeController> logger, ISlopeService slopeService) : BaseController(logger)
     {
 
         [HttpGet]

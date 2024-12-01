@@ -27,11 +27,6 @@ namespace AlpineHub.Core.Services
             return false;
         }
 
-        protected static bool IsLiftOpen(Lift lift)
-        {
-            var currentTime = TimeOnly.FromDateTime(DateTime.Now);
-            return currentTime >= lift.OpenningTime && currentTime <= lift.ClosingTime;
-
-        }
+        
     }
 }

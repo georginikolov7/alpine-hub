@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace AlpineHub.Web.Controllers
 {
-    public class HomeController(ILogger<HomeController> _logger, ICountersService countersService) : BaseController(_logger,countersService)
+    public class HomeController(ILogger<HomeController> _logger) : BaseController(_logger)
     {
 
         public IActionResult Index()

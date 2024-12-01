@@ -1,10 +1,4 @@
-﻿@{
-    var totalSlopesCount = ViewBag.TotalSlopesCount;
-    var openSlopesCount = ViewBag.OpenSlopesCount;
-
-    var totalLiftsCount = ViewBag.TotalLiftsCount;
-    var openLiftsCount = ViewBag.OpenLiftsCount;
-}
+﻿
 <nav class="navbar navbar-expand-lg navbar-dark navbar-toggleable-sm box-shadow py-3">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -20,7 +14,7 @@
                     <div class="container d-flex flex-row position-relative align-items-center justify-content-center">
                         <i class="fa-solid fa-person-skiing"></i>
                         <span class="ms-2">Slopes</span>
-                        <span class="custom-navbar number-info">@openSlopesCount/@totalSlopesCount</span>
+                        <span id="slopesCounter"class="custom-navbar number-info"></span>
                     </div>
                 </a>
             </li>
@@ -29,7 +23,7 @@
                     <div class="container d-flex position-relative flex-row align-items-center justify-content-center">
                         <i class="fa-solid fa-cable-car"></i>
                         <span class="ms-2">Lifts</span>
-                        <span class="custom-navbar number-info">@openLiftsCount/@totalLiftsCount</span>
+                        <span id="liftsCounter"class="custom-navbar number-info"></span>
                     </div>
                 </a>
             </li>

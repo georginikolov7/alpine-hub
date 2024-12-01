@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlpineHub.Data", "AlpineHub
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlpineHub.Core", "AlpineHub.Core\AlpineHub.Core.csproj", "{3660AF72-AECE-4C5B-98C8-60193F6F6D2D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlpineHub.WebApi", "AlpineHub.WebApi\AlpineHub.WebApi.csproj", "{DF5A8714-6C9C-4C9F-9457-3DEA7C5074BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{3660AF72-AECE-4C5B-98C8-60193F6F6D2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3660AF72-AECE-4C5B-98C8-60193F6F6D2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3660AF72-AECE-4C5B-98C8-60193F6F6D2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF5A8714-6C9C-4C9F-9457-3DEA7C5074BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF5A8714-6C9C-4C9F-9457-3DEA7C5074BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF5A8714-6C9C-4C9F-9457-3DEA7C5074BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF5A8714-6C9C-4C9F-9457-3DEA7C5074BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +70,7 @@ Global
 		{A1C8F315-EC1A-4887-86C5-CCE8CFD3B678} = {A2575549-1308-47A9-9264-EA395AD146B2}
 		{0B42131E-66B7-4ACD-A958-9CD129A900C4} = {A2575549-1308-47A9-9264-EA395AD146B2}
 		{3660AF72-AECE-4C5B-98C8-60193F6F6D2D} = {1E2114E8-EA77-4F93-BA1F-00CE7ADFAA4E}
+		{DF5A8714-6C9C-4C9F-9457-3DEA7C5074BC} = {7113BD30-23A5-41DF-85A3-D7F7E3B7C8B0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA8AD57F-722E-41B4-9098-FF848042E3A2}
