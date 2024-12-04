@@ -17,8 +17,12 @@ namespace AlpineHub.Web.Infrastructure.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            services.AddScoped<ISlopeService, SlopeService>();
-            services.AddScoped<ILiftService, LiftService>();
+            services.AddScoped<SlopeService>();
+            services.AddScoped<ISlopeService>(provider => provider.GetRequiredService<SlopeService>());
+            services.AddScoped<IManageableSlopeService>(provider => provider.GetRequiredService<SlopeService>());
+            services.AddScoped<LiftService>();
+            services.AddScoped<ILiftService>(provider => provider.GetRequiredService<LiftService>());
+            services.AddScoped<IManageableLiftService>(provider => provider.GetRequiredService<LiftService>());
             services.AddScoped<IManagerService, ManagerService>();
             services.AddScoped<IAuthorizationHandler, ManagerIdClaimHandler>();
             return services;

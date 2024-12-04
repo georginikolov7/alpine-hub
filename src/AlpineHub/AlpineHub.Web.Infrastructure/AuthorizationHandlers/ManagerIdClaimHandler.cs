@@ -1,6 +1,7 @@
 ﻿using AlpineHub.Core.Contracts;
 using AlpineHub.Web.AuthorizationRequirements;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 using static AlpineHub.Web.Infrastructure.Constants.CustomClaims;
 namespace AlpineHub.Web.AuthorizationHandlers
 {
@@ -16,7 +17,8 @@ namespace AlpineHub.Web.AuthorizationHandlers
             }
 
             string? managerId = managerIdClaim.Value;
-            if (await managerService.IsUserManagerAsync(managerId))
+            string? userId = context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (await managerService.IsManagerIdValid(managerId, userId))
             {
                 context.Succeed(requirement);
             }
