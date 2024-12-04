@@ -1,0 +1,94 @@
+﻿@using AlpineHub.Common.Enums
+@using AlpineHub.Core.ViewModels.Slope
+@model IEnumerable<SlopeDetailsViewModel>
+@{
+    Layout = "_ManagerLayout";
+    ViewData["Title"] = "Manage Slopes";
+}
+<div class="container-fluid py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <!-- Page Title -->
+        <h1>Manage Slopes</h1>
+
+        <!-- Add New Slope Button -->
+        <a class="btn btn-success" asp-area="" asp-controller="Manager" asp-action="AddSlope">
+            <i class="fas fa-plus"></i> Add New Slope
+        </a>
+    </div>
+
+    <!-- Slopes Table -->
+    <div class="table-responsive text-center">
+        <table class="table table-hover" id="manageSlopesTable">
+            <thead class="">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Difficulty</th>
+                    <th scope="col">Length (m)</th>
+                    <th scope="col">Condition</th>
+                    <th scope="col">Top Elevation (m)</th>
+                    <th scope="col">Bottom Elevation (m)</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var slope in Model)
+                {
+                    <tr>
+                        <td hidden>@slope.Id</td>
+                        <td>@slope.Name</td>
+                        <td>
+                            @{
+                                if (slope.Difficulty == SlopeDifficulty.Easy.ToString())
+                                {
+                                    <span id="slopeDifficulty" class="badge bg-success text-white">@slope.Difficulty</span>
+                                }
+                                else if (slope.Difficulty == SlopeDifficulty.Intermediate.ToString())
+                                {
+                                    <span id="slopeDifficulty" class="badge bg-primary text-white">@slope.Difficulty </span>
+                                }
+                                else if (slope.Difficulty == SlopeDifficulty.Hard.ToString())
+                                {
+                                    <span id="slopeDifficulty" class="badge bg-danger text-white">@slope.Difficulty </span>
+                                }
+                                else if (slope.Difficulty == SlopeDifficulty.Expert.ToString())
+                                {
+                                    <span id="slopeDifficulty" class="badge bg-dark text-white">@slope.Difficulty </span>
+                                }
+                            }
+                        </td>
+
+                        <td>@slope.Length</td>
+
+                        <td>@slope.SlopeCondition</td>
+                        <td>@slope.UpperPointAltitude</td>
+                        <td>@slope.LowerPointAltitude</td>
+                        <td>
+                            @if (slope.IsOpen)
+                            {
+                                <span class="badge bg-success">Open</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Closed</span>
+                            }
+                        </td>
+                        <td>
+                            <a class="btn btn-sm btn-warning" asp-area="" asp-controller="Manager" asp-action="EditSlope" asp-route-id="@slope.Id">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <button class="btn btn-sm btn-danger delete-slope-button">
+                                <i class="fas fa-edit"></i> Delete
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Delete Slope Confirmation Modal -->
+<div class="modal fade" id="deleteSlopeModal" tabindex="-1" aria-labelledby="deleteSlopeModalLabel" aria-hidden="true">
+    <!-- Modal will be loaded here-->
+</div>

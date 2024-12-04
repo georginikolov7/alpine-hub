@@ -8,7 +8,7 @@
         public string SlopeCondition { get; set; } = null!;
         public bool IsOpen { get; set; }
         public int Length { get; set; }
-        public int UpperPointElevation { get; set; }
-        public int LowerPointElevation { get; set; }
+        public int UpperPointAltitude { get; set; }
+        public int LowerPointAltitude { get; set; }
     }
 }

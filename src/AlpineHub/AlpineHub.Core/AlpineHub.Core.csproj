@@ -10,4 +10,8 @@
     <ProjectReference Include="..\AlpineHub.Data\AlpineHub.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ViewModels\Shared\" />
+  </ItemGroup>
+
 </Project>

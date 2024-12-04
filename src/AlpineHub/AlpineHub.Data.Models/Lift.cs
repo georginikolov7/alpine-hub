@@ -6,8 +6,9 @@ namespace AlpineHub.Data.Models
     using Microsoft.EntityFrameworkCore;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using AlpineHub.Data.Models.Contracts;
 
-    public class Lift
+    public class Lift : ISoftDeletable
     {
         [Key]
         public Guid Id { get; set; }
@@ -50,5 +51,7 @@ namespace AlpineHub.Data.Models
 
         [ForeignKey(nameof(LiftTypeId))]
         public virtual LiftType LiftType { get; set; } = null!;
+        [Comment("Soft delete flag")]
+        public bool IsDeleted { get;set; }
     }
 }

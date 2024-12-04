@@ -1,0 +1,73 @@
+﻿@using AlpineHub.Core.ViewModels.Slope
+@using AlpineHub.Common.Enums;
+@model EditSlopeFormModel
+@{
+    ViewData["Title"] = "Edit Slope";
+    Layout = "_ManagerLayout";
+    IEnumerable<SelectListItem> slopeDificulties = Enum.GetValues<SlopeDifficulty>().Select(d => new SelectListItem
+            {
+                Text = d.ToString(),
+                Value = d.ToString()
+            });
+
+    IEnumerable<SelectListItem> slopeConditions = Enum.GetValues<SlopeCondition>().Select(d => new SelectListItem
+            {
+                Text = d.ToString(),
+                Value = d.ToString()
+            });
+}
+
+<div class="container w-75">
+    <h1>Edit Slope @Model.Name</h1>
+    <form asp-action="EditSlope" method="post">
+        @Html.AntiForgeryToken()
+        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+        <input type="hidden" asp-for="Id"/>
+
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label">Name</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="IsOpen" class="form-label">Opened:</label>
+            <input asp-for="IsOpen" type="checkbox" class="form-check-input" />
+            <span asp-validation-for="IsOpen" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Length" class="form-label">Length (m)</label>
+            <input asp-for="Length" class="form-control" />
+            <span asp-validation-for="Length" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Difficulty" class="form-label">Difficulty</label>
+            <select asp-for="Difficulty" asp-items="slopeDificulties" class="form-select"></select>
+            <span asp-validation-for="Difficulty" class="text-danger"></span>
+        </div>
+
+
+        <div class="mb-3">
+            <label asp-for="SlopeCondition" class="form-label">Condition</label>
+            <select asp-for="SlopeCondition" asp-items="slopeConditions" class="form-select"></select>
+            <span asp-validation-for="SlopeCondition" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="UpperPointAltitude" class="form-label">Top Elevation (m)</label>
+            <input asp-for="UpperPointAltitude" class="form-control" />
+            <span asp-validation-for="UpperPointAltitude" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="LowerPointAltitude" class="form-label">Bottom Elevation (m)</label>
+            <input asp-for="LowerPointAltitude" class="form-control" />
+            <span asp-validation-for="LowerPointAltitude" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a asp-action="Slopes" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

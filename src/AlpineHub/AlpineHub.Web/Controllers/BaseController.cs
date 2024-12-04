@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace AlpineHub.Web.Controllers
 {
@@ -9,6 +10,10 @@ namespace AlpineHub.Web.Controllers
         protected BaseController(ILogger _logger)
         {
             logger = _logger;
+        }
+        protected string? GetUserId()
+        {
+            return User.FindFirstValue(ClaimTypes.NameIdentifier);
         }
     }
 }

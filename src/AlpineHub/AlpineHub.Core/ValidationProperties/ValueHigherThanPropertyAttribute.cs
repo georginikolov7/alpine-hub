@@ -1,0 +1,38 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AlpineHub.Core.ValidationProperties
+{
+    public class ValueHigherThanPropertyAttribute(string propertyToCompare) : ValidationAttribute
+    {
+        protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
+        {
+            if (value is not null)
+            {
+                //get other value using reflection:
+                var valueToCompare = validationContext.ObjectType.GetProperty(propertyToCompare)?.GetValue(validationContext.ObjectInstance, null);
+
+                if (valueToCompare is not null)
+                {
+                    try
+                    {
+                        if ((int)value <= (int)valueToCompare)
+                        {
+                            return new ValidationResult(ErrorMessage="Top value must be higher than bottom value");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        return new ValidationResult("Invalid property type.");
+                    }
+                }
+            }
+            return ValidationResult.Success;
+        }
+    }
+}

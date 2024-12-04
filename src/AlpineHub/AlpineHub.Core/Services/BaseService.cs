@@ -10,7 +10,7 @@ namespace AlpineHub.Core.Services
         {
             this.repo = repo;
         }
-        protected bool IsGuidValid(string id, out Guid guid)
+        protected bool IsGuidValid(string? id, out Guid guid)
         {
             // Non-existing parameter in the URL
             if (String.IsNullOrWhiteSpace(id))
