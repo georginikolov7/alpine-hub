@@ -20,12 +20,34 @@
         public const byte SlopeNameMinLength = 3;
         public const byte SlopeNameMaxLength = 100;
 
+        public const double SlopeMinLength = 50;
+        public const double SlopeMaxLength = 15000;
+
+        public const double ResortMinAltitude = 1000;
+        public const double ResortMaxAltitude = 2700;
+
+        public const byte MinVerticalAscend = 50;
+        public const int MaxVerticalAscend = 1700;
+
+
         //Lifts:
         public const byte LiftTypeNameMinLength = 4;
         public const byte LiftTypeNameMaxLength = 20;
 
         public const byte LiftNameMinLength = 3;
         public const byte LiftNameMaxLength = 64;
+
+        public const byte LiftMinLength = 100;
+        public const int LiftMaxLength = 7000;
+
+        public const byte LiftMinCapacity = 200;
+        public const int LiftMaxCapacity = 2000;
+
+        public const byte LiftMinNumberOfSeats = 1;
+        public const byte LiftMaxNumberOfSeats = 20;
+
+        public const byte LiftMinAscendTime = 3;
+        public const byte LiftMaxAscendTime = 45;
 
         //Pass Period:
         public const byte PassPeriodNameMinLength = 3;

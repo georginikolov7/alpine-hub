@@ -105,7 +105,7 @@ namespace AlpineHub.Core.Services
         {
             if (!IsGuidValid(id, out Guid guid))
             {
-                throw new ArgumentException("Invalid slope id");
+                throw new ArgumentException(string.Format(InvalidId, "Slope", id));
             }
             Slope? slope = await repo.GetByIdAsync<Slope>(guid) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, guid));
 
@@ -143,7 +143,7 @@ namespace AlpineHub.Core.Services
         {
             if (!IsGuidValid(id, out Guid guid))
             {
-                throw new ArgumentException(string.Format(InvalidId, "Slope"));
+                throw new ArgumentException(string.Format(InvalidId, "Slope", id));
             }
 
             Slope slope = await repo.GetByIdAsync<Slope>(guid) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, guid));

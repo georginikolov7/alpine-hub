@@ -1,5 +1,6 @@
 ﻿@{
-    Layout = "_Layout";}
+    Layout = "_Layout";
+}
 <style>
     .navbar {
         background-color: rgba(7, 40, 72, 1);
@@ -9,11 +10,11 @@
 
 <div class="d-flex">
     <!-- Sidebar Navigation -->
-    <div class="sidebar bg-light p-3" style="width: 250px; height: 100vh; border-right: 1px solid #ddd;">
+    <div class="sidebar bg-light p-3 manager-sidebar">
         <h5>Manager Panel</h5>
         <nav class="nav flex-column">
-            <a href="/manager/slopes" class="nav-link">Manage Slopes</a>
-            <a href="/manager/lifts" class="nav-link">Manage Lifts</a>
+            <a class="nav-link" asp-area="" asp-controller="Manager" asp-action="Slopes">Manage Slopes</a>
+            <a class="nav-link" asp-area="" asp-controller="Manager" asp-action="Lifts">Manage Lifts</a>
         </nav>
     </div>
 
@@ -22,3 +23,8 @@
         @RenderBody()
     </div>
 </div>
+@section Scripts {
+    <script src="~/js/modalLoaders.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+
+}

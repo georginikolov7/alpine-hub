@@ -8,7 +8,7 @@ namespace AlpineHub.Common
 {
     public static class ErrorMessages
     {
-        public const string InvalidId = "Invalid id of {0}.";
+        public const string InvalidId = "{0} guid {1} invalid";
         public const string EntityWithIdNotFound = "Entity with given id {0} not found.";
     }
 }

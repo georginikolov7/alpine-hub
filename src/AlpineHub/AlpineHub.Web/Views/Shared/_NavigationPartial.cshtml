@@ -1,5 +1,15 @@
-﻿
+﻿@using AlpineHub.Core.Contracts
+@using System.Security.Claims
+@inject IManagerService managerService
+@{
+    string? userId = Context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+    bool isUserManager = await managerService.IsUserManager(userId);
+}
 <nav class="navbar navbar-expand-lg navbar-dark navbar-toggleable-sm box-shadow py-3">
+    @if (isUserManager)
+    {
+        <div class="manager-label bg-primary">Manager</div>
+    }
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon text-white"></span>
@@ -14,7 +24,7 @@
                     <div class="container d-flex flex-row position-relative align-items-center justify-content-center">
                         <i class="fa-solid fa-person-skiing"></i>
                         <span class="ms-2">Slopes</span>
-                        <span id="slopesCounter"class="custom-navbar number-info"></span>
+                        <span id="slopesCounter" class="custom-navbar number-info"></span>
                     </div>
                 </a>
             </li>
@@ -23,7 +33,7 @@
                     <div class="container d-flex position-relative flex-row align-items-center justify-content-center">
                         <i class="fa-solid fa-cable-car"></i>
                         <span class="ms-2">Lifts</span>
-                        <span id="liftsCounter"class="custom-navbar number-info"></span>
+                        <span id="liftsCounter" class="custom-navbar number-info"></span>
                     </div>
                 </a>
             </li>
@@ -38,10 +48,10 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white d-inline-block" asp-area="" asp-controller="Home" asp-action="Index">
+                <a class="btn btn-sm btn-warning nav-link text-white d-inline-block" asp-area="" asp-controller="Manager" asp-action="Index">
                     <div class="container d-flex flex-row align-items-center justify-content-center">
-                        <i class="fa-solid fa-map"></i>
-                        <span class="ms-2">Map</span>
+                        <i class="fa-solid fa-bars"></i>
+                        <span class="ms-2">Manage</span>
                     </div>
                 </a>
             </li>

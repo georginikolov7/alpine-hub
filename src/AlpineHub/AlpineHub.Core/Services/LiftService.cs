@@ -3,13 +3,14 @@ namespace AlpineHub.Core.Services
 {
     using AlpineHub.Core.Contracts;
     using AlpineHub.Core.ViewModels.Lift;
+    using AlpineHub.Core.ViewModels.LiftType;
     using AlpineHub.Data.Contracts;
     using AlpineHub.Data.Models;
     using Microsoft.EntityFrameworkCore;
     using System;
-    using System.Reflection.Metadata.Ecma335;
+    using static AlpineHub.Common.ErrorMessages;
     using static AlpineHub.Common.Formats;
-    public class LiftService(IRepo repo) : BaseService(repo), ILiftService
+    public class LiftService(IRepo repo) : BaseService(repo), ILiftService, IManageableLiftService
     {
         public async Task<IEnumerable<AllLiftsViewModel>> GetAllLifts()
         {
@@ -78,5 +79,151 @@ namespace AlpineHub.Core.Services
             return currentTime >= lift.OpenningTime && currentTime <= lift.ClosingTime;
         }
 
+        public async Task<IEnumerable<LiftDetailsViewModel>> GetAllManagerLiftsAsync()
+        {
+            IEnumerable<LiftDetailsViewModel> model = await repo.GetAllReadonly<Lift>()
+                .Include(l => l.LiftType)
+                .Select(l => new LiftDetailsViewModel()
+                {
+                    Id = l.Id.ToString(),
+                    Name = l.Name,
+                    Type = l.LiftType.Name,
+                    Length = l.Length,
+                    VerticalAscend = l.VerticalAscend,
+                    CapacityPerHour = l.CapacityPerHour,
+                    AverageRideTime = l.AverageAscendTime,
+                    IsOpen = l.IsOpen,
+                    NumberOfSeats = l.NumberOfSeats,
+                    OpeningHours = string.Format(OpenningHoursFormat, l.OpenningTime.ToShortTimeString(), l.ClosingTime.ToShortTimeString())
+                })
+                .ToListAsync();
+
+            return model;
+        }
+
+        public async Task<EditLiftFormModel> GetLiftForEditAsync(string? id)
+        {
+            if (!IsGuidValid(id, out Guid guid))
+            {
+                throw new ArgumentException(string.Format(InvalidId, "Lift", id));
+            }
+
+            Lift? lift = await repo
+                .GetAllReadonly<Lift>()
+                .Include(l => l.LiftType)
+                .FirstOrDefaultAsync(l => l.Id == guid) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, id));
+
+            EditLiftFormModel model = new EditLiftFormModel()
+            {
+                Id = lift.Id,
+                Name = lift.Name,
+                Length = lift.Length,
+                LiftTypeId = lift.LiftTypeId.ToString(),
+                VerticalAscend = lift.VerticalAscend,
+                Capacity = lift.CapacityPerHour,
+                AverageAscendTime = lift.AverageAscendTime,
+                SeatsCount = lift.NumberOfSeats,
+                OpenningTime = lift.OpenningTime,
+                ClosingTime = lift.ClosingTime,
+                IsOpen = lift.IsOpen
+            };
+            return model;
+
+        }
+
+        public async Task EditLiftAsync(EditLiftFormModel model)
+        {
+            Lift? lift = await repo
+                .GetAll<Lift>()
+                .Include(l => l.LiftType)
+                .FirstOrDefaultAsync(l => l.Id == model.Id)
+                ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, model.Id));
+
+
+            string liftTypeId = model.LiftTypeId;
+            if (!IsGuidValid(liftTypeId, out Guid liftTypeGuid))
+            {
+                throw new ArgumentException(string.Format(InvalidId, "LiftType", liftTypeId));
+            }
+
+            LiftType? liftType = await repo.GetByIdAsync<LiftType>(liftTypeGuid) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, liftTypeId));
+
+            lift.Name = model.Name;
+            lift.LiftType = liftType;
+            lift.Length = model.Length;
+            lift.VerticalAscend = model.VerticalAscend;
+            lift.CapacityPerHour = model.Capacity;
+            lift.AverageAscendTime = model.AverageAscendTime;
+            lift.NumberOfSeats = model.SeatsCount;
+            lift.OpenningTime = model.OpenningTime;
+            lift.ClosingTime = model.ClosingTime;
+            lift.IsOpen = model.IsOpen;
+
+            await repo.SaveChangesAsync();
+        }
+
+        public async Task<DeleteLiftViewModel> GetLiftForDeleteAsync(string? id)
+        {
+            if (!IsGuidValid(id, out Guid guid))
+            {
+                throw new ArgumentException(string.Format(InvalidId, "Lift", id));
+            }
+
+            Lift? lift = await repo.GetByIdAsync<Lift>(guid) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, id));
+
+            DeleteLiftViewModel model = new DeleteLiftViewModel()
+            {
+                Id = lift.Id,
+                Name = lift.Name
+            };
+            return model;
+        }
+
+        public async Task DeleteLiftAsync(DeleteLiftViewModel model)
+        {
+            await repo.DeleteByIdAsync<Lift>(model.Id);
+            await repo.SaveChangesAsync();
+        }
+
+        public async Task AddLiftAsync(AddLiftFormModel model)
+        {
+            string liftTypeId = model.LiftTypeId;
+            if (!IsGuidValid(liftTypeId, out Guid liftTypeGuid))
+            {
+                throw new ArgumentException(string.Format(InvalidId, "LiftType", liftTypeId));
+            }
+
+            LiftType? liftType = await repo.GetByIdAsync<LiftType>(liftTypeGuid) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, liftTypeId));
+
+            Lift lift = new()
+            {
+                Name = model.Name,
+                LiftType = liftType,
+                IsOpen = model.IsOpen,
+                Length = model.Length,
+                AverageAscendTime = model.AverageAscendTime,
+                CapacityPerHour = model.Capacity,
+                NumberOfSeats = model.SeatsCount,
+                VerticalAscend = model.VerticalAscend,
+                OpenningTime = model.OpenningTime,
+                ClosingTime = model.ClosingTime,
+            };
+
+            await repo.AddAsync(lift);
+            await repo.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<LiftTypeViewModel>>? GetAllLiftTypesAsync()
+        {
+            IEnumerable<LiftTypeViewModel> model = await repo.GetAllReadonly<LiftType>()
+                .Select(lt => new LiftTypeViewModel()
+                {
+                    Id = lt.Id.ToString(),
+                    Name = lt.Name
+                })
+                .ToListAsync();
+
+            return model;
+        }
     }
 }

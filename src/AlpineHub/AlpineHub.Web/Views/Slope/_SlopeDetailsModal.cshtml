@@ -12,15 +12,15 @@
         <div class="col-4 text-muted"><strong>Difficulty:</strong></div>
         <div class="col-8">
             @{
-                if(Model.Difficulty == SlopeDifficulty.Beginner.ToString())
+                if(Model.Difficulty == SlopeDifficulty.Easy.ToString())
                 {
                     <span id="slopeDifficulty" class="badge bg-success text-white">@Model.Difficulty </span>
                 }
-                else if (Model.Difficulty == SlopeDifficulty.Easy.ToString())
+                else if (Model.Difficulty == SlopeDifficulty.Intermediate.ToString())
                 {
                     <span id="slopeDifficulty" class="badge bg-primary text-white">@Model.Difficulty </span>
                 }
-                else if (Model.Difficulty == SlopeDifficulty.Intermediate.ToString())
+                else if (Model.Difficulty == SlopeDifficulty.Hard.ToString())
                 {
                     <span id="slopeDifficulty" class="badge bg-danger text-white">@Model.Difficulty </span>
                 }
@@ -61,10 +61,10 @@
     <!-- Elevations -->
     <div class="row mb-3">
         <div class="col-4 text-muted"><strong>Top Elevation:</strong></div>
-        <div class="col-8"><span id="slopeUpperPointElevation">@Model.UpperPointElevation</span> m</div>
+        <div class="col-8"><span id="slopeUpperPointElevation">@Model.UpperPointAltitude</span> m</div>
     </div>
     <div class="row mb-3">
         <div class="col-4 text-muted"><strong>Bottom Elevation:</strong></div>
-        <div class="col-8"><span id="slopeLowerPointElevation">@Model.LowerPointElevation</span> m</div>
+        <div class="col-8"><span id="slopeLowerPointElevation">@Model.LowerPointAltitude</span> m</div>
     </div>
 </div>

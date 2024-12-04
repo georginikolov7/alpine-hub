@@ -1,12 +1,31 @@
 ﻿
 $(function () {
     const deleteSlopeButton = $('.delete-slope-button');
+    const deleteLiftButton = $('.delete-lift-button');
+
     deleteSlopeButton.on("click", (e) => {
         const trElement = $(e.target).parent().parent();
         const id = trElement.find('td:first').text();
         $.ajax({
             method: 'GET',
             url: "/Manager/DeleteSlope",
+            data: { id: id },
+        })
+            .done(function success(data) {
+                $('#deleteSlopeModal').html(data);
+                $('#deleteSlopeModal').modal('show');
+            })
+            .fail(function fail(data) {
+                //TODO handle error
+            });
+    });
+
+    deleteLiftButton.on("click", (e) => {
+        const trElement = $(e.target).parent().parent();
+        const id = trElement.find('td:first').text();
+        $.ajax({
+            method: 'GET',
+            url: "/Manager/DeleteLift",
             data: { id: id },
         })
             .done(function success(data) {

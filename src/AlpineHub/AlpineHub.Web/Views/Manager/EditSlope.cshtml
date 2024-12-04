@@ -18,7 +18,8 @@
 }
 
 <div class="container w-75">
-    <h1>Edit Slope @Model.Name</h1>
+    <h1>Edit Slope: <strong>@Model.Name</strong></h1>
+    <hr class="mb-4"/>
     <form asp-action="EditSlope" method="post">
         @Html.AntiForgeryToken()
         <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>

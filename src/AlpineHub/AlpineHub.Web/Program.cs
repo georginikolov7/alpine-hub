@@ -6,6 +6,8 @@ namespace AlpineHub.Web
     using AlpineHub.Web.Infrastructure.Extensions;
     using static Common.Formats;
     using static AlpineHub.Web.Infrastructure.Constants.CustomClaims;
+    using Microsoft.AspNetCore.Mvc;
+
     public class Program
     {
         public static void Main(string[] args)
@@ -39,14 +41,17 @@ namespace AlpineHub.Web
             builder.Services.AddControllersWithViews(cfg =>
             {
                 cfg.ModelBinderProviders.Insert(0, new DateTimeModelBinderProvider(DateTimeFormat));
+                cfg.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
             });
             builder.Services.AddRazorPages();
+            builder.Services.AddResponseCaching();
 
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
+                app.UseDeveloperExceptionPage();
                 app.UseMigrationsEndPoint();
             }
             else
@@ -69,6 +74,7 @@ namespace AlpineHub.Web
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
 
+            app.UseResponseCaching();
             app.Run();
         }
     }

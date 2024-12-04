@@ -107,11 +107,6 @@
                 DeleteSlopeViewModel model = await slopeService.GetSlopeForDeleteAsync(id);
                 return PartialView("_DeleteConfirmationModal", model);
             }
-            catch (ArgumentException ex)
-            {
-                logger.LogError(ex, ex.Message);
-                return RedirectToAction(nameof(Slopes));
-            }
             catch (Exception ex)
             {
                 logger.LogError(ex, ex.Message);
@@ -129,11 +124,6 @@
                 await slopeService.DeleteSlopeAsync(model);
                 return RedirectToAction(nameof(Slopes));
             }
-            catch (ArgumentException ex)
-            {
-                logger.LogError(ex, ex.Message);
-                return RedirectToAction(nameof(Slopes));
-            }
             catch (Exception ex)
             {
                 logger.LogError(ex, ex.Message);
@@ -142,6 +132,96 @@
             }
         }
 
+        [HttpGet]
+        public IActionResult AddLift()
+        {
+            AddLiftFormModel model = new();
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddLift(AddLiftFormModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
 
+            try
+            {
+                await liftService.AddLiftAsync(model);
+                return RedirectToAction(nameof(Lifts));
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, ex.Message);
+                ModelState.AddModelError(string.Empty, string.Format(UnexpectedError));
+                return this.View(model);
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditLift(string id)
+        {
+            try
+            {
+                EditLiftFormModel model = await liftService.GetLiftForEditAsync(id);
+                return View(model);
+            }
+            catch (ArgumentException ex)
+            {
+                logger.LogError(ex, ex.Message);
+                return RedirectToAction(nameof(Lifts));
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditLift(EditLiftFormModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            try
+            {
+                await liftService.EditLiftAsync(model);
+                return RedirectToAction(nameof(Lifts));
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, ex.Message);
+                return RedirectToAction(nameof(Lifts));
+            }
+        }
+        [HttpGet]
+        public async Task<IActionResult> DeleteLift(string? id)
+        {
+            try
+            {
+                DeleteLiftViewModel model = await liftService.GetLiftForDeleteAsync(id);
+                return PartialView("_DeleteConfirmationModal", model);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, ex.Message);
+                TempData["ErrorMessage"] = UnexpectedError;
+                return RedirectToAction(nameof(Lifts));
+            }
+
+        }
+        [HttpPost]
+        public async Task<IActionResult> ConfirmDeleteLift(DeleteLiftViewModel model)
+        {
+            try
+            {
+                await liftService.DeleteLiftAsync(model);
+                return RedirectToAction(nameof(Lifts));
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, ex.Message);
+                TempData["ErrorMessage"] = UnexpectedError;
+                return RedirectToAction(nameof(Lifts));
+            }
+        }
     }
 }

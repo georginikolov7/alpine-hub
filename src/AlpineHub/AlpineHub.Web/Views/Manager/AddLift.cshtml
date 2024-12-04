@@ -1,0 +1,86 @@
+﻿@using AlpineHub.Core.Contracts
+@using AlpineHub.Core.ViewModels.Lift
+@model AddLiftFormModel
+@inject ILiftService liftService
+@{
+    Layout = "_ManagerLayout";
+    ViewData["Title"] = "Add Lift";
+
+    IEnumerable<SelectListItem>? liftTypes = (await liftService.GetAllLiftTypesAsync())
+    .Select(lt => new SelectListItem
+            {
+                Text = lt.Name,
+                Value = lt.Id.ToString()
+            });
+
+    //TODO PRITIFY FORMS
+}
+
+
+<div class="container w-75 mt-3">
+    <h1 class="mb-0">Add New Lift</h1>
+    <hr class="mb-4" />
+
+    <form asp-action="AddLift" method="post">
+        @Html.AntiForgeryToken()
+        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label">Name</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="LiftTypeId" class="form-label">Lift type</label>
+            <select asp-for="LiftTypeId" asp-items="liftTypes" class="form-select"></select>
+            <span asp-validation-for="LiftTypeId" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="IsOpen" class="form-label">Opened:</label>
+            <input asp-for="IsOpen" type="checkbox" class="form-check-input" />
+            <span asp-validation-for="IsOpen" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Length" class="form-label">Length (m)</label>
+            <input asp-for="Length" class="form-control" />
+            <span asp-validation-for="Length" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="VerticalAscend" class="form-label">Vertical ascend (m)</label>
+            <input asp-for="VerticalAscend" class="form-control" />
+            <span asp-validation-for="VerticalAscend" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Capacity" class="form-label">Capacity</label>
+            <input asp-for="Capacity" class="form-control" />
+            <span asp-validation-for="Capacity" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="AverageAscendTime" class="form-label">Average ride time</label>
+            <input asp-for="AverageAscendTime" class="form-control" />
+            <span asp-validation-for="AverageAscendTime" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="SeatsCount" class="form-label">Seats count</label>
+            <input asp-for="SeatsCount" class="form-control" />
+            <span asp-validation-for="SeatsCount" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="OpenningTime" class="form-label">Openning time</label>
+            <input asp-for="OpenningTime" type="time" class="form-control" />
+            <span asp-validation-for="OpenningTime" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ClosingTime" class="form-label">Closing time</label>
+            <input asp-for="ClosingTime" type="time" class="form-control" />
+            <span asp-validation-for="ClosingTime" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a asp-action="Lifts" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
