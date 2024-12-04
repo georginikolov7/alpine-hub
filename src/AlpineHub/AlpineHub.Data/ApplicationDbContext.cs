@@ -16,7 +16,6 @@ namespace AlpineHub.Data
         public DbSet<Slope> Slopes { get; set; }
         public DbSet<Lift> Lifts { get; set; }
         public DbSet<LiftType> LiftTypes { get; set; }
-        public DbSet<SlopeLift> SlopesLifts { get; set; }
         public DbSet<PassAgeGroup> PassAgeGroups { get; set; }
         public DbSet<PassPeriod> PassPeriods { get; set; }
         public DbSet<PassType> PassTypes { get; set; }
@@ -35,7 +34,7 @@ namespace AlpineHub.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfigurationsFromAssembly(typeof(SlopesLiftsConfiguration).Assembly);
+            builder.ApplyConfigurationsFromAssembly(typeof(LiftConfiguration).Assembly);
 
             // Apply global query filter only for Soft deletable entities:
             ApplySoftDeleteFilter(builder);

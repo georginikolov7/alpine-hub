@@ -120,7 +120,7 @@ namespace AlpineHub.Data.Configurations
             {
                 Id = Guid.NewGuid(),
                 Name = "Lerner's paradise",
-                Difficulty = SlopeDifficulty.Beginner,
+                Difficulty = SlopeDifficulty.Easy,
                 Length = 300,
                 UpperPointAltitude = 1450,
                 LowerPointAltitude = 1350,

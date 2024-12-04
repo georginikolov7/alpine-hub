@@ -5,7 +5,9 @@
     using AlpineHub.Common.Enums;
     using Microsoft.EntityFrameworkCore;
     using System.ComponentModel.DataAnnotations;
-    public class Slope
+    using AlpineHub.Data.Models.Contracts;
+
+    public class Slope : ISoftDeletable
     {
         [Key]
         public Guid Id { get; set; }
@@ -34,5 +36,7 @@
         [Comment("Slope condition enum")]
         [Required]
         public SlopeCondition SlopeCondition { get; set; }
+        [Comment("Soft delete flag")]
+        public bool IsDeleted { get; set; }
     }
 }
