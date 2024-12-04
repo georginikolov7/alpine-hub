@@ -5,6 +5,7 @@ using AlpineHub.Core.ViewModels.Slope;
 using Microsoft.EntityFrameworkCore;
 using static AlpineHub.Common.ErrorMessages;
 using System;
+using AlpineHub.Core.DTOs;
 namespace AlpineHub.Core.Services
 {
     public class SlopeService(IRepo repo) : BaseService(repo), ISlopeService, IManageableSlopeService
@@ -163,6 +164,18 @@ namespace AlpineHub.Core.Services
             await repo.SaveChangesAsync();
         }
 
+        public async Task<IEnumerable<AllSlopesDto>?> GetAllSlopesForMapAsync()
+        {
+            IEnumerable<AllSlopesDto> allSlopes = await repo.GetAllReadonly<Slope>()
+                .Select(s => new AllSlopesDto()
+                {
+                    Id = s.Id.ToString(),
+                    Name = s.Name,
+                    Difficulty = s.Difficulty.ToString(),
 
+                }).ToListAsync();
+
+            return allSlopes;
+        }
     }
 }

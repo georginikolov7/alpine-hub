@@ -29,8 +29,8 @@ $(function () {
             data: { id: id },
         })
             .done(function success(data) {
-                $('#deleteSlopeModal').html(data);
-                $('#deleteSlopeModal').modal('show');
+                $('#deleteLiftModal').html(data);
+                $('#deleteLiftModal').modal('show');
             })
             .fail(function fail(data) {
                 //TODO handle error

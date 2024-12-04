@@ -2,6 +2,7 @@
 namespace AlpineHub.Core.Services
 {
     using AlpineHub.Core.Contracts;
+    using AlpineHub.Core.DTOs;
     using AlpineHub.Core.ViewModels.Lift;
     using AlpineHub.Core.ViewModels.LiftType;
     using AlpineHub.Data.Contracts;
@@ -12,7 +13,7 @@ namespace AlpineHub.Core.Services
     using static AlpineHub.Common.Formats;
     public class LiftService(IRepo repo) : BaseService(repo), ILiftService, IManageableLiftService
     {
-        public async Task<IEnumerable<AllLiftsViewModel>> GetAllLifts()
+        public async Task<IEnumerable<AllLiftsViewModel>> GetAllLiftsAsync()
         {
             IEnumerable<AllLiftsViewModel> allLifts = await repo.GetAllReadonly<Lift>()
                 .Select(l => new AllLiftsViewModel()
@@ -224,6 +225,17 @@ namespace AlpineHub.Core.Services
                 .ToListAsync();
 
             return model;
+        }
+
+        public async Task<IEnumerable<AllLiftsDto>?> GetAllLiftsForMapAsync()
+        {
+            return await repo.GetAllReadonly<Lift>()
+                .Select(l => new AllLiftsDto()
+                {
+                    Id = l.Id.ToString(),
+                    Name = l.Name,
+                })
+                .ToListAsync();
         }
     }
 }

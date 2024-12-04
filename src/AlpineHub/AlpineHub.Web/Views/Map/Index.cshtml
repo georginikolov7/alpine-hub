@@ -1,0 +1,44 @@
+﻿@using System.Configuration
+@inject IConfiguration configuration
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Interactive Map";
+}
+@section Styles {
+    <style>
+        #map {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+    </style>
+}
+
+<div id="map"></div>
+<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>
+
+@section Scripts {
+    @* <script type="text/javascript">
+        const map = new maplibregl.Map({
+            container: 'map',
+            style: 'https://api.maptiler.com/maps/4148a38c-75ee-45d2-9dd9-2412b68ee995/style.json?key=VUwwRChvYAAivF5saWzR',
+            minZoom: 14,
+            maxzoom: 18,
+        });
+
+        $.ajax({
+            method: 'GET',
+            url: 'https://api.maptiler.com/data/3f7eb6cc-2b6a-4ad0-b4f9-c614af7a8a78/features.json?key=VUwwRChvYAAivF5saWzR'
+        })
+            .done(function success(data) {
+
+                
+            })
+            .fail(function error(data) {
+                console.log('error');
+            });
+    </script> *@
+    <script src="~/js/map.js"> </script>
+}
