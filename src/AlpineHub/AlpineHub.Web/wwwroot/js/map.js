@@ -3,10 +3,10 @@ const mapId = '4148a38c-75ee-45d2-9dd9-2412b68ee995';
 const mapKey = 'VUwwRChvYAAivF5saWzR';
 const geojsonId = '3f7eb6cc-2b6a-4ad0-b4f9-c614af7a8a78';
 const slopeColorMap = {
-    'Easy': '#009f3c',
-    'Intermediate': '#007aba',
-    'Hard': '#ba0925',
-    'Expert': '#000000'
+    'easy': '#009f3c',
+    'intermediate': '#007aba',
+    'hard': '#ba0925',
+    'expert': '#000000'
 };
 const liftColor = '#797979';
 
@@ -61,18 +61,6 @@ $(function () {
                     'id': 'labels',
                     'type': 'symbol',
                     'source': 'map-data',
-                    //'layout': {
-                    //    'text-field': ['get', 'name'], // Display the "Name" property
-                    //    'symbol-placement': 'line',           // Align the text along the line
-                    //    'text-size': 16,                      // Text size
-                    //    'text-rotation-alignment': 'map',     // Align text with the map direction
-                    //    'text-keep-upright': true,            // Keep text upright, even if the line rotates
-                    //    'text-offset': [0, 0],                // Position the text directly on the line
-                    //},
-                    //'paint': {
-                    //    'text-color': '#000000',        // Black text color
-                    //    'text-halo-color': '#FFFFFF',   // White halo around text
-                    //    'text-halo-width': 2           // Halo width
                     layout: {
                         'symbol-placement': 'line-center', // Align text along the line
                         'text-field': ['get', 'name'], // Use the 'name' property for labels
