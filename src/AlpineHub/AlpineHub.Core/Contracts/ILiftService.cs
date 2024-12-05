@@ -13,5 +13,6 @@ namespace AlpineHub.Core.Contracts
         Task<int> GetTotalNumberOfLiftsAsync();
         Task<IEnumerable<LiftTypeViewModel>>? GetAllLiftTypesAsync();
         Task<IEnumerable<AllLiftsDto>?> GetAllLiftsForMapAsync();
+        Task<LiftDetailsDto> GetLiftDetailsForMapByIdAsync(string? id);
     }
 }

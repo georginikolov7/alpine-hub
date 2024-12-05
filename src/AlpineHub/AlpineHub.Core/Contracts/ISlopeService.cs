@@ -12,5 +12,6 @@ namespace AlpineHub.Core.Contracts
         Task<int> GetNumberOfOpenSlopesAsync();
         Task<int> GetTotalNumberOfSlopesAsync();
         
+        Task<SlopeDetailsDto> GetSlopeDetailsForMapAsync(string? id);
     }
 }

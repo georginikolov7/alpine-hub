@@ -7,6 +7,6 @@
         /// <summary>
         /// Format is {hour}:{minute} - {hour}:{minute}}
         /// </summary>
-        public const string OpenningHoursFormat = "{0} - {1}";
+        public const string WorkingHoursFormat = "{0} - {1}";
     }
 }

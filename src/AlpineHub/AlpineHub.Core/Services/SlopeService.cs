@@ -177,5 +177,28 @@ namespace AlpineHub.Core.Services
 
             return allSlopes;
         }
+
+        public async Task<SlopeDetailsDto> GetSlopeDetailsForMapAsync(string? id)
+        {
+            if (!IsGuidValid(id, out Guid guid))
+            {
+                throw new ArgumentException(string.Format(InvalidId, "Slope", id));
+            }
+
+            Slope? slope = await repo.GetByIdAsync<Slope>(guid) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, guid));
+
+            SlopeDetailsDto model = new SlopeDetailsDto()
+            {
+
+                Difficulty = slope.Difficulty.ToString(),
+                Condition = slope.SlopeCondition.ToString(),
+                IsOpen = slope.IsOpen,
+                Length = slope.Length,
+                TopElevation = slope.UpperPointAltitude,
+                BottomElevation = slope.LowerPointAltitude,
+            };
+            return model;
+        }
+
     }
 }

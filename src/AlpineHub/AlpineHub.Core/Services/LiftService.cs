@@ -21,7 +21,7 @@ namespace AlpineHub.Core.Services
                     Id = l.Id.ToString(),
                     Name = l.Name,
                     AscendTime = l.AverageAscendTime,
-                    OpeningHours = string.Format(OpenningHoursFormat, l.OpenningTime.ToShortTimeString(), l.ClosingTime.ToShortTimeString()),
+                    OpeningHours = string.Format(WorkingHoursFormat, l.OpenningTime.ToShortTimeString(), l.ClosingTime.ToShortTimeString()),
                     IsOpen = l.IsOpen && IsLiftOpen(l),
                     Type = l.LiftType.Name
                 })
@@ -64,7 +64,7 @@ namespace AlpineHub.Core.Services
                 NumberOfSeats = lift.NumberOfSeats,
                 VerticalAscend = lift.VerticalAscend,
                 AverageRideTime = lift.AverageAscendTime,
-                OpeningHours = string.Format(OpenningHoursFormat, lift.OpenningTime.ToShortTimeString(), lift.ClosingTime.ToShortTimeString()),
+                OpeningHours = string.Format(WorkingHoursFormat, lift.OpenningTime.ToShortTimeString(), lift.ClosingTime.ToShortTimeString()),
                 IsOpen = lift.IsOpen && IsLiftOpen(lift),
             };
             return model;
@@ -95,7 +95,7 @@ namespace AlpineHub.Core.Services
                     AverageRideTime = l.AverageAscendTime,
                     IsOpen = l.IsOpen,
                     NumberOfSeats = l.NumberOfSeats,
-                    OpeningHours = string.Format(OpenningHoursFormat, l.OpenningTime.ToShortTimeString(), l.ClosingTime.ToShortTimeString())
+                    OpeningHours = string.Format(WorkingHoursFormat, l.OpenningTime.ToShortTimeString(), l.ClosingTime.ToShortTimeString())
                 })
                 .ToListAsync();
 
@@ -236,6 +236,30 @@ namespace AlpineHub.Core.Services
                     Name = l.Name,
                 })
                 .ToListAsync();
+        }
+
+        public async Task<LiftDetailsDto> GetLiftDetailsForMapByIdAsync(string? id)
+        {
+            if (!IsGuidValid(id, out Guid guid))
+            {
+                throw new ArgumentException(string.Format(InvalidId, "Lift", id));
+            }
+
+            Lift? lift = await repo.GetAllReadonly<Lift>()
+                .Include(l => l.LiftType)
+                    .FirstOrDefaultAsync(l => l.Id == guid) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, id));
+
+            LiftDetailsDto dto = new LiftDetailsDto()
+            {
+                Name = lift.Name,
+                Type = lift.LiftType.Name,
+                Length = lift.Length,
+                Capacity = lift.CapacityPerHour,
+                SeatsCount = lift.NumberOfSeats,
+                IsOpen = lift.IsOpen,
+                WorkingTime = string.Format(WorkingHoursFormat, lift.OpenningTime.ToShortTimeString(), lift.ClosingTime.ToShortTimeString())
+            };
+            return dto;
         }
     }
 }
