@@ -4,13 +4,12 @@
 <style>
     .navbar {
         background-color: rgba(7, 40, 72, 1);
-        position: relative;
     }
 </style>
 
-<div class="d-flex">
+<div class="d-flex manage-container">
     <!-- Sidebar Navigation -->
-    <div class="sidebar bg-light p-3 manager-sidebar">
+    <div class="sidebar sidebar-manager bg-light d-flex flex-column align-items-center">
         <h5>Manager Panel</h5>
         <nav class="nav flex-column">
             <a class="nav-link" asp-area="" asp-controller="Manager" asp-action="Slopes">Manage Slopes</a>
@@ -19,7 +18,7 @@
     </div>
 
     <!-- Content Section -->
-    <div class="main-content flex-grow-1 p-4">
+    <div class="manager-main-content flex-grow-1 p-4">
         @RenderBody()
     </div>
 </div>

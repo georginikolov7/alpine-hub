@@ -1,0 +1,38 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AlpineHub.Web</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/adminStyles.css" />
+    <link rel="stylesheet" href="~/AlpineHub.Web.styles.css" asp-append-version="true" />
+    <script src="https://kit.fontawesome.com/7bc7a59fec.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    @await RenderSectionAsync("Styles", required: false)
+
+    <partial name="_NavigationPartial" />
+
+    <div class="admin-content">
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @TempData["ErrorMessage"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        @RenderBody()
+    </div>
+
+
+    <footer class="text-center mt-5">
+        <small class="text-muted">&copy; 2024 Ski Resort Admin Panel</small>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

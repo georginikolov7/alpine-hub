@@ -1,18 +1,20 @@
-﻿using AlpineHub.Data;
-using AlpineHub.Data.Contracts;
-using AlpineHub.Data.Models;
-using AlpineHub.Data.Repos;
-using AlpineHub.Core.Contracts;
-using AlpineHub.Core.Services;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using static AlpineHub.Common.EntityValidationConstraints;
-using Microsoft.AspNetCore.Authorization;
-using AlpineHub.Web.AuthorizationHandlers;
-namespace AlpineHub.Web.Infrastructure.Extensions
+﻿namespace AlpineHub.Web.Infrastructure.Extensions
 {
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.AspNetCore.Authorization;
+
+    using AlpineHub.Data;
+    using AlpineHub.Data.Contracts;
+    using AlpineHub.Data.Models;
+    using AlpineHub.Data.Repos;
+    using AlpineHub.Core.Contracts;
+    using AlpineHub.Core.Services;
+    using AlpineHub.Web.AuthorizationHandlers;
+
+    using static AlpineHub.Common.EntityValidationConstraints;
     public static class ServiceCollectionExtensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
@@ -25,6 +27,7 @@ namespace AlpineHub.Web.Infrastructure.Extensions
             services.AddScoped<IManageableLiftService>(provider => provider.GetRequiredService<LiftService>());
             services.AddScoped<IManagerService, ManagerService>();
             services.AddScoped<IAuthorizationHandler, ManagerIdClaimHandler>();
+            services.AddScoped<IUserService, UserService>();
             return services;
         }
         public static IServiceCollection AddAppDbContext(this IServiceCollection services, IConfiguration config)

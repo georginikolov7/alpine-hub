@@ -12,14 +12,18 @@ namespace AlpineHub.Web
     {
         public static void Main(string[] args)
         {
+
+
             var builder = WebApplication.CreateBuilder(args);
+            string adminUserName = builder.Configuration.GetValue<string>("Identity:Admin:Username")!;
+            string adminEmail = builder.Configuration.GetValue<string>("Identity:Admin:Email")!;
+            string adminPassword = builder.Configuration.GetValue<string>("Identity:Admin:Password")!;
 
             // Add services to the container.
             builder.Services.AddAppDbContext(builder.Configuration);
 
             builder.Services.AddAppIdentity();
             builder.Services.AddApplicationServices();
-
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 
@@ -51,6 +55,7 @@ namespace AlpineHub.Web
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
+                app.SeedAdminAsync(adminEmail, adminPassword, adminUserName);
                 app.UseDeveloperExceptionPage();
                 app.UseMigrationsEndPoint();
             }
@@ -70,8 +75,14 @@ namespace AlpineHub.Web
             app.UseAuthorization();
 
             app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                  name: "areas",
+                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+            app.MapControllerRoute(
+                  name: "default",
+                  pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
             app.MapRazorPages();
 
             app.UseResponseCaching();

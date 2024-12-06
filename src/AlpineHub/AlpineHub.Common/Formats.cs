@@ -2,7 +2,7 @@
 {
     public static class Formats
     {
-        public const string DateTimeFormat = "dd/MM/YYYY";
+        public const string DateTimeFormat = "dd/MM/yyyy";
 
         /// <summary>
         /// Format is {hour}:{minute} - {hour}:{minute}}

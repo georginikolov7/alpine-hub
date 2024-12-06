@@ -58,7 +58,7 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> EditSlope(string id)
+        public async Task<IActionResult> EditSlope(string? id)
         {
             string? userId = GetUserId();
             try

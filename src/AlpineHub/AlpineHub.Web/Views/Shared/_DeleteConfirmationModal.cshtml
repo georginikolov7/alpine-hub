@@ -1,19 +1,20 @@
 ﻿@using AlpineHub.Core.Contracts
 @using AlpineHub.Core.ViewModels.Lift
 @using AlpineHub.Core.ViewModels.Slope
+@using AlpineHub.Core.ViewModels.User
 @model IDeleteViewModel
 
 <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
         <!-- Modal Header -->
         <div class="modal-header bg-danger text-white">
-            <h5 class="modal-title" id="deleteSlopeModalLabel">Delete Slope</h5>
+            <h5 class="modal-title" id="deleteSlopeModalLabel">Delete Confirmation</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
         <!-- Modal Body -->
         <div class="modal-body">
-            <p>Are you sure you want to delete the slope <strong id="slopeName">@Model.Name</strong>?</p>
+            <p>Are you sure you want to delete <strong>@Model.Name</strong>?</p>
             <p class="text-danger">This action cannot be undone.</p>
         </div>
 
@@ -32,6 +33,14 @@
                 case nameof(DeleteLiftViewModel):
                     <form asp-action="ConfirmDeleteLift" method="post">
                         @Html.AntiForgeryToken();
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="Name" />
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                    break;
+                    case nameof(DeleteUserViewModel):
+                    <form asp-action="ConfirmDeleteUser" method="post">
+                        @Html.AntiForgeryToken()
                         <input type="hidden" asp-for="Id" />
                         <input type="hidden" asp-for="Name" />
                         <button class="btn btn-danger" type="submit">Delete</button>

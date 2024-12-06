@@ -14,7 +14,6 @@ namespace AlpineHub.Data.Models
         }
 
         [PersonalData]
-        [Required]
         [MaxLength(UserFirstNameMaxLength)]
         [Comment("First name of user")]
         public string? FirstName { get; set; }

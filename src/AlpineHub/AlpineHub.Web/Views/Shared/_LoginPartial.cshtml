@@ -6,15 +6,15 @@
     @if (SignInManager.IsSignedIn(User))
     {
         string fullName = User.FindFirst(AlpineHub.Web.Infrastructure.Constants.CustomClaims.UserFullNameClaim)?.Value ?? string.Empty;
-        <button class="btn btn-sm btn-primary" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+        <button class="btn btn-sm btn-secondary" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
             <div class="container d-flex flex-row align-items-center justify-content-center">
                 <i class="fa-solid fa-user"></i>
-                <span class="ms-2">@fullName</span>
-                
+                <span class="ms-2 d-xl-block d-none">@fullName</span>
             </div>
 
         </button>
-        <ul class="dropdown-menu bg-secondary">
+
+        <ul class="dropdown-menu bg-secondary end-50">
             <li><a class="dropdown-item text-light" asp-area="Identity" asp-page="/Account/Login">Manage Account</a></li>
             <li> <a class="dropdown-item text-light" asp-area="Identity" asp-page="/Account/Register">My Orders</a></li>
             <li>

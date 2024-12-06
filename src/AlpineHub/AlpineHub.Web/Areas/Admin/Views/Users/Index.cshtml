@@ -1,0 +1,100 @@
+﻿@using AlpineHub.Core.ViewModels.User
+@model IEnumerable<AllUsersViewModel>
+@{
+    ViewData["Title"] = "Manage Users";
+    Layout = "_AdminLayout";
+}
+
+<div class="container mt-4">
+    <!-- Page Header -->
+    <div class="row">
+        <div class="col-12 mb-3">
+            <h1 class="text-center">User Management</h1>
+            <p class="text-muted text-center">Manage all users, update roles, and ensure proper access control.</p>
+        </div>
+    </div>
+
+    <!-- Users Table -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-body p-0">
+                    <table class="table mb-0">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Birthdate</th>
+                                <th>Roles</th>
+                                <th class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var user in Model)
+                            {
+                                <tr>
+                                    <td hidden>@user.Id</td>
+                                    <td>@user.FullName</td>
+                                    <td>@user.PhoneNumber</td>
+                                    <td>@user.Email</td>
+                                    <td>@user.Birthdate</td>
+                                    <td>
+                                        <ul class="list-inline mb-0">
+                                            @foreach (var role in user.Roles)
+                                            {
+                                                <li class="list-inline-item badge bg-secondary">@role</li>
+                                            }
+                                        </ul>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="btn-group" role="group">
+                                            <a href="/Admin/Users/Edit/@user.Id" class="btn btn-sm btn-info">Edit</a>
+                                            <button class="btn btn-sm btn-danger delete-user-button">Delete</button>
+                                            <button type="button" class="btn btn-sm btn-warning">Assign Role</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Slope Confirmation Modal -->
+<div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+    <!-- Modal will be loaded here-->
+</div>
+
+<!-- Assign Role Modal -->
+<div class="modal fade" id="assignRoleModal" tabindex="-1" aria-labelledby="assignRoleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-warning">
+                <h5 class="modal-title" id="assignRoleModalLabel">Assign Role</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="assignRoleForm">
+                    <input type="hidden" id="userId" name="userId" />
+                    <div class="mb-3">
+                        <label for="role" class="form-label">Select Role</label>
+                        <select class="form-select" id="role" name="role">
+                            <option value="Admin">Admin</option>
+                            <option value="Manager">Manager</option>
+                            <option value="User">User</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-warning w-100">Assign Role</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/modalLoaders.js"></script>
+}

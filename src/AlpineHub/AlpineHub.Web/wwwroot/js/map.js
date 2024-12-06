@@ -13,6 +13,7 @@ const liftColor = '#797979';
 
 const popupElement = $('#popupContent');
 const popupBody = popupElement.find('#popupBody');
+const popupHeader = popupElement.find('#popupHeader');
 let hoveredStateId = null;
 
 
@@ -20,6 +21,9 @@ $(function () {
     const map = new maplibregl.Map({
         container: 'map',
         style: `https://api.maptiler.com/maps/${mapId}/style.json?key=${mapKey}`,
+        minZoom:  13,
+        maxZoom:  15,
+        maxPitch: 35
     });
 
     $.when(fetchGeoJson(), fetchSlopes(), fetchLifts())
@@ -42,6 +46,8 @@ $(function () {
                     url: `https://api.maptiler.com/tiles/terrain-rgb-v2/tiles.json?key=${mapKey}`
                 });
                 map.setTerrain({ 'source': 'terrain-data' });
+
+
                 // Add a line layer for slopes and lifts
                 map.addLayer({
                     'id': 'features',
@@ -65,7 +71,7 @@ $(function () {
                         'symbol-placement': 'line-center', // Align text along the line
                         'text-field': ['get', 'name'], // Use the 'name' property for labels
                         'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
-                        'text-size': 16,
+                        'text-size': 14,
                         'text-justify': 'center', // Center text on the line
                         'text-offset': [0, 0.5], // Offset text from the line
                     },
@@ -90,9 +96,9 @@ $(function () {
                             0
                         ],
                         'line-width': 10 // Larger width for easier clicks
-
                     }
                 });
+
                 atachHoverEffect(map);
                 displayPopupOnClick(map);
 
@@ -161,6 +167,33 @@ function processData(geoJson, slopesData, liftData) {
         return feature;
     });
 }
+function addIconLayer(map) {
+    map.loadImage('/img/ski-lift.png', (error, image) => {
+        if (error) throw error;
+
+        // Add the icon image to the map's style
+        map.addImage('lift-icon', image);
+
+        // 3. Add a symbol layer for lifts
+        map.addLayer({
+            id: 'lift-icons',
+            type: 'symbol',
+            source: 'map-data',
+            layout: {
+                'icon-image': [
+                    'case',
+                    ['==', ['get', 'type'], 'Lift'], // Only apply for lifts
+                    'lift-icon',
+                    ''
+                ],
+                'icon-size': 0.5, // Scale the icon as needed
+                'icon-anchor': 'center', // Anchor the icon to the center
+                'symbol-placement': 'line', // Place icon along the lift line
+                'symbol-spacing': 100, // Spacing for repeated icons along the line
+            }
+        });
+    });
+}
 
 function atachHoverEffect(map) {
     // Add a feature state for hover
@@ -225,12 +258,17 @@ function displayPopupOnClick(map) {
 async function generateSlopePopup(slopeProperties) {
 
     popupBody.empty();
+
     await $.ajax({
         method: 'GET',
         url: `https://localhost:7103/Slopes/${slopeProperties.id}`,
     })
         .done((data) => {
+
+            popupHeader.css('background-color', slopeColorMap[data.difficulty.toLowerCase()]);
+            popupHeader.find('#popupTitle').css('color', '#ffffff');
             popupElement.find('#popupTitle').text(`Slope ${slopeProperties.name}`);
+
             const difficultyPara = $('<p></p>').text(`Difficulty: ${data.difficulty}`);
             const lengthPara = $('<p></p>').text(`Length: ${data.length}m`);
             const conditionPara = $('<p></p>').text(`Condition: ${data.condition}`);
@@ -267,13 +305,14 @@ async function generateSlopePopup(slopeProperties) {
 async function generateLiftPopup(liftProperties) {
 
     popupBody.empty();
-
+    popupHeader.css('background-color', '#eeeeee')
     await $.ajax({
         method: 'GET',
         url: `https://localhost:7103/Lifts/${liftProperties.id}`,
     })
         .done((data) => {
             popupElement.find('#popupTitle').text(`Lift ${liftProperties.name}`);
+            popupHeader.find('#popupTitle').css('color', '#000000');
 
             const typePara = $('<p></p>').text(`Type: ${data.type}`);
             const lengthPara = $('<p></p>').text(`Length: ${data.length} m`);

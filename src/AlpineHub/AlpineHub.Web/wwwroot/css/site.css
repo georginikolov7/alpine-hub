@@ -26,12 +26,24 @@ body {
     margin-bottom: 60px;
 }
 
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: -1;
+    background-color: #eee;
+    padding: 20px;
+    text-align: center;
+}
+
 .manager-label {
     position: absolute;
     left: 50px;
+    top: 1.2rem;
     border-radius: 5%;
     padding: 0.3em;
 }
+
 
 .navbar {
     background-color: rgba(7, 40, 72, 0.9);
@@ -40,6 +52,7 @@ body {
     left: 0;
     right: 0;
     z-index: 4;
+    min-height: 4.5rem;
 }
 
 .navbar-nav {
@@ -83,14 +96,16 @@ body {
 .menu-toggle {
     position: absolute;
     top: 50%;
-    left: 0%;
+    left: 20px;
     transform: translate(50%,50%)
 }
+
+
 
 .profile-dropdown {
     position: absolute;
     right: 5%;
-    transform: translate();
+    top: 1.2rem;
 }
 
 
@@ -166,16 +181,31 @@ body {
 
 /* Custom styles for layout */
 .sidebar {
-    height: 100vh;
+    min-height: 100vh;
     position: fixed;
     background-color: #f8f9fa;
     padding: 20px;
     border-right: 1px solid #ddd;
 }
 
-.main-content {
-    margin-left: 250px; /* Sidebar width */
+.sidebar-manager {
+    margin-top: 4.5rem;
+    width: 15em;
+}
+
+.sidebar-admin {
+    width: 15em;
+}
+
+.admin-content {
     padding: 20px;
+    margin-left: 15em;
+}
+
+.manager-main-content {
+    margin-left: 15em; /* Sidebar width */
+    padding: 20px;
+    margin-top: 4.5rem;
 }
 
 .nav-link.active {
@@ -186,11 +216,4 @@ body {
 
 .sidebar a:hover {
     text-decoration: none;
-}
-
-footer {
-    background: #718DA1;
-    color: white;
-    padding: 20px;
-    text-align: center;
 }
