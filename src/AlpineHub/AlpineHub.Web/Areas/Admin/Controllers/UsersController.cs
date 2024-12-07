@@ -7,6 +7,7 @@
     using AlpineHub.Web.Controllers;
 
     using static AlpineHub.Common.ApplicationConstants;
+    using static AlpineHub.Common.ErrorMessages;
     using AlpineHub.Core.ViewModels.User;
 
     [Area(AdminRoleName)]
@@ -63,6 +64,67 @@
             {
                 // Log the exception
                 logger.LogError(ex, ex.Message);
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+        [HttpGet]
+        public IActionResult AssignRole(string id)
+        {
+            RoleFormModel model = new()
+            {
+                UserId = id
+            };
+            return PartialView("_AssignRoleModalContent", model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> AssignRole(RoleFormModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["ErrorMessage"] = UnexpectedError;
+                return RedirectToAction(nameof(Index));
+            }
+            try
+            {
+                await userService.AssignRole(model);
+                return RedirectToAction(nameof(Index));
+
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, ex.Message);
+                TempData["ErrorMessage"] = UnexpectedError;
+                return RedirectToAction(nameof(Index));
+            }
+        }
+        [HttpGet]
+        public IActionResult RemoveRole(string id)
+        {
+            RoleFormModel model = new()
+            {
+                UserId = id
+            };
+            return PartialView("_RemoveRoleModalContent", model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> RemoveRole(RoleFormModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["ErrorMessage"] = UnexpectedError;
+                return RedirectToAction(nameof(Index));
+            }
+            try
+            {
+                await userService.RemoveRole(model);
+                return RedirectToAction(nameof(Index));
+
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, ex.Message);
+                TempData["ErrorMessage"] = UnexpectedError;
                 return RedirectToAction(nameof(Index));
             }
         }

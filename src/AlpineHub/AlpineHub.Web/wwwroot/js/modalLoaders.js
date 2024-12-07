@@ -2,20 +2,7 @@
 $(function () {
     const deleteSlopeButton = $('.delete-slope-button');
     const deleteLiftButton = $('.delete-lift-button');
-    const deleteUserButton = $('.delete-user-button');
-
-    deleteUserButton.on('click', (e) => {
-        const id = $(e.target).parent().parent().parent().find('td:first').text();
-
-        $.ajax({ method: 'GET', url: '/Admin/Users/DeleteUser', data: { id: id } })
-            .done(function success(data) {
-                $('#deleteUserModal').html(data);
-                $('#deleteUserModal').modal('show');
-            })
-            .fail(function fail(data) {
-                //TODO handle error
-            });
-    });
+    
 
     deleteSlopeButton.on("click", (e) => {
         const trElement = $(e.target).parent().parent();

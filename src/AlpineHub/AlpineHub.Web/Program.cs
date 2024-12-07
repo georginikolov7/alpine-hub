@@ -5,7 +5,7 @@ namespace AlpineHub.Web
     using AlpineHub.Web.Infrastructure.Binders;
     using AlpineHub.Web.Infrastructure.Extensions;
     using static Common.Formats;
-    using static AlpineHub.Web.Infrastructure.Constants.CustomClaims;
+    using static AlpineHub.Data.Constants.CustomClaims;
     using Microsoft.AspNetCore.Mvc;
 
     public class Program

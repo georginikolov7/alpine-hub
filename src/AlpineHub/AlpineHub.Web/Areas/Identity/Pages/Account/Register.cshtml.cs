@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using static AlpineHub.Common.EntityValidationConstraints;
-using static AlpineHub.Web.Infrastructure.Constants.CustomClaims;
+using static AlpineHub.Data.Constants.CustomClaims;
 namespace AlpineHub.Web.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel

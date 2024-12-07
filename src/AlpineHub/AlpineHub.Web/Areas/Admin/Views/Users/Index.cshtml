@@ -49,9 +49,10 @@
                                     </td>
                                     <td class="text-center">
                                         <div class="btn-group" role="group">
-                                            <a href="/Admin/Users/Edit/@user.Id" class="btn btn-sm btn-info">Edit</a>
+                                            <span hidden class="id-container">@user.Id</span>
+                                            <button type="button" class="btn btn-sm btn-primary assign-role-button">Assign Role</button>
+                                            <button type="button" class="btn btn-sm btn-warning remove-role-button">Remove Role</button>
                                             <button class="btn btn-sm btn-danger delete-user-button">Delete</button>
-                                            <button type="button" class="btn btn-sm btn-warning">Assign Role</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -69,32 +70,11 @@
     <!-- Modal will be loaded here-->
 </div>
 
-<!-- Assign Role Modal -->
-<div class="modal fade" id="assignRoleModal" tabindex="-1" aria-labelledby="assignRoleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header bg-warning">
-                <h5 class="modal-title" id="assignRoleModalLabel">Assign Role</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="assignRoleForm">
-                    <input type="hidden" id="userId" name="userId" />
-                    <div class="mb-3">
-                        <label for="role" class="form-label">Select Role</label>
-                        <select class="form-select" id="role" name="role">
-                            <option value="Admin">Admin</option>
-                            <option value="Manager">Manager</option>
-                            <option value="User">User</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-warning w-100">Assign Role</button>
-                </form>
-            </div>
-        </div>
-    </div>
+<!-- Assign/Delete Role Modal -->
+<div class="modal fade" id="roleModal" tabindex="-1" aria-labelledby="roleModalLabel" aria-hidden="true">
 </div>
 
+
 @section Scripts {
-    <script src="~/js/modalLoaders.js"></script>
+    <script type="module" src="~/js/adminModalLoaders.js"></script>
 }

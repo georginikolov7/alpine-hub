@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AlpineHub.Common\AlpineHub.Common.csproj" />
     <ProjectReference Include="..\AlpineHub.Data\AlpineHub.Data.csproj" />
   </ItemGroup>
 

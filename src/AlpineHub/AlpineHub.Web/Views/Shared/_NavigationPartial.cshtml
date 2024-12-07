@@ -1,15 +1,27 @@
 ﻿@using AlpineHub.Core.Contracts
 @using System.Security.Claims
+@using AlpineHub.Data.Models
+@using Microsoft.AspNetCore.Identity
+
 @inject IManagerService managerService
+@inject IUserService userService
 @{
     string? userId = Context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
     bool isUserManager = await managerService.IsUserManager(userId);
+    bool isUserAdmin = await userService.IsUserAdmin(userId);
 }
 <nav class="navbar navbar-expand-lg navbar-dark navbar-toggleable-sm box-shadow py-3">
-    @if (isUserManager)
-    {
-        <div class="manager-label bg-primary">Manager</div>
-    }
+
+    <div class="labels">
+        @if (isUserManager)
+        {
+            <a asp-area="" asp-controller="Manager" asp-action="Index" class=" btn btn-sm btn-primary bg-primary">Manager</a>
+        }
+        @if (isUserAdmin)
+        {
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class=" btn btn-sm btn-secondary">Admin</a>
+        }
+    </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon text-white"></span>
@@ -48,10 +60,10 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-sm btn-warning nav-link text-white d-inline-block" asp-area="" asp-controller="Manager" asp-action="Index">
+                <a class="nav-link text-white d-inline-block" asp-area="" asp-controller="Map" asp-action="Index">
                     <div class="container d-flex flex-row align-items-center justify-content-center">
-                        <i class="fa-solid fa-bars"></i>
-                        <span class="ms-2">Manage</span>
+                        <i class="fa-solid fa-card"></i>
+                        <span class="ms-2">Cards</span>
                     </div>
                 </a>
             </li>

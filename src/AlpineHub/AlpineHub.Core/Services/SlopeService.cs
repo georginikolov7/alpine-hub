@@ -150,7 +150,7 @@ namespace AlpineHub.Core.Services
             Slope slope = await repo.GetByIdAsync<Slope>(guid) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, guid));
             DeleteSlopeViewModel model = new DeleteSlopeViewModel()
             {
-                Id = slope.Id,
+                Id = slope.Id.ToString(),
                 Name = slope.Name,
             };
             return model;
@@ -158,7 +158,10 @@ namespace AlpineHub.Core.Services
 
         public async Task DeleteSlopeAsync(DeleteSlopeViewModel model)
         {
-            Guid id = model.Id;
+            if(IsGuidValid(model.Id, out Guid id) == false)
+            {
+                throw new ArgumentException(string.Format(InvalidId, "Slope", model.Id));
+            }
             Slope slope = await repo.GetByIdAsync<Slope>(id) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, id));
             repo.Delete<Slope>(slope);
             await repo.SaveChangesAsync();

@@ -5,7 +5,7 @@
 <div class="dropdown profile-dropdown">
     @if (SignInManager.IsSignedIn(User))
     {
-        string fullName = User.FindFirst(AlpineHub.Web.Infrastructure.Constants.CustomClaims.UserFullNameClaim)?.Value ?? string.Empty;
+        string fullName = User.FindFirst(AlpineHub.Data.Constants.CustomClaims.UserFullNameClaim)?.Value ?? string.Empty;
         <button class="btn btn-sm btn-secondary" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
             <div class="container d-flex flex-row align-items-center justify-content-center">
                 <i class="fa-solid fa-user"></i>

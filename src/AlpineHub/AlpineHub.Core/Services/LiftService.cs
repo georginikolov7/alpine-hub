@@ -174,7 +174,7 @@ namespace AlpineHub.Core.Services
 
             DeleteLiftViewModel model = new DeleteLiftViewModel()
             {
-                Id = lift.Id,
+                Id = lift.Id.ToString(),
                 Name = lift.Name
             };
             return model;

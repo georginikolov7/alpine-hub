@@ -5,8 +5,9 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    using static AlpineHub.Web.Infrastructure.Constants.CustomClaims;
+    using static AlpineHub.Data.Constants.CustomClaims;
     using static AlpineHub.Common.EntityValidationMessages;
+    using static AlpineHub.Common.ErrorMessages;
     using AlpineHub.Core.ViewModels.Lift;
 
     [Authorize(Policy = ManagerPolicyName)]

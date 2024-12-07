@@ -1,0 +1,30 @@
+﻿@using AlpineHub.Core.Contracts
+@using AlpineHub.Core.ViewModels.User
+@model RoleFormModel
+@inject IUserService userService
+@{
+    var listItems = (await userService.GetAllAssignableRolesAsync(Model.UserId)).Select(r => new SelectListItem()
+            {
+                Text = r,
+                Value = r
+            });
+}
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header bg-primary">
+            <h5 class="modal-title" id="assignRoleModalLabel">Assign Role</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form method="post" asp-area="Admin" asp-controller="Users" asp-action="AssignRole" id="assignRoleForm">
+                <input type="hidden" asp-for="UserId" />
+                <div class="mb-3">
+                    <label for="role" class="form-label">Select Role</label>
+                    <select class="form-select" asp-for="RoleName" asp-items=@listItems id="role">
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Assign Role</button>
+            </form>
+        </div>
+    </div>
+</div>

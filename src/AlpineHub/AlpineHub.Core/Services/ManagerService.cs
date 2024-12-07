@@ -1,10 +1,15 @@
-﻿using AlpineHub.Core.Contracts;
-using AlpineHub.Data.Contracts;
-using AlpineHub.Data.Models;
-using Microsoft.EntityFrameworkCore;
-namespace AlpineHub.Core.Services
+﻿namespace AlpineHub.Core.Services
 {
-    public class ManagerService(IRepo repo) : BaseService(repo), IManagerService
+    using System.Security.Claims;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.AspNetCore.Identity;
+
+    using AlpineHub.Core.Contracts;
+    using AlpineHub.Data.Contracts;
+    using AlpineHub.Data.Models;
+
+    using static AlpineHub.Data.Constants.CustomClaims;
+    public class ManagerService(IRepo repo, UserManager<ApplicationUser> userManager) : BaseService(repo), IManagerService
     {
         public async Task<bool> IsManagerIdValid(string? managerId, string? userId)
         {
@@ -38,6 +43,31 @@ namespace AlpineHub.Core.Services
             }
 
             return await repo.GetAllReadonly<ResortManager>().AnyAsync(m => m.ApplicationUserId == guid);
+        }
+
+        public async Task MakeUserManager(ApplicationUser user)
+        {
+            ResortManager manager = new()
+            {
+                ApplicationUserId = user.Id,
+            };
+            await repo.AddAsync<ResortManager>(manager);
+            await repo.SaveChangesAsync();
+
+            //Add cookie to user:
+            await userManager.AddClaimAsync(user, new Claim(ManagerIdClaim, manager.Id.ToString()));
+        }
+
+        public async Task RemoveManager(ApplicationUser user)
+        {
+            ResortManager? manager = await repo.GetAll<ResortManager>().FirstOrDefaultAsync(m => m.ApplicationUserId == user.Id);
+            if (manager is not null)
+            {
+                repo.Delete(manager);
+                await repo.SaveChangesAsync();
+
+                await userManager.RemoveClaimAsync(user, new Claim(ManagerIdClaim, manager.Id.ToString()));
+            }
         }
     }
 }

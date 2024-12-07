@@ -1,4 +1,4 @@
-﻿namespace AlpineHub.Web.Infrastructure.Constants
+﻿namespace AlpineHub.Data.Constants
 {
     public static class CustomClaims
     {
