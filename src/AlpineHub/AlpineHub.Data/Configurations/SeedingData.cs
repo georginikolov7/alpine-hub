@@ -11,7 +11,93 @@ namespace AlpineHub.Data.Configurations
             SeedLiftTypes();
             SeedLifts();
             SeedSlopes();
+            SeedPassAges();
+            SeedPassPeriods();
+            SeedPasses();
         }
+
+        private void SeedPasses()
+        {
+            AllDayAdultPass = new Pass
+            {
+                Id = Guid.NewGuid(),
+                Name = "Allday adult pass",
+                Price = 50,
+                PassPeriodId = AllDay.Id,
+                PassAgeGroupId = AdultGroup.Id
+            };
+
+            AllDayStudentPass = new Pass
+            {
+                Id = Guid.NewGuid(),
+                Name = "Allday student pass",
+                Price = 40,
+                PassPeriodId = AllDay.Id,
+                PassAgeGroupId = StudentGroup.Id
+            };
+            AllDayChildPass = new Pass
+            {
+                Id = Guid.NewGuid(),
+                Name = "Allday child pass",
+                Price = 30,
+                PassPeriodId = AllDay.Id,
+                PassAgeGroupId = ChildGroup.Id
+            };
+        }
+
+        private void SeedPassPeriods()
+        {
+            Morning = new PassPeriod
+            {
+                Id = Guid.Parse("235024B0-64B9-4E2E-A0EE-48D0A2750953\r\n"),
+                Name = "Morning",
+                ValidFromHour = new TimeOnly(8, 30),
+                ValidToHour = new TimeOnly(12, 30),
+                DaysCount = 1
+            };
+            Afternoon = new PassPeriod
+            {
+                Id = Guid.Parse("727C219A-0E3A-4EEB-9215-8602CBD62372"),
+                Name = "Afternoon",
+                ValidFromHour = new TimeOnly(12, 30),
+                ValidToHour = new TimeOnly(16, 30),
+                DaysCount = 1
+            };
+            AllDay = new PassPeriod
+            {
+                Id = Guid.Parse("A91D8261-2DD1-4631-A379-CE4CFF155371"),
+                Name = "All day",
+                ValidFromHour = new TimeOnly(8, 30),
+                ValidToHour = new TimeOnly(16, 30),
+                DaysCount = 1
+            };
+        }
+
+        private void SeedPassAges()
+        {
+            AdultGroup = new()
+            {
+                Id = Guid.Parse("A1371258-86D8-4EC2-9FBF-9B03A31CD548"),
+                Name = "Adult",
+                MinAge = 18,
+                MaxAge = 64
+            };
+            StudentGroup = new()
+            {
+                Id = Guid.Parse("CAE47722-1B8A-4578-B1C8-1F8B0412D7F1"),
+                Name = "Student",
+                MinAge = 12,
+                MaxAge = 26
+            };
+            ChildGroup = new()
+            {
+                Id = Guid.Parse("28700D0A-478E-476C-A2CB-CC56AF2F7310"),
+                Name = "Child",
+                MinAge = 6,
+                MaxAge = 12
+            };
+        }
+
         public Slope FirstSlope { get; set; }
         public Slope SecondSlope { get; set; }
         public Slope ThirdSlope { get; set; }
@@ -22,6 +108,19 @@ namespace AlpineHub.Data.Configurations
         public Lift GondolaLift { get; set; }
         public Lift ChairLift { get; set; }
         public Lift SecondChairLift { get; set; }
+
+        public PassAgeGroup AdultGroup { get; set; }
+        public PassAgeGroup ChildGroup { get; set; }
+        public PassAgeGroup StudentGroup { get; set; }
+
+        public PassPeriod Morning { get; set; }
+        public PassPeriod Afternoon { get; set; }
+        public PassPeriod AllDay { get; set; }
+
+        public Pass AllDayAdultPass { get; set; }
+        public Pass AllDayStudentPass { get; set; }
+        public Pass AllDayChildPass { get; set; }
+
 
         private void SeedLiftTypes()
         {

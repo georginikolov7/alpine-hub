@@ -4,6 +4,7 @@ using AlpineHub.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AlpineHub.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241207205739_AddNameToPass")]
+    partial class AddNameToPass
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -163,7 +166,7 @@ namespace AlpineHub.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b6244383-f167-4d6f-939f-5da3d5306cc3"),
+                            Id = new Guid("673e0328-babc-4728-b128-b350ce11d635"),
                             AverageAscendTime = 25,
                             CapacityPerHour = 2000,
                             ClosingTime = new TimeOnly(16, 30, 0),
@@ -178,7 +181,7 @@ namespace AlpineHub.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("4d8b2fdd-0c7c-48d3-8496-ba6d1c107636"),
+                            Id = new Guid("76a82e4c-0d55-4c56-863a-4f26e52fb438"),
                             AverageAscendTime = 10,
                             CapacityPerHour = 1300,
                             ClosingTime = new TimeOnly(16, 30, 0),
@@ -193,7 +196,7 @@ namespace AlpineHub.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("3f858536-d76b-4546-b0be-c1750fafcdbf"),
+                            Id = new Guid("1e44e7cf-0395-4323-b369-1b6d18c5e917"),
                             AverageAscendTime = 12,
                             CapacityPerHour = 1200,
                             ClosingTime = new TimeOnly(16, 0, 0),
@@ -282,41 +285,6 @@ namespace AlpineHub.Data.Migrations
                     b.HasIndex("PassPeriodId");
 
                     b.ToTable("Passes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("8757c0ce-b79f-46d8-b0cf-7083b0911920"),
-                            IsDeleted = false,
-                            Name = "Allday adult pass",
-                            PassAgeGroupId = new Guid("a1371258-86d8-4ec2-9fbf-9b03a31cd548"),
-                            PassPeriodId = new Guid("a91d8261-2dd1-4631-a379-ce4cff155371"),
-                            Price = 50m,
-                            ValidFromDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ValidToDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = new Guid("081ae014-ad2c-47c8-99d5-9ff9557679e2"),
-                            IsDeleted = false,
-                            Name = "Allday student pass",
-                            PassAgeGroupId = new Guid("cae47722-1b8a-4578-b1c8-1f8b0412d7f1"),
-                            PassPeriodId = new Guid("a91d8261-2dd1-4631-a379-ce4cff155371"),
-                            Price = 40m,
-                            ValidFromDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ValidToDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = new Guid("79f86e60-ccbb-47da-b631-b92752d79811"),
-                            IsDeleted = false,
-                            Name = "Allday child pass",
-                            PassAgeGroupId = new Guid("28700d0a-478e-476c-a2cb-cc56af2f7310"),
-                            PassPeriodId = new Guid("a91d8261-2dd1-4631-a379-ce4cff155371"),
-                            Price = 30m,
-                            ValidFromDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ValidToDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("AlpineHub.Data.Models.PassAgeGroup", b =>
@@ -343,29 +311,6 @@ namespace AlpineHub.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PassAgeGroups");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("a1371258-86d8-4ec2-9fbf-9b03a31cd548"),
-                            MaxAge = 64,
-                            MinAge = 18,
-                            Name = "Adult"
-                        },
-                        new
-                        {
-                            Id = new Guid("cae47722-1b8a-4578-b1c8-1f8b0412d7f1"),
-                            MaxAge = 26,
-                            MinAge = 12,
-                            Name = "Student"
-                        },
-                        new
-                        {
-                            Id = new Guid("28700d0a-478e-476c-a2cb-cc56af2f7310"),
-                            MaxAge = 12,
-                            MinAge = 6,
-                            Name = "Child"
-                        });
                 });
 
             modelBuilder.Entity("AlpineHub.Data.Models.PassPeriod", b =>
@@ -396,32 +341,6 @@ namespace AlpineHub.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PassPeriods");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("235024b0-64b9-4e2e-a0ee-48d0a2750953"),
-                            DaysCount = 1,
-                            Name = "Morning",
-                            ValidFromHour = new TimeOnly(8, 30, 0),
-                            ValidToHour = new TimeOnly(12, 30, 0)
-                        },
-                        new
-                        {
-                            Id = new Guid("727c219a-0e3a-4eeb-9215-8602cbd62372"),
-                            DaysCount = 1,
-                            Name = "Afternoon",
-                            ValidFromHour = new TimeOnly(12, 30, 0),
-                            ValidToHour = new TimeOnly(16, 30, 0)
-                        },
-                        new
-                        {
-                            Id = new Guid("a91d8261-2dd1-4631-a379-ce4cff155371"),
-                            DaysCount = 1,
-                            Name = "All day",
-                            ValidFromHour = new TimeOnly(8, 30, 0),
-                            ValidToHour = new TimeOnly(16, 30, 0)
-                        });
                 });
 
             modelBuilder.Entity("AlpineHub.Data.Models.ResortManager", b =>
@@ -489,7 +408,7 @@ namespace AlpineHub.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ee750bd3-269b-432d-84a7-a9a2acd52bd1"),
+                            Id = new Guid("7b12e226-bee0-453b-874c-9c42c6695397"),
                             Difficulty = 3,
                             IsDeleted = false,
                             IsOpen = true,
@@ -501,7 +420,7 @@ namespace AlpineHub.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("78f2c895-0262-48e3-be55-6da50f91cf49"),
+                            Id = new Guid("82c8ef4c-b7b6-43f4-b793-b7098705bf05"),
                             Difficulty = 1,
                             IsDeleted = false,
                             IsOpen = true,
@@ -513,7 +432,7 @@ namespace AlpineHub.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("ce81be69-f712-415c-835f-3efade7fe848"),
+                            Id = new Guid("e36ac13f-7b33-47c4-97f7-10c81d963eb9"),
                             Difficulty = 0,
                             IsDeleted = false,
                             IsOpen = true,

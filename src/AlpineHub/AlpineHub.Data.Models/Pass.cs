@@ -8,12 +8,16 @@ namespace AlpineHub.Data.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using AlpineHub.Data.Models.Contracts;
 
-    public class Passes : ISoftDeletable
+    public class Pass : ISoftDeletable
     {
         [Key]
         [Comment("Primary key of table")]
         public Guid Id { get; set; }
 
+        [Required]
+        [MaxLength(PassTypeNameMaxLength)]
+        [Comment("Name of pass")]
+        public string Name { get; set; } = null!;
         [Required]
         [Column(TypeName = "decimal(18,2)")]
         [Comment("Pass price. Pass type discount is automatically deduced")]
@@ -31,14 +35,6 @@ namespace AlpineHub.Data.Models
         [Comment("Flag for soft deletion")]
         public bool IsDeleted { get; set; }
 
-
-        [Required]
-        [Comment("Foreign key for pass type")]
-        public Guid PassTypeId { get; set; }
-
-        [Required]
-        [ForeignKey(nameof(PassTypeId))]
-        public virtual PassType PassType { get; set; } = null!;
 
         [Required]
         [Comment("Foreign key for pass age group")]

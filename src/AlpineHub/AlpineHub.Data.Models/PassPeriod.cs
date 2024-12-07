@@ -17,11 +17,14 @@ namespace AlpineHub.Data.Models
         [Comment("Name of pass period")]
         public string Name { get; set; } = null!;
 
+        [Required]
         [Comment("Starting hour of pass period")]
-        public int ValidFromHour { get; set; }
+        public TimeOnly ValidFromHour { get; set; }
+        [Required]
 
         [Comment("Ending hour of pass period")]
-        public int ValidToHour { get; set; }
+        public TimeOnly ValidToHour { get; set; }
+
         [Comment("Number of days for pass validity")]
         public int DaysCount { get; set; }
     }

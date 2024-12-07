@@ -18,14 +18,11 @@ namespace AlpineHub.Data
         public DbSet<LiftType> LiftTypes { get; set; }
         public DbSet<PassAgeGroup> PassAgeGroups { get; set; }
         public DbSet<PassPeriod> PassPeriods { get; set; }
-        public DbSet<PassType> PassTypes { get; set; }
-        public DbSet<Passes> Passes { get; set; }
+        public DbSet<Pass> Passes { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<ResortManager> ResortManagers { get; set; }
-        public ApplicationDbContext()
-        {
 
-        }
+       
         public ApplicationDbContext(DbContextOptions options)
             : base(options)
         {
