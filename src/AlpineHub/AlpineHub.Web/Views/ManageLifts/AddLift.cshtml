@@ -1,12 +1,12 @@
 ﻿@using AlpineHub.Core.Contracts
 @using AlpineHub.Core.ViewModels.Lift
 @model AddLiftFormModel
-@inject ILiftService liftService
+@inject IManageableLiftService liftService
 @{
     Layout = "_ManagerLayout";
     ViewData["Title"] = "Add Lift";
 
-    IEnumerable<SelectListItem>? liftTypes = (await liftService.GetAllLiftTypesAsync())
+    IEnumerable<SelectListItem>? liftTypes = (await liftService.GetAllLiftTypesAsync())?
     .Select(lt => new SelectListItem
             {
                 Text = lt.Name,

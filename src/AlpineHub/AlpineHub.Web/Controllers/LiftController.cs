@@ -8,7 +8,7 @@ namespace AlpineHub.Web.Controllers
     {
         public async Task<IActionResult> Index()
         {
-            var model = await liftService.GetAllLiftsAsync();
+            var model = await liftService.GetAllLiftsDetailsAsync();
             return View(model);
         }
 

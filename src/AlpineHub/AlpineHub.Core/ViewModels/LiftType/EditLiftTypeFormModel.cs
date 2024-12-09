@@ -5,10 +5,11 @@ namespace AlpineHub.Core.ViewModels.LiftType
     using System.ComponentModel.DataAnnotations;
     using static AlpineHub.Common.EntityValidationConstraints;
     using static AlpineHub.Common.EntityValidationMessages;
-    public class LiftTypeFormModel
+    public class EditLiftTypeFormModel
+
     {
         [Required]
-        public Guid Id { get; set; }
+        public string Id { get; set; } = null!;
 
         [Required]
         [StringLength(LiftTypeNameMaxLength, MinimumLength = LiftTypeNameMinLength, ErrorMessage = FieldLengthError)]

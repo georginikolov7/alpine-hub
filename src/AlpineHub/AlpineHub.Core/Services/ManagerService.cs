@@ -17,7 +17,7 @@
             {
                 return false;
             }
-
+            
             if (!IsGuidValid(managerId, out Guid managerGuid) || !IsGuidValid(userId, out Guid userGuid))
             {
                 return false;

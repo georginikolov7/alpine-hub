@@ -11,7 +11,7 @@
         <h1>Manage Slopes</h1>
 
         <!-- Add New Slope Button -->
-        <a class="btn btn-success" asp-area="" asp-controller="Manager" asp-action="AddSlope">
+        <a class="btn btn-success" asp-area="" asp-controller="ManageSlopes" asp-action="AddSlope">
             <i class="fas fa-plus"></i> Add New Slope
         </a>
     </div>
@@ -74,7 +74,7 @@
                             }
                         </td>
                         <td>
-                            <a class="btn btn-sm btn-warning" asp-area="" asp-controller="Manager" asp-action="EditSlope" asp-route-id="@slope.Id">
+                            <a class="btn btn-sm btn-warning" asp-area="" asp-controller="ManageSlopes" asp-action="EditSlope" asp-route-id="@slope.Id">
                                 <i class="fas fa-edit"></i> Edit
                             </a>
                             <button class="btn btn-sm btn-danger delete-slope-button">
@@ -89,6 +89,6 @@
 </div>
 
 <!-- Delete Slope Confirmation Modal -->
-<div class="modal fade" id="deleteSlopeModal" tabindex="-1" aria-labelledby="deleteSlopeModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
     <!-- Modal will be loaded here-->
 </div>

@@ -1,37 +1,53 @@
 ﻿
 $(function () {
-    const deleteSlopeButton = $('.delete-slope-button');
-    const deleteLiftButton = $('.delete-lift-button');
-    
+    const deleteSlopeButtons = $('.delete-slope-button');
+    const deleteLiftButtons = $('.delete-lift-button');
+    const deleteLiftTypeButtons = $('.delete-lift-type-button');
 
-    deleteSlopeButton.on("click", (e) => {
+    deleteLiftTypeButtons.on('click', (e) => {
+        const id = $(e.target).parent().parent().find('td:first').text();
+
+        $.ajax({
+            method:
+                'GET',
+            url: '/ManageLifts/DeleteLiftType',
+            data: { id: id }
+        })
+            .done(data => {
+                $('#deleteConfirmModal').html(data);
+                $('#deleteConfirmModal').modal('show');
+            }).fail(data => {
+
+            })
+    });
+    deleteSlopeButtons.on("click", (e) => {
         const trElement = $(e.target).parent().parent();
         const id = trElement.find('td:first').text();
         $.ajax({
             method: 'GET',
-            url: "/Manager/DeleteSlope",
+            url: "/ManageSlopes/DeleteSlope",
             data: { id: id },
         })
             .done(function success(data) {
-                $('#deleteSlopeModal').html(data);
-                $('#deleteSlopeModal').modal('show');
+                $('#deleteConfirmModal').html(data);
+                $('#deleteConfirmModal').modal('show');
             })
             .fail(function fail(data) {
                 //TODO handle error
             });
     });
 
-    deleteLiftButton.on("click", (e) => {
+    deleteLiftButtons.on("click", (e) => {
         const trElement = $(e.target).parent().parent();
         const id = trElement.find('td:first').text();
         $.ajax({
             method: 'GET',
-            url: "/Manager/DeleteLift",
+            url: "/ManageLifts/DeleteLift",
             data: { id: id },
         })
             .done(function success(data) {
-                $('#deleteLiftModal').html(data);
-                $('#deleteLiftModal').modal('show');
+                $('#deleteConfirmModal').html(data);
+                $('#deleteConfirmModal').modal('show');
             })
             .fail(function fail(data) {
                 //TODO handle error

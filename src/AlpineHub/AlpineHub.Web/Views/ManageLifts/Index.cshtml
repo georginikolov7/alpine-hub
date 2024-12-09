@@ -1,0 +1,131 @@
+﻿@using AlpineHub.Core.ViewModels.Lift
+@using AlpineHub.Core.ViewModels.LiftType
+@model IEnumerable<LiftDetailsViewModel>
+@{
+    ViewData["Title"] = "Manage Lifts";
+    Layout = "_ManagerLayout";
+
+    IEnumerable<DeleteLiftTypeViewModel>? liftTypes = ViewBag.LiftTypes as IEnumerable<DeleteLiftTypeViewModel>;
+}
+
+<h1 class="mb-3">Manage Lifts</h1>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <!-- Page Title -->
+    <h2> Lift Types Setup:</h2>
+
+    <!-- Add New Lift Button -->
+    <a class="btn btn-success" asp-area="" asp-controller="ManageLifts" asp-action="AddLiftType">
+        <i class="fas fa-plus"></i> Add New Lift Type
+    </a>
+</div>
+
+<div class="container-fluid d-flex justify-content-center">
+    <div class="table-responsive text-center" style="max-width: 700px;">
+        <table class="table table-hover table-bordered" id="liftTypesTable">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (liftTypes is null)
+                {
+                    <tr>
+                        <td colspan="2">No lift types found.</td>
+                    </tr>
+                }
+                else
+                {
+                    <!-- Example of existing lift types -->
+                    @foreach (var liftType in liftTypes)
+                    {
+                        <tr>
+                            <td hidden>@liftType.Id</td>
+                            <td>@liftType.Name</td>
+                            <td>
+                                <a class="btn btn-sm btn-warning" asp-area="" asp-controller="ManageLifts" asp-action="EditLiftType" asp-route-id="@liftType.Id">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+                                <button class="btn btn-sm btn-danger delete-lift-type-button">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </td>
+                        </tr>
+                    }}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<div class="container-fluid ">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <!-- Page Title -->
+        <h2> Lifts Setup:</h2>
+
+        <!-- Add New Lift Button -->
+        <a class="btn btn-success" asp-area="" asp-controller="ManageLifts" asp-action="AddLift">
+            <i class="fas fa-plus"></i> Add New Lift
+        </a>
+    </div>
+
+    <!-- Lifts Table -->
+    <div class="table-responsive text-center">
+        <table class="table table-hover" id="manageLiftsTable">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Length (m)</th>
+                    <th scope="col">Ascend</th>
+                    <th scope="col">Ride time</th>
+                    <th scope="col">Seats</th>
+                    <th scope="col">Capacity</th>
+                    <th scope="col">Working hours</th>
+                    <th scope="col">IsOpen</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var lift in Model)
+                {
+                    <tr>
+                        <td hidden>@lift.Id</td>
+                        <td>@lift.Name</td>
+                        <td>@lift.Type</td>
+                        <td>@lift.Length</td>
+                        <td>@lift.VerticalAscend</td>
+                        <td>@lift.AverageRideTime</td>
+                        <td>@lift.NumberOfSeats</td>
+                        <td>@lift.CapacityPerHour</td>
+                        <td>@lift.OpeningHours</td>
+                        <td>
+                            @if (lift.IsOpen)
+                            {
+                                <span class="badge bg-success">Open</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Closed</span>
+                            }
+                        </td>
+                        <td>
+                            <a class="btn btn-sm btn-warning" asp-area="" asp-controller="ManageLifts" asp-action="EditLift" asp-route-id="@lift.Id">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <button class="btn btn-sm btn-danger delete-lift-button">
+                                <i class="fas fa-edit"></i> Delete
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Delete Lift Confirmation Modal -->
+<div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+    <!-- Modal will be loaded here-->
+</div>

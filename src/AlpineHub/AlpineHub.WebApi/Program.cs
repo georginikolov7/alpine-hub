@@ -37,7 +37,7 @@ namespace AlpineHub.WebApi
                 });
             }
             builder.Services.AddAppDbContext(builder.Configuration);
-            builder.Services.AddApplicationServices();
+            builder.Services.AddWebApiServices();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

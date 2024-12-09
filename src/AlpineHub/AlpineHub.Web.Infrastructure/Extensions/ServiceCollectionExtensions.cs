@@ -30,6 +30,17 @@
             services.AddScoped<IUserService, UserService>();
             return services;
         }
+        public static IServiceCollection AddWebApiServices(this IServiceCollection services)
+        {
+            services.AddScoped<SlopeService>();
+            services.AddScoped<ISlopeService>(provider => provider.GetRequiredService<SlopeService>());
+            services.AddScoped<IManageableSlopeService>(provider => provider.GetRequiredService<SlopeService>());
+            services.AddScoped<LiftService>();
+            services.AddScoped<ILiftService>(provider => provider.GetRequiredService<LiftService>());
+            services.AddScoped<IManageableLiftService>(provider => provider.GetRequiredService<LiftService>());
+            return services;
+        }
+
         public static IServiceCollection AddAppDbContext(this IServiceCollection services, IConfiguration config)
         {
             var connectionString = config.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");

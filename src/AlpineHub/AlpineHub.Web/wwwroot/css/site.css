@@ -24,6 +24,10 @@ body {
     margin-bottom: 60px;
 }
 
+.main-container {
+    margin-top: 4.5rem;
+}
+
 footer {
     position: absolute;
     bottom: 0;
@@ -35,9 +39,11 @@ footer {
 }
 
 .labels {
-    left: 10px;
+    position: absolute;
+    z-index: 200;
+    left: 20px;
     display: flex;
-    gap:1em;
+    gap: 1em;
     margin-left: 20px;
 }
 
@@ -191,8 +197,8 @@ footer {
 }
 
 .sidebar-manager {
-    margin-top: 4.5rem;
-    width: 15em;
+/*    margin-top: 4.5rem;
+*/    width: 15em;
 }
 
 .sidebar-admin {
@@ -207,8 +213,8 @@ footer {
 .manager-main-content {
     margin-left: 15em; /* Sidebar width */
     padding: 20px;
-    margin-top: 4.5rem;
-}
+/*    margin-top: 4.5rem;
+*/}
 
 .nav-link.active {
     font-weight: bold;

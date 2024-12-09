@@ -1,5 +1,6 @@
 ﻿@using AlpineHub.Core.Contracts
 @using AlpineHub.Core.ViewModels.Lift
+@using AlpineHub.Core.ViewModels.LiftType
 @using AlpineHub.Core.ViewModels.Slope
 @using AlpineHub.Core.ViewModels.User
 @model IDeleteViewModel
@@ -23,7 +24,7 @@
             @switch (Model.GetType().Name)
             {
                 case nameof(DeleteSlopeViewModel):
-                    <form asp-action="ConfirmDeleteSlope" method="post">
+                    <form asp-controller="ManageSlopes" asp-action="ConfirmDeleteSlope" method="post">
                         @Html.AntiForgeryToken();
                         <input type="hidden" asp-for="Id" />
                         <input type="hidden" asp-for="Name" />
@@ -31,15 +32,23 @@
                     </form>
                     break;
                 case nameof(DeleteLiftViewModel):
-                    <form asp-action="ConfirmDeleteLift" method="post">
+                    <form asp-controller="ManageLifts" asp-action="ConfirmDeleteLift" method="post">
                         @Html.AntiForgeryToken();
                         <input type="hidden" asp-for="Id" />
                         <input type="hidden" asp-for="Name" />
                         <button class="btn btn-danger" type="submit">Delete</button>
                     </form>
                     break;
-                    case nameof(DeleteUserViewModel):
-                    <form asp-action="ConfirmDeleteUser" method="post">
+                case nameof(DeleteUserViewModel):
+                    <form asp-area="Admin" asp-controller="Users" asp-action="ConfirmDeleteUser" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="Name" />
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                    break;
+                case nameof(DeleteLiftTypeViewModel):
+                    <form asp-controller="ManageLifts" asp-action="ConfirmDeleteLiftType" method="post">
                         @Html.AntiForgeryToken()
                         <input type="hidden" asp-for="Id" />
                         <input type="hidden" asp-for="Name" />
