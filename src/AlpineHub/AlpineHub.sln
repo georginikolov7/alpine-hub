@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlpineHub.Core", "AlpineHub
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlpineHub.WebApi", "AlpineHub.WebApi\AlpineHub.WebApi.csproj", "{DF5A8714-6C9C-4C9F-9457-3DEA7C5074BC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlpineHub.Tests", "AlpineHub.Tests\AlpineHub.Tests.csproj", "{CC9D4CEB-A11B-4E85-998E-24DB058FFF33}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{DF5A8714-6C9C-4C9F-9457-3DEA7C5074BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF5A8714-6C9C-4C9F-9457-3DEA7C5074BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF5A8714-6C9C-4C9F-9457-3DEA7C5074BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC9D4CEB-A11B-4E85-998E-24DB058FFF33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC9D4CEB-A11B-4E85-998E-24DB058FFF33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC9D4CEB-A11B-4E85-998E-24DB058FFF33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC9D4CEB-A11B-4E85-998E-24DB058FFF33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
