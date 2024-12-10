@@ -52,6 +52,10 @@ footer {
     padding: 0.3em 0.4em;
 }
 
+nav > .navbar-container {
+    width: 50%;
+    justify-content: space-around;
+}
 
 .navbar {
     background-color: rgba(7, 40, 72, 0.9);
