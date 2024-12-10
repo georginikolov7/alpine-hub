@@ -1,6 +1,7 @@
 ﻿
 namespace AlpineHub.Core.Contracts
 {
+    using AlpineHub.Core.ViewModels.Admin;
     using AlpineHub.Core.ViewModels.User;
     public interface IUserService
     {
@@ -12,5 +13,6 @@ namespace AlpineHub.Core.Contracts
         Task AssignRole(RoleFormModel model);
         Task RemoveRole(RoleFormModel model);
         Task<bool> IsUserAdmin(string? userId);
+        Task<DashboardViewModel> GetUserCounts();
     }
 }

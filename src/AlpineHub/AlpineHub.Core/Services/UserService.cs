@@ -13,6 +13,7 @@ namespace AlpineHub.Core.Services
     using static AlpineHub.Common.ErrorMessages;
     using static AlpineHub.Common.Formats;
     using Microsoft.Extensions.Configuration;
+    using AlpineHub.Core.ViewModels.Admin;
 
     public class UserService(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole<Guid>> roleManager, IManagerService managerService, IConfiguration config, IRepo repo) : BaseService(repo), IUserService
     {
@@ -144,6 +145,15 @@ namespace AlpineHub.Core.Services
                 return false;
             }
             return await userManager.IsInRoleAsync(applicationUser, AdminRoleName);
+        }
+
+        public async Task<DashboardViewModel> GetUserCounts()
+        {
+            DashboardViewModel model = new();
+            model.TotalUsers = await userManager.Users.CountAsync();
+            model.TotalManagers = await repo.GetAllReadonly<ResortManager>().CountAsync();
+            model.TotalAdmins = (await userManager.GetUsersInRoleAsync(AdminRoleName)).Count();
+            return model;
         }
     }
 }

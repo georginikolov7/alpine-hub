@@ -1,5 +1,6 @@
 ﻿namespace AlpineHub.Web.Areas.Admin.Controllers
 {
+    using AlpineHub.Core.Contracts;
     using AlpineHub.Web.Controllers;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -7,11 +8,12 @@
 
     [Area(AdminRoleName)]
     [Authorize(Roles = AdminRoleName)]
-    public class HomeController(ILogger<HomeController> _logger) : BaseController(_logger)
+    public class HomeController(ILogger<HomeController> _logger, IUserService userService) : BaseController(_logger)
     {
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var model = await userService.GetUserCounts();
+            return View(model);
         }
     }
 }
