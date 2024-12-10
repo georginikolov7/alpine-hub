@@ -22,7 +22,7 @@
         <div class="main-container">
             @if (TempData["ErrorMessage"] != null)
             {
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <div class="alert alert-danger alert-dismissible fade show position-absolute start-0 end-0" style="z-index:200;" role="alert">
                     @TempData["ErrorMessage"]
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
@@ -47,6 +47,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/updateNaviCounters.js"></script>
+    <script src="~/js/cart.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
