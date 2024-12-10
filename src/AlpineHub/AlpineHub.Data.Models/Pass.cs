@@ -18,6 +18,10 @@ namespace AlpineHub.Data.Models
         [MaxLength(PassTypeNameMaxLength)]
         [Comment("Name of pass")]
         public string Name { get; set; } = null!;
+
+        [MaxLength(PassDescriptionMaxLength)]
+        [Comment("Description of pass")]
+        public string? Description { get; set; }
         [Required]
         [Column(TypeName = "decimal(18,2)")]
         [Comment("Pass price. Pass type discount is automatically deduced")]

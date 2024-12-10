@@ -28,6 +28,8 @@
             services.AddScoped<IManagerService, ManagerService>();
             services.AddScoped<IAuthorizationHandler, ManagerIdClaimHandler>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IPassService, PassService>();
+            services.AddScoped<ICartService, CartService>();
             return services;
         }
         public static IServiceCollection AddWebApiServices(this IServiceCollection services)
@@ -38,6 +40,7 @@
             services.AddScoped<LiftService>();
             services.AddScoped<ILiftService>(provider => provider.GetRequiredService<LiftService>());
             services.AddScoped<IManageableLiftService>(provider => provider.GetRequiredService<LiftService>());
+            services.AddScoped<ICartService, CartService>();
             return services;
         }
 

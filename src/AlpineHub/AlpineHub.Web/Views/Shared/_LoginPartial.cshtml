@@ -4,15 +4,14 @@
 @inject UserManager<ApplicationUser> UserManager
 <div class="dropdown profile-dropdown">
     @if (SignInManager.IsSignedIn(User))
-    {
-        string fullName = User.FindFirst(AlpineHub.Data.Constants.CustomClaims.UserFullNameClaim)?.Value ?? string.Empty;
-        <button class="btn btn-sm btn-secondary" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+    {       
+        <a class="nav-link text-white" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
             <div class="container d-flex flex-row align-items-center justify-content-center">
                 <i class="fa-solid fa-user"></i>
-                <span class="ms-2 d-xl-block d-none">@fullName</span>
+                <span class="ms-2 d-xl-block d-none">MyHub</span>
             </div>
 
-        </button>
+        </a>
 
         <ul class="dropdown-menu bg-secondary end-50">
             <li><a class="dropdown-item text-light" asp-area="Identity" asp-page="/Account/Login">Manage Account</a></li>
@@ -26,13 +25,13 @@
     }
     else
     {
-        <button class="btn btn-sm btn-primary" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+        <a class="nav-link text-white" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
             <div class="container d-flex flex-row align-items-center justify-content-center">
-                <i class="fa-solid fa-right-to-bracket"></i>
-
-                <span class="ms-2">MyHub</span>
+                <i class="fa-solid fa-user"></i>
+                <span class="ms-2 d-xl-block d-none">Login</span>
             </div>
-        </button>
+
+        </a>
         <ul class="dropdown-menu bg-secondary">
             <li><a class="dropdown-item text-light" asp-area="Identity" asp-page="/Account/Login">Login</a></li>
             <li> <a class="dropdown-item text-light" asp-area="Identity" asp-page="/Account/Register">Register</a></li>

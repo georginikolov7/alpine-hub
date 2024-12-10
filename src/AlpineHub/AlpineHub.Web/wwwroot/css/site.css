@@ -110,10 +110,10 @@ footer {
 
 
 
-.profile-dropdown {
+.cart-icon {
     position: absolute;
-    right: 5%;
-    top: 1.2rem;
+    right: 15%;
+    top: 1.7rem;
 }
 
 
@@ -197,8 +197,8 @@ footer {
 }
 
 .sidebar-manager {
-/*    margin-top: 4.5rem;
-*/    width: 15em;
+    /*    margin-top: 4.5rem;
+*/ width: 15em;
 }
 
 .sidebar-admin {
@@ -213,8 +213,9 @@ footer {
 .manager-main-content {
     margin-left: 15em; /* Sidebar width */
     padding: 20px;
-/*    margin-top: 4.5rem;
-*/}
+    /*    margin-top: 4.5rem;
+*/
+}
 
 .nav-link.active {
     font-weight: bold;

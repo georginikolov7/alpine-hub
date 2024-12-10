@@ -4,6 +4,7 @@ using AlpineHub.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AlpineHub.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241209211106_AddedCartAndCartItems")]
+    partial class AddedCartAndCartItems
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -131,7 +134,7 @@ namespace AlpineHub.Data.Migrations
 
                     b.HasIndex("PassId");
 
-                    b.ToTable("CartItems", (string)null);
+                    b.ToTable("CartItems");
                 });
 
             modelBuilder.Entity("AlpineHub.Data.Models.Lift", b =>
@@ -190,7 +193,7 @@ namespace AlpineHub.Data.Migrations
 
                     b.HasIndex("LiftTypeId");
 
-                    b.ToTable("Lifts", (string)null);
+                    b.ToTable("Lifts");
 
                     b.HasData(
                         new
@@ -255,7 +258,7 @@ namespace AlpineHub.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("LiftTypes", (string)null);
+                    b.ToTable("LiftTypes");
 
                     b.HasData(
                         new
@@ -318,7 +321,7 @@ namespace AlpineHub.Data.Migrations
 
                     b.HasIndex("PassPeriodId");
 
-                    b.ToTable("Passes", (string)null);
+                    b.ToTable("Passes");
 
                     b.HasData(
                         new
@@ -379,7 +382,7 @@ namespace AlpineHub.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PassAgeGroups", (string)null);
+                    b.ToTable("PassAgeGroups");
 
                     b.HasData(
                         new
@@ -432,7 +435,7 @@ namespace AlpineHub.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PassPeriods", (string)null);
+                    b.ToTable("PassPeriods");
 
                     b.HasData(
                         new
@@ -476,7 +479,7 @@ namespace AlpineHub.Data.Migrations
 
                     b.HasIndex("ApplicationUserId");
 
-                    b.ToTable("ResortManagers", (string)null);
+                    b.ToTable("ResortManagers");
                 });
 
             modelBuilder.Entity("AlpineHub.Data.Models.Slope", b =>
@@ -521,7 +524,7 @@ namespace AlpineHub.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Slopes", (string)null);
+                    b.ToTable("Slopes");
 
                     b.HasData(
                         new
@@ -577,7 +580,7 @@ namespace AlpineHub.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserCarts", (string)null);
+                    b.ToTable("UserCarts");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>

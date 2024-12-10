@@ -21,8 +21,10 @@ namespace AlpineHub.Data
         public DbSet<Pass> Passes { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<ResortManager> ResortManagers { get; set; }
+        public DbSet<UserCart> UserCarts { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
 
-       
+
         public ApplicationDbContext(DbContextOptions options)
             : base(options)
         {

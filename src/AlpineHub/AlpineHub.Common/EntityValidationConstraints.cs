@@ -56,6 +56,7 @@
         //Pass type:
         public const byte PassTypeNameMinLength = 5;
         public const byte PassTypeNameMaxLength = 32;
+        public const int PassDescriptionMaxLength = 300;
 
         //Pass age group:
         public const byte PassAgeGroupMinLength = 5;

@@ -48,6 +48,7 @@
                     </form>
                     break;
                 case nameof(DeleteLiftTypeViewModel):
+                <h5>WARNING!!! Deleting lift type will PERMANENTLY DELETE All Lifts of said type</h5>
                     <form asp-controller="ManageLifts" asp-action="ConfirmDeleteLiftType" method="post">
                         @Html.AntiForgeryToken()
                         <input type="hidden" asp-for="Id" />

@@ -2,9 +2,11 @@
 @using System.Security.Claims
 @using AlpineHub.Data.Models
 @using Microsoft.AspNetCore.Identity
-
+@using static AlpineHub.Data.Constants.CustomClaims;
 @inject IManagerService managerService
 @inject IUserService userService
+@inject SignInManager<ApplicationUser> signInManager
+
 @{
     string? userId = Context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
     bool isUserManager = await managerService.IsUserManager(userId);
@@ -49,6 +51,14 @@
                     </div>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link text-white d-inline-block" asp-area="" asp-controller="Pass" asp-action="Index">
+                    <div class="container d-flex flex-row align-items-center justify-content-center">
+                        <i class="fa-solid fa-address-card"></i>
+                        <span class="ms-2">Cards</span>
+                    </div>
+                </a>
+            </li>
         </ul>
         <ul class="navbar-nav gap-3 gap-sm-1 mt-3 mt-sm-0">
             <li class="nav-item">
@@ -63,11 +73,24 @@
                 <a class="nav-link text-white d-inline-block" asp-area="" asp-controller="Pass" asp-action="Index">
                     <div class="container d-flex flex-row align-items-center justify-content-center">
                         <i class="fa-solid fa-address-card"></i>
-                        <span class="ms-2">Cards</span>
+                        <span class="ms-2">Passes</span>
+                    </div>
+                </a>
+            </li>
+            <li class="nav-item">
+                <partial name="_LoginPartial" />
+            </li>
+            <li class="nav-item d-inline-block">
+                <a class="nav-link" asp-area="" asp-controller="Cart" asp-action="Index">
+                    <div class="container d-flex flex-row position-relative align-items-center justify-content-center">
+                        <i class="  mt-1 fa-solid fa-shopping-cart"></i>
+
+                        <span id="cartCounter" class="custom-navbar number-info">0</span>
                     </div>
                 </a>
             </li>
         </ul>
     </div>
-    <partial name="_LoginPartial" />
+    <div class="cart-icon">
+    </div>
 </nav>
