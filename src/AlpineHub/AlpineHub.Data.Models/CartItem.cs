@@ -13,7 +13,7 @@ namespace AlpineHub.Data.Models
         public int Quantity { get; set; }
         [Comment("Total price of passes")]
         [Column(TypeName = "decimal(18,2)")]
-        public decimal TotalPrice => Pass.Price * Quantity;
+        public decimal TotalPrice { get; set; }
         [Required]
         [Comment("Foreign key for pass")]
         public Guid PassId { get; set; }

@@ -16,25 +16,19 @@ namespace AlpineHub.Core.Services
             {
                 throw new ArgumentException(string.Format(InvalidId, "Pass", passId));
             }
-            if (!IsGuidValid(userId, out Guid userGuid))
-            {
-                throw new ArgumentException(string.Format(InvalidId, "User", userId));
-            }
 
-            //Ensure user exists:
-            ApplicationUser? user = await userManager.FindByIdAsync(userId!) ?? throw new ArgumentException(string.Format(UserNotFound, userId));
+            //Get user:
+            ApplicationUser user = await GetUser(userId);
 
             //Get the cart:
-            UserCart? cart = await repo.GetAll<UserCart>()
-                .Include(c => c.CartItems)
-                .FirstOrDefaultAsync(c => c.UserId == userGuid);
+            UserCart? cart = await GetUserCat(user);
 
             if (cart is null)
             {
                 //Create a new cart:
                 cart = new UserCart()
                 {
-                    UserId = userGuid,
+                    UserId = user.Id,
                     CartItems = new List<CartItem>()
                 };
                 await repo.AddAsync(cart);
@@ -56,8 +50,10 @@ namespace AlpineHub.Core.Services
                 cartItem = new CartItem()
                 {
                     CartId = cart.Id,
+                    PassId = pass.Id,
                     Pass = pass,
-                    Quantity = quantity
+                    Quantity = quantity,
+                    TotalPrice = pass.Price * quantity
                 };
                 await repo.AddAsync(cartItem);
             }
@@ -66,16 +62,47 @@ namespace AlpineHub.Core.Services
             return cart.CartItems.Count;
         }
 
+        public async Task ClearCart(string? userId)
+        {
+            ApplicationUser user = await GetUser(userId);
+            UserCart? cart = await GetUserCat(user);
+            if (cart is null)
+            {
+                return;
+            }
+            repo.Delete(cart);
+            await repo.SaveChangesAsync();
+        }
+
+        public async Task DeleteItem(string? itemId, string? userId)
+        {
+            ApplicationUser user = await GetUser(userId);
+            UserCart? cart = await GetUserCat(user);
+            if (cart is null)
+            {
+                throw new InvalidOperationException(string.Format(CartNotFound, userId));
+            }
+
+            if (!IsGuidValid(itemId, out Guid itemGuid))
+            {
+                throw new ArgumentException(string.Format(InvalidId, "Item", itemId));
+            }
+
+            CartItem item = await repo.GetByIdAsync<CartItem>(itemGuid) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, itemId));
+
+            repo.Delete(item);
+            await repo.SaveChangesAsync();
+        }
+
         public async Task<CartViewModel?> GetCart(string? userId)
         {
-            if (!IsGuidValid(userId, out Guid userGuid))
-            {
-                throw new ArgumentException(string.Format(InvalidId, "User", userId));
-            }
+            ApplicationUser user = await GetUser(userId);
+
+
             UserCart? cart = await repo.GetAllReadonly<UserCart>()
                 .Include(c => c.CartItems)
                 .ThenInclude(ci => ci.Pass)
-                .FirstOrDefaultAsync(c => c.UserId == userGuid);
+                .FirstOrDefaultAsync(c => c.UserId == user.Id);
 
             if (cart is null)
             {
@@ -88,6 +115,7 @@ namespace AlpineHub.Core.Services
                     Name = ci.Pass.Name,
                     Price = ci.Pass.Price,
                     Quantity = ci.Quantity,
+                    TotalPrice = ci.TotalPrice
 
                 });
 
@@ -97,6 +125,63 @@ namespace AlpineHub.Core.Services
                 CartItems = items,
                 CartTotalPrice = cart.TotalCartPrice
             };
+        }
+
+        public async Task<int> GetCartCount(string? userId)
+        {
+            ApplicationUser user = await GetUser(userId);
+            UserCart? cart = await GetUserCat(user);
+            if (cart is null)
+            {
+                return 0;
+            }
+            return cart.CartItems.Count;
+
+        }
+
+        public async Task UpdateItemQuantity(string? itemId, string? userId, int quantity)
+        {
+            ApplicationUser user = await GetUser(userId);
+            UserCart? cart = await GetUserCat(user);
+            if (cart is null)
+            {
+                //Unexpected:
+                throw new InvalidOperationException(string.Format(CartNotFound, userId));
+            }
+
+            if (!IsGuidValid(itemId, out Guid itemGuid))
+            {
+                throw new ArgumentException(string.Format(InvalidId, "Item", itemId));
+            }
+            CartItem item = await repo
+                .GetAll<CartItem>()
+                .Include(ci => ci.Pass)
+                .FirstOrDefaultAsync(ci => ci.Id == itemGuid) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, itemId));
+
+            item.Quantity = quantity;
+            item.TotalPrice = quantity * item.Pass.Price;
+            await repo.SaveChangesAsync();
+        }
+
+        private async Task<ApplicationUser> GetUser(string? userId)
+        {
+            if (!IsGuidValid(userId, out Guid userGuid))
+            {
+                throw new ArgumentException(string.Format(InvalidId, "User", userId));
+            }
+
+            //Ensure user exists:
+            ApplicationUser? user = await userManager.FindByIdAsync(userId!) ?? throw new ArgumentException(string.Format(UserNotFound, userId));
+
+            return user;
+        }
+        private async Task<UserCart?> GetUserCat(ApplicationUser user)
+        {
+            UserCart? cart = await repo.GetAll<UserCart>()
+                .Include(c => c.CartItems)
+                .ThenInclude(ci => ci.Pass)
+                .FirstOrDefaultAsync(c => c.UserId == user.Id);
+            return cart;
         }
     }
 }

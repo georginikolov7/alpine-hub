@@ -14,6 +14,10 @@ namespace AlpineHub.Core.Contracts
         Task<int> AddToCart(string? passId, string? userId, int quantity);
 
         Task<CartViewModel?> GetCart(string? userId);
+        Task<int> GetCartCount(string? userId);
+        Task UpdateItemQuantity(string? itemId, string? userId, int quantity);
+        Task DeleteItem(string? itemId, string? userId);
+        Task ClearCart(string? userId);
 
     }
 }

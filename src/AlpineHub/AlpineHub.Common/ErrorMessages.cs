@@ -18,6 +18,7 @@ namespace AlpineHub.Common
         public const string CannotDeleteAdmin = "Cannot delete admin user";
         public const string UnexpectedError = "Unexpected error occurred. Please try again later or contact administrator.";
         public const string UserNotFound = "User with id {0} not found";
+        public const string CartNotFound = "Cart for user with id {0} not found";
 
 
     }
