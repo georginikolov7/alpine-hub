@@ -1,12 +1,9 @@
-﻿using AlpineHub.Core.ViewModels.LiftType;
-using AlpineHub.Data.Models;
-using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using static AlpineHub.Common.EntityValidationConstraints;
-using static AlpineHub.Common.EntityValidationMessages;
-namespace AlpineHub.Core.ViewModels.Lift
+﻿namespace AlpineHub.Core.ViewModels.Lift
 {
+    using System.ComponentModel.DataAnnotations;
+
+    using static AlpineHub.Common.EntityValidationConstraints;
+    using static AlpineHub.Common.EntityValidationMessages;
     public class AddLiftFormModel
     {
         [Required]
@@ -18,13 +15,13 @@ namespace AlpineHub.Core.ViewModels.Lift
         [Range(MinVerticalAscend, MaxVerticalAscend, ErrorMessage = LengthOutOfRange)]
         public int VerticalAscend { get; set; }
 
-        [Range(LiftMinCapacity, LiftMaxCapacity, ErrorMessage = CapacityOutOfRange)]
+        [Range(LiftMinCapacity, LiftMaxCapacity, ErrorMessage = NumberOutOfRangeGeneral)]
         public int Capacity { get; set; }
 
         [Range(LiftMinAscendTime, LiftMaxAscendTime, ErrorMessage = TimeOutOfRange)]
         public int AverageAscendTime { get; set; }
 
-        [Range(LiftMinNumberOfSeats, LiftMaxNumberOfSeats, ErrorMessage = CapacityOutOfRange)]
+        [Range(LiftMinNumberOfSeats, LiftMaxNumberOfSeats, ErrorMessage = NumberOutOfRangeGeneral)]
         public int SeatsCount { get; set; }
 
         [Required]

@@ -1,5 +1,4 @@
-﻿
-using AlpineHub.Core.Contracts;
+﻿using AlpineHub.Core.Contracts.Pass;
 using AlpineHub.Core.ViewModels.Pass;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,7 +9,7 @@ namespace AlpineHub.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(AllPassesSearchFilterViewModel inputModel)
         {
-            AllPassesSearchFilterViewModel model = await passService.GetAllPasses(inputModel);
+            AllPassesSearchFilterViewModel model = await passService.GetAllPassesAsync(inputModel);
             return View(model);
         }
 

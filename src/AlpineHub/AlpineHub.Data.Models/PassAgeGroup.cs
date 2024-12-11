@@ -21,5 +21,7 @@ namespace AlpineHub.Data.Models
 
         [Comment("Max age of client")]
         public int MaxAge { get; set; }
+
+        public virtual ICollection<Pass> Passes { get; set; } = new HashSet<Pass>();
     }
 }

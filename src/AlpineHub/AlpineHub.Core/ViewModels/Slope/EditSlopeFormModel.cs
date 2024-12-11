@@ -8,7 +8,8 @@ namespace AlpineHub.Core.ViewModels.Slope
     using static Common.EntityValidationMessages;
     public class EditSlopeFormModel
     {
-        public Guid Id { get; set; } = Guid.Empty;
+        [Required]
+        public string Id { get; set; } = null!;
 
         [Required(ErrorMessage = RequiredField)]
         [StringLength(SlopeNameMaxLength, MinimumLength = SlopeNameMinLength, ErrorMessage = FieldLengthError)]

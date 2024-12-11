@@ -113,6 +113,9 @@ namespace AlpineHub.Data.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasComment("Foreign key for cart");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<Guid>("PassId")
                         .HasColumnType("uniqueidentifier")
                         .HasComment("Foreign key for pass");
@@ -131,7 +134,7 @@ namespace AlpineHub.Data.Migrations
 
                     b.HasIndex("PassId");
 
-                    b.ToTable("CartItems", (string)null);
+                    b.ToTable("CartItems");
                 });
 
             modelBuilder.Entity("AlpineHub.Data.Models.Lift", b =>
@@ -190,12 +193,12 @@ namespace AlpineHub.Data.Migrations
 
                     b.HasIndex("LiftTypeId");
 
-                    b.ToTable("Lifts", (string)null);
+                    b.ToTable("Lifts");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d64d959f-b5aa-4143-9d14-828aa5f1a3c7"),
+                            Id = new Guid("026a5b7a-3c58-4597-b6ac-97a2bccbc2e2"),
                             AverageAscendTime = 25,
                             CapacityPerHour = 2000,
                             ClosingTime = new TimeOnly(16, 30, 0),
@@ -210,7 +213,7 @@ namespace AlpineHub.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("54df2993-194d-4311-8abd-d1e25bae1a58"),
+                            Id = new Guid("a80408aa-72fc-4b44-97cd-67274837c089"),
                             AverageAscendTime = 10,
                             CapacityPerHour = 1300,
                             ClosingTime = new TimeOnly(16, 30, 0),
@@ -225,7 +228,7 @@ namespace AlpineHub.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("21890091-755f-41a2-a8a5-475f937f9586"),
+                            Id = new Guid("b22afe8a-f6d8-4bab-ae8f-de602d760724"),
                             AverageAscendTime = 12,
                             CapacityPerHour = 1200,
                             ClosingTime = new TimeOnly(16, 0, 0),
@@ -255,7 +258,7 @@ namespace AlpineHub.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("LiftTypes", (string)null);
+                    b.ToTable("LiftTypes");
 
                     b.HasData(
                         new
@@ -304,55 +307,95 @@ namespace AlpineHub.Data.Migrations
                         .HasColumnType("decimal(18,2)")
                         .HasComment("Pass price. Pass type discount is automatically deduced");
 
-                    b.Property<DateTime>("ValidFromDate")
-                        .HasColumnType("datetime2")
-                        .HasComment("Start of validity period");
-
-                    b.Property<DateTime>("ValidToDate")
-                        .HasColumnType("datetime2")
-                        .HasComment("End of validity period");
-
                     b.HasKey("Id");
 
                     b.HasIndex("PassAgeGroupId");
 
                     b.HasIndex("PassPeriodId");
 
-                    b.ToTable("Passes", (string)null);
+                    b.ToTable("Passes");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("908b799b-45a0-474f-85e1-3f35a9916eda"),
+                            Id = new Guid("0cff3e71-c04d-4e53-bcc5-423b6ddf3eb6"),
                             IsDeleted = false,
-                            Name = "Allday adult pass",
+                            Name = "All day adult pass",
                             PassAgeGroupId = new Guid("a1371258-86d8-4ec2-9fbf-9b03a31cd548"),
                             PassPeriodId = new Guid("a91d8261-2dd1-4631-a379-ce4cff155371"),
-                            Price = 50m,
-                            ValidFromDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ValidToDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Price = 50m
                         },
                         new
                         {
-                            Id = new Guid("c2a2c791-e3b9-4d43-af46-4c06a28fbe70"),
+                            Id = new Guid("1fd6ce7d-3a4e-4da3-aaed-44c662977e38"),
                             IsDeleted = false,
-                            Name = "Allday student pass",
+                            Name = "All day student pass",
                             PassAgeGroupId = new Guid("cae47722-1b8a-4578-b1c8-1f8b0412d7f1"),
                             PassPeriodId = new Guid("a91d8261-2dd1-4631-a379-ce4cff155371"),
-                            Price = 40m,
-                            ValidFromDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ValidToDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Price = 40m
                         },
                         new
                         {
-                            Id = new Guid("fe62eca1-7671-4261-a2f9-5a01f59bd869"),
+                            Id = new Guid("c1ae2c08-937a-4722-9bbf-cbc3413473eb"),
                             IsDeleted = false,
-                            Name = "Allday child pass",
-                            PassAgeGroupId = new Guid("28700d0a-478e-476c-a2cb-cc56af2f7310"),
+                            Name = "All day child pass",
+                            PassAgeGroupId = new Guid("3d8819ca-f1cf-48cd-c851-08dd19791faa"),
                             PassPeriodId = new Guid("a91d8261-2dd1-4631-a379-ce4cff155371"),
-                            Price = 30m,
-                            ValidFromDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ValidToDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Price = 30m
+                        },
+                        new
+                        {
+                            Id = new Guid("9fe2c683-9598-4fbb-b335-392ac0da0e13"),
+                            IsDeleted = false,
+                            Name = "Morning adult pass",
+                            PassAgeGroupId = new Guid("a1371258-86d8-4ec2-9fbf-9b03a31cd548"),
+                            PassPeriodId = new Guid("235024b0-64b9-4e2e-a0ee-48d0a2750953"),
+                            Price = 30m
+                        },
+                        new
+                        {
+                            Id = new Guid("399aa10a-5c7e-4140-98a5-1e9ce3d75b78"),
+                            IsDeleted = false,
+                            Name = "Morning child pass",
+                            PassAgeGroupId = new Guid("3d8819ca-f1cf-48cd-c851-08dd19791faa"),
+                            PassPeriodId = new Guid("235024b0-64b9-4e2e-a0ee-48d0a2750953"),
+                            Price = 20m
+                        },
+                        new
+                        {
+                            Id = new Guid("74c845f9-6a8d-47b4-a7ea-fd5ec8466af8"),
+                            IsDeleted = false,
+                            Name = "Morning student pass",
+                            PassAgeGroupId = new Guid("cae47722-1b8a-4578-b1c8-1f8b0412d7f1"),
+                            PassPeriodId = new Guid("235024b0-64b9-4e2e-a0ee-48d0a2750953"),
+                            Price = 25m
+                        },
+                        new
+                        {
+                            Id = new Guid("2a0c01fa-7784-44d2-889d-a6dc4c67dec9"),
+                            IsDeleted = false,
+                            Name = "Afternoon child pass",
+                            PassAgeGroupId = new Guid("3d8819ca-f1cf-48cd-c851-08dd19791faa"),
+                            PassPeriodId = new Guid("727c219a-0e3a-4eeb-9215-8602cbd62372"),
+                            Price = 20m
+                        },
+                        new
+                        {
+                            Id = new Guid("129b095a-13c8-4acb-86b2-1eb9445693eb"),
+                            IsDeleted = false,
+                            Name = "Afternoon adult pass",
+                            PassAgeGroupId = new Guid("a1371258-86d8-4ec2-9fbf-9b03a31cd548"),
+                            PassPeriodId = new Guid("727c219a-0e3a-4eeb-9215-8602cbd62372"),
+                            Price = 30m
+                        },
+                        new
+                        {
+                            Id = new Guid("362987f0-2fde-40e5-807a-86f969020505"),
+                            IsDeleted = false,
+                            Name = "Afternoon student pass",
+                            PassAgeGroupId = new Guid("cae47722-1b8a-4578-b1c8-1f8b0412d7f1"),
+                            PassPeriodId = new Guid("727c219a-0e3a-4eeb-9215-8602cbd62372"),
+                            Price = 25m
                         });
                 });
 
@@ -379,7 +422,7 @@ namespace AlpineHub.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PassAgeGroups", (string)null);
+                    b.ToTable("PassAgeGroups");
 
                     b.HasData(
                         new
@@ -398,7 +441,7 @@ namespace AlpineHub.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("28700d0a-478e-476c-a2cb-cc56af2f7310"),
+                            Id = new Guid("3d8819ca-f1cf-48cd-c851-08dd19791faa"),
                             MaxAge = 12,
                             MinAge = 6,
                             Name = "Child"
@@ -432,7 +475,7 @@ namespace AlpineHub.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PassPeriods", (string)null);
+                    b.ToTable("PassPeriods");
 
                     b.HasData(
                         new
@@ -476,7 +519,7 @@ namespace AlpineHub.Data.Migrations
 
                     b.HasIndex("ApplicationUserId");
 
-                    b.ToTable("ResortManagers", (string)null);
+                    b.ToTable("ResortManagers");
                 });
 
             modelBuilder.Entity("AlpineHub.Data.Models.Slope", b =>
@@ -521,12 +564,12 @@ namespace AlpineHub.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Slopes", (string)null);
+                    b.ToTable("Slopes");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("5b03c0c8-f870-4433-95aa-74ea2cef3397"),
+                            Id = new Guid("6bbd6d8b-5f3a-4957-ab5d-a2c7136496c5"),
                             Difficulty = 3,
                             IsDeleted = false,
                             IsOpen = true,
@@ -538,7 +581,7 @@ namespace AlpineHub.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("9484bc1a-1230-4811-8ac9-a2e58bd59f3a"),
+                            Id = new Guid("fc1cb7e9-3a97-43bb-a662-612cc5f62b83"),
                             Difficulty = 1,
                             IsDeleted = false,
                             IsOpen = true,
@@ -550,7 +593,7 @@ namespace AlpineHub.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("712211ee-f66f-46ce-a65e-7a793840f835"),
+                            Id = new Guid("518d51dd-99d1-4c8a-8d1b-1da84e253bbf"),
                             Difficulty = 0,
                             IsDeleted = false,
                             IsOpen = true,
@@ -577,7 +620,7 @@ namespace AlpineHub.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserCarts", (string)null);
+                    b.ToTable("UserCarts");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>
@@ -744,13 +787,13 @@ namespace AlpineHub.Data.Migrations
             modelBuilder.Entity("AlpineHub.Data.Models.Pass", b =>
                 {
                     b.HasOne("AlpineHub.Data.Models.PassAgeGroup", "PassAgeGroup")
-                        .WithMany()
+                        .WithMany("Passes")
                         .HasForeignKey("PassAgeGroupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("AlpineHub.Data.Models.PassPeriod", "PassPeriod")
-                        .WithMany()
+                        .WithMany("Passes")
                         .HasForeignKey("PassPeriodId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -836,6 +879,16 @@ namespace AlpineHub.Data.Migrations
             modelBuilder.Entity("AlpineHub.Data.Models.LiftType", b =>
                 {
                     b.Navigation("Lifts");
+                });
+
+            modelBuilder.Entity("AlpineHub.Data.Models.PassAgeGroup", b =>
+                {
+                    b.Navigation("Passes");
+                });
+
+            modelBuilder.Entity("AlpineHub.Data.Models.PassPeriod", b =>
+                {
+                    b.Navigation("Passes");
                 });
 
             modelBuilder.Entity("AlpineHub.Data.Models.UserCart", b =>

@@ -16,32 +16,133 @@ namespace AlpineHub.Data.Configurations
             SeedPasses();
         }
 
+       
+
+        public Slope FirstSlope { get; set; }
+        public Slope SecondSlope { get; set; }
+        public Slope ThirdSlope { get; set; }
+
+        public LiftType GondolaLiftType { get; set; }
+        public LiftType ChairliftType { get; set; }
+        public LiftType Drag { get; set; }
+        public Lift GondolaLift { get; set; }
+        public Lift ChairLift { get; set; }
+        public Lift SecondChairLift { get; set; }
+
+        public PassAgeGroup AdultGroup { get; set; }
+        public PassAgeGroup ChildGroup { get; set; }
+        public PassAgeGroup StudentGroup { get; set; }
+
+        public PassPeriod Morning { get; set; }
+        public PassPeriod Afternoon { get; set; }
+        public PassPeriod AllDay { get; set; }
+
+        public Pass AllDayAdultPass { get; set; }
+        public Pass AllDayStudentPass { get; set; }
+        public Pass AllDayChildPass { get; set; }
+        public Pass MorningStudentPass { get; set; }
+        public Pass MorningAdultPass { get; set; }
+        public Pass MorningChildPass { get; set; }
+        public Pass AfternoonAdultPass { get; set; }
+        public Pass AfternoonStudentPass { get; set; }
+        public Pass AfternoonChildPass { get; set; }
+
         private void SeedPasses()
         {
             AllDayAdultPass = new Pass
             {
                 Id = Guid.NewGuid(),
-                Name = "Allday adult pass",
+                Name = "All day adult pass",
                 Price = 50,
                 PassPeriodId = AllDay.Id,
-                PassAgeGroupId = AdultGroup.Id
+                PassAgeGroupId = AdultGroup.Id,
+                IsDeleted = false
+
             };
 
             AllDayStudentPass = new Pass
             {
                 Id = Guid.NewGuid(),
-                Name = "Allday student pass",
+                Name = "All day student pass",
                 Price = 40,
                 PassPeriodId = AllDay.Id,
-                PassAgeGroupId = StudentGroup.Id
+                PassAgeGroupId = StudentGroup.Id,
+                IsDeleted = false
+
             };
             AllDayChildPass = new Pass
             {
                 Id = Guid.NewGuid(),
-                Name = "Allday child pass",
+                Name = "All day child pass",
                 Price = 30,
                 PassPeriodId = AllDay.Id,
-                PassAgeGroupId = ChildGroup.Id
+                PassAgeGroupId = ChildGroup.Id,
+                IsDeleted = false
+
+            };
+
+            MorningAdultPass = new Pass()
+            {
+                Id=Guid.NewGuid(),
+                Name = "Morning adult pass",
+                Price = 30,
+                PassPeriodId = Morning.Id,
+                PassAgeGroupId = AdultGroup.Id,
+                IsDeleted = false
+            };
+
+            MorningStudentPass = new Pass()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Morning student pass",
+                Price = 25,
+                PassPeriodId = Morning.Id,
+                PassAgeGroupId = StudentGroup.Id,
+                IsDeleted = false
+            };
+
+            MorningChildPass = new Pass()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Morning child pass",
+                Price = 20,
+                PassPeriodId = Morning.Id,
+                PassAgeGroupId = ChildGroup.Id,
+                IsDeleted = false
+
+            };
+
+            AfternoonAdultPass = new Pass()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Afternoon adult pass",
+                Price = 30,
+                PassPeriodId = Afternoon.Id,
+                PassAgeGroupId = AdultGroup.Id,
+                IsDeleted = false
+
+            };
+
+            AfternoonStudentPass = new Pass()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Afternoon student pass",
+                Price = 25,
+                PassPeriodId = Afternoon.Id,
+                PassAgeGroupId = StudentGroup.Id,
+                IsDeleted = false
+
+            };
+
+            AfternoonChildPass = new Pass()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Afternoon child pass",
+                Price = 20,
+                PassPeriodId = Afternoon.Id,
+                PassAgeGroupId = ChildGroup.Id,
+                IsDeleted = false
+
             };
         }
 
@@ -91,37 +192,12 @@ namespace AlpineHub.Data.Configurations
             };
             ChildGroup = new()
             {
-                Id = Guid.Parse("28700D0A-478E-476C-A2CB-CC56AF2F7310"),
+                Id = Guid.Parse("3D8819CA-F1CF-48CD-C851-08DD19791FAA"),
                 Name = "Child",
                 MinAge = 6,
                 MaxAge = 12
             };
         }
-
-        public Slope FirstSlope { get; set; }
-        public Slope SecondSlope { get; set; }
-        public Slope ThirdSlope { get; set; }
-
-        public LiftType GondolaLiftType { get; set; }
-        public LiftType ChairliftType { get; set; }
-        public LiftType Drag { get; set; }
-        public Lift GondolaLift { get; set; }
-        public Lift ChairLift { get; set; }
-        public Lift SecondChairLift { get; set; }
-
-        public PassAgeGroup AdultGroup { get; set; }
-        public PassAgeGroup ChildGroup { get; set; }
-        public PassAgeGroup StudentGroup { get; set; }
-
-        public PassPeriod Morning { get; set; }
-        public PassPeriod Afternoon { get; set; }
-        public PassPeriod AllDay { get; set; }
-
-        public Pass AllDayAdultPass { get; set; }
-        public Pass AllDayStudentPass { get; set; }
-        public Pass AllDayChildPass { get; set; }
-
-
         private void SeedLiftTypes()
         {
             GondolaLiftType = new()

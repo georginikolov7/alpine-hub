@@ -1,10 +1,15 @@
 ﻿@using AlpineHub.Core.Contracts
 @using AlpineHub.Core.ViewModels.Lift
 @using AlpineHub.Core.ViewModels.LiftType
+@using AlpineHub.Core.ViewModels.Pass
+@using AlpineHub.Core.ViewModels.PassAgeGroup
+@using AlpineHub.Core.ViewModels.PassPeriod
 @using AlpineHub.Core.ViewModels.Slope
 @using AlpineHub.Core.ViewModels.User
 @model IDeleteViewModel
-
+@{
+    string warningMessage = "WARNING!!! Deleting {0} will PERMANENTLY DELETE all related entities";
+}
 <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
         <!-- Modal Header -->
@@ -25,7 +30,7 @@
             {
                 case nameof(DeleteSlopeViewModel):
                     <form asp-controller="ManageSlopes" asp-action="ConfirmDeleteSlope" method="post">
-                        @Html.AntiForgeryToken();
+                        @Html.AntiForgeryToken()
                         <input type="hidden" asp-for="Id" />
                         <input type="hidden" asp-for="Name" />
                         <button class="btn btn-danger" type="submit">Delete</button>
@@ -33,7 +38,35 @@
                     break;
                 case nameof(DeleteLiftViewModel):
                     <form asp-controller="ManageLifts" asp-action="ConfirmDeleteLift" method="post">
-                        @Html.AntiForgeryToken();
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="Name" />
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                    break;
+                case nameof(DeletePeriodViewModel):
+                    <h5>@string.Format(warningMessage, "Pass period")</h5>
+
+                    <form asp-controller="ManagePassPeriods" asp-action="ConfirmDeletePeriod" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="Name" />
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                    break;
+                case nameof(DeleteAgeGroupViewModel):
+                    <h5>@string.Format(warningMessage," Pass age group")</h5>
+
+                    <form asp-controller="ManagePassAgeGroups" asp-action="ConfirmDeleteAgeGroup" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="Name" />
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                    break;
+                case nameof(DeletePassViewModel):
+                    <form asp-controller="ManagePasses" asp-action="ConfirmDeletePass" method="post">
+                        @Html.AntiForgeryToken()
                         <input type="hidden" asp-for="Id" />
                         <input type="hidden" asp-for="Name" />
                         <button class="btn btn-danger" type="submit">Delete</button>
@@ -48,7 +81,7 @@
                     </form>
                     break;
                 case nameof(DeleteLiftTypeViewModel):
-                <h5>WARNING!!! Deleting lift type will PERMANENTLY DELETE All Lifts of said type</h5>
+                    <h5>@string.Format(warningMessage, "Lift Type")</h5>
                     <form asp-controller="ManageLifts" asp-action="ConfirmDeleteLiftType" method="post">
                         @Html.AntiForgeryToken()
                         <input type="hidden" asp-for="Id" />

@@ -1,12 +1,14 @@
-﻿using AlpineHub.Core.Contracts;
-using AlpineHub.Core.ViewModels.Cart;
-using AlpineHub.Data.Contracts;
-using AlpineHub.Data.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using static AlpineHub.Common.ErrorMessages;
-namespace AlpineHub.Core.Services
+﻿namespace AlpineHub.Core.Services
 {
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
+
+    using AlpineHub.Core.Contracts;
+    using AlpineHub.Core.ViewModels.Cart;
+    using AlpineHub.Data.Contracts;
+    using AlpineHub.Data.Models;
+
+    using static AlpineHub.Common.ErrorMessages;
     public class CartService(IRepo repo, UserManager<ApplicationUser> userManager) : BaseService(repo), ICartService
     {
         public async Task<int> AddToCart(string? passId, string? userId, int quantity)
@@ -129,6 +131,10 @@ namespace AlpineHub.Core.Services
 
         public async Task<int> GetCartCount(string? userId)
         {
+            if(userId is null)
+            {
+                return 0;
+            }
             ApplicationUser user = await GetUser(userId);
             UserCart? cart = await GetUserCat(user);
             if (cart is null)

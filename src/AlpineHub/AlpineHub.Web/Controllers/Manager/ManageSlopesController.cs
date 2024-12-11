@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using AlpineHub.Core.Contracts;
 using AlpineHub.Core.ViewModels.Slope;
 using static AlpineHub.Common.ErrorMessages;
-using static AlpineHub.Common.EntityValidationMessages;
 using static AlpineHub.Data.Constants.CustomClaims;
+using AlpineHub.Core.Contracts.Slope;
 
 namespace AlpineHub.Web.Controllers.Manager
 {
@@ -36,13 +35,7 @@ namespace AlpineHub.Web.Controllers.Manager
             {
                 slopeService.AddSlopeAsync(model);
                 return RedirectToAction(nameof(Index));
-            }
-            catch (ArgumentException ex)
-            {
-                //If id is invalid return to Slopes page (supposed attack)
-                logger.LogError(ex, ex.Message);
-                return RedirectToAction(nameof(Index));
-            }
+            }          
             catch (Exception ex)
             {
                 logger.LogError(ex, ex.Message);
@@ -59,12 +52,6 @@ namespace AlpineHub.Web.Controllers.Manager
             {
                 EditSlopeFormModel model = await slopeService.GetSlopeForEditAsync(id);
                 return View(model);
-            }
-            catch (ArgumentException ex)
-            {
-                //If id is invalid return to Slopes page (supposed attack)
-                logger.LogError(ex, ex.Message);
-                return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
@@ -87,12 +74,6 @@ namespace AlpineHub.Web.Controllers.Manager
                 await slopeService.EditSlopeAsync(model);
                 return RedirectToAction(nameof(Index));
             }
-            catch (ArgumentException ex)
-            {
-                //If id is invalid return to Slopes page (supposed attack)
-                logger.LogError(ex, ex.Message);
-                return RedirectToAction(nameof(Index));
-            }
             catch (Exception ex)
             {
                 logger.LogError(ex, ex.Message);
@@ -107,12 +88,6 @@ namespace AlpineHub.Web.Controllers.Manager
             {
                 DeleteSlopeViewModel model = await slopeService.GetSlopeForDeleteAsync(id);
                 return PartialView("_DeleteConfirmationModal", model);
-            }
-            catch (ArgumentException ex)
-            {
-                //If id is invalid return to Slopes page (supposed attack)
-                logger.LogError(ex, ex.Message);
-                return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
@@ -129,12 +104,6 @@ namespace AlpineHub.Web.Controllers.Manager
             try
             {
                 await slopeService.DeleteSlopeAsync(model);
-                return RedirectToAction(nameof(Index));
-            }
-            catch (ArgumentException ex)
-            {
-                //If id is invalid return to Slopes page (supposed attack)
-                logger.LogError(ex, ex.Message);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)

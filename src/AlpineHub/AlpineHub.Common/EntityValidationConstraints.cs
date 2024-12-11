@@ -52,14 +52,21 @@
         //Pass Period:
         public const byte PassPeriodNameMinLength = 3;
         public const byte PassPeriodNameMaxLength = 20;
+        public const byte PassPeriodDaysCountMin = 1;
+        public const int PassPeriodDaysCountMax = 365;
 
         //Pass type:
-        public const byte PassTypeNameMinLength = 5;
-        public const byte PassTypeNameMaxLength = 32;
+        public const byte PassNameMinLength = 5;
+        public const byte PassNameMaxLength = 32;
         public const int PassDescriptionMaxLength = 300;
+        public const byte PassMinPrice = 0;
+        public const int PassMaxPrice = 5000;
 
         //Pass age group:
         public const byte PassAgeGroupMinLength = 5;
         public const byte PassAgeGroupMaxLength = 30;
+
+        public const byte PassAgeGroupMinAge = 0;
+        public const byte PassAgeGroupMaxAge = 100;
     }
 }

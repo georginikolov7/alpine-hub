@@ -9,11 +9,17 @@ namespace AlpineHub.Data.Configurations
         public void Configure(EntityTypeBuilder<Pass> builder)
         {
             var data = new SeedingData();
-            builder.HasData(
+            builder.HasData([
                 data.AllDayAdultPass,
                 data.AllDayStudentPass,
-                data.AllDayChildPass
-                );
+                data.AllDayChildPass,
+                data.MorningAdultPass,
+                data.MorningChildPass,
+                data.MorningStudentPass,
+                data.AfternoonChildPass,
+                data.AfternoonAdultPass,
+                data.AfternoonStudentPass
+                ]);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using AlpineHub.Core.Contracts;
+﻿using AlpineHub.Core.Contracts.Slope;
 using AlpineHub.Core.DTOs;
 using Microsoft.AspNetCore.Mvc;
 

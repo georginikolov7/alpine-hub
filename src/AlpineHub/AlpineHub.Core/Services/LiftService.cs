@@ -2,7 +2,7 @@
 namespace AlpineHub.Core.Services
 {
     using System;
-    using AlpineHub.Core.Contracts;
+    using AlpineHub.Core.Contracts.Lift;
     using AlpineHub.Core.DTOs;
     using AlpineHub.Core.ViewModels.Lift;
     using AlpineHub.Core.ViewModels.LiftType;
@@ -40,14 +40,8 @@ namespace AlpineHub.Core.Services
         }
         public async Task<LiftDetailsViewModel?> GetLiftByIdAsync(string id)
         {
-            if (!IsGuidValid(id, out Guid guid))
-            {
-                return null;
-            }
+            Lift lift = await GetLiftAsync(id);
 
-            Lift? lift = await repo.GetAllReadonly<Lift>()
-                .Include(l => l.LiftType)
-                .FirstOrDefaultAsync(l => l.Id == guid);
 
             if (lift is null)
             {
@@ -104,19 +98,11 @@ namespace AlpineHub.Core.Services
 
         public async Task<EditLiftFormModel> GetLiftForEditAsync(string? id)
         {
-            if (!IsGuidValid(id, out Guid guid))
-            {
-                throw new ArgumentException(string.Format(InvalidId, "Lift", id));
-            }
-
-            Lift? lift = await repo
-                .GetAllReadonly<Lift>()
-                .Include(l => l.LiftType)
-                .FirstOrDefaultAsync(l => l.Id == guid) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, id));
+            Lift lift = await GetLiftAsync(id);
 
             EditLiftFormModel model = new EditLiftFormModel()
             {
-                Id = lift.Id,
+                Id = lift.Id.ToString(),
                 Name = lift.Name,
                 Length = lift.Length,
                 LiftTypeId = lift.LiftTypeId.ToString(),
@@ -134,11 +120,7 @@ namespace AlpineHub.Core.Services
 
         public async Task EditLiftAsync(EditLiftFormModel model)
         {
-            Lift? lift = await repo
-                .GetAll<Lift>()
-                .Include(l => l.LiftType)
-                .FirstOrDefaultAsync(l => l.Id == model.Id)
-                ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, model.Id));
+            Lift lift = await GetLiftAsync(model.Id);
 
 
             string liftTypeId = model.LiftTypeId;
@@ -165,12 +147,7 @@ namespace AlpineHub.Core.Services
 
         public async Task<DeleteLiftViewModel> GetLiftForDeleteAsync(string? id)
         {
-            if (!IsGuidValid(id, out Guid guid))
-            {
-                throw new ArgumentException(string.Format(InvalidId, "Lift", id));
-            }
-
-            Lift? lift = await repo.GetByIdAsync<Lift>(guid) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, id));
+            Lift lift = await GetLiftAsync(id);
 
             DeleteLiftViewModel model = new DeleteLiftViewModel()
             {
@@ -182,11 +159,8 @@ namespace AlpineHub.Core.Services
 
         public async Task DeleteLiftAsync(DeleteLiftViewModel model)
         {
-            if (!IsGuidValid(model.Id, out Guid guid))
-            {
-                throw new ArgumentException(string.Format(InvalidId, "Lift", model.Id));
-            }
-            await repo.DeleteByIdAsync<Lift>(guid);
+            Lift lift = await GetLiftAsync(model.Id);
+            repo.Delete(lift);
             await repo.SaveChangesAsync();
         }
 
@@ -320,6 +294,20 @@ namespace AlpineHub.Core.Services
 
             liftType.Name = model.Name;
             await repo.SaveChangesAsync();
+        }
+
+        private async Task<Lift> GetLiftAsync(string? id)
+        {
+            if (!IsGuidValid(id, out Guid guid))
+            {
+                throw new ArgumentException(string.Format(InvalidId, "Lift", id));
+            }
+
+            Lift? lift = await repo
+                .GetAllReadonly<Lift>()
+                .Include(l => l.LiftType)
+                .FirstOrDefaultAsync(l => l.Id == guid) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, id));
+            return lift;
         }
     }
 }

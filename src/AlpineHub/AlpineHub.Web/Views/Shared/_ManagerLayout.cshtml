@@ -1,5 +1,6 @@
 ﻿@{
     Layout = "_Layout";
+    string? controller = ViewContext.RouteData.Values["controller"]?.ToString();
 }
 <style>
     .navbar {
@@ -12,8 +13,13 @@
     <div class="sidebar sidebar-manager bg-light d-flex flex-column align-items-center">
         <h5>Manager Panel</h5>
         <nav class="nav flex-column">
-            <a class="nav-link" asp-area="" asp-controller="ManageSlopes" asp-action="Index">Manage Slopes</a>
-            <a class="nav-link" asp-area="" asp-controller="ManageLifts" asp-action="Index">Manage Lifts</a>
+            <a class="nav-link @(controller == "Manager"?"active":"")" asp-area="" asp-controller="Manager" asp-action="Index">Dashboard</a>
+            <a class="nav-link @(controller == "ManageSlopes"?"active":"")" asp-area="" asp-controller="ManageSlopes" asp-action="Index">Manage Slopes</a>
+            <a class="nav-link @(controller == "ManageLifts"?"active":"")" asp-area="" asp-controller="ManageLifts" asp-action="Index">Manage Lifts</a>
+            <a class="nav-link @(controller == "ManagePassPeriods"?"active":"")" asp-area="" asp-controller="ManagePassPeriods" asp-action="Index">Manage Pass Periods</a>
+            <a class="nav-link @(controller == "ManagePassAgeGroups"?"active":"")" asp-area="" asp-controller="ManagePassAgeGroups" asp-action="Index">Manage Pass Age Groups</a>
+            <a class="nav-link @(controller == "ManagePasses"?"active":"")" asp-area="" asp-controller="ManagePasses" asp-action="Index">Manage Passes</a>
+
         </nav>
     </div>
 

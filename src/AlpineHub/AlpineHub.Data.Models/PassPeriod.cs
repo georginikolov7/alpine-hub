@@ -27,5 +27,7 @@ namespace AlpineHub.Data.Models
 
         [Comment("Number of days for pass validity")]
         public int DaysCount { get; set; }
+        public virtual ICollection<Pass> Passes { get; set; } = new HashSet<Pass>();
+
     }
 }

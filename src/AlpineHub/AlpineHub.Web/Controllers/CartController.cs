@@ -65,6 +65,7 @@ namespace AlpineHub.Web.Controllers
             }
             catch (ArgumentException ex)
             {
+                logger.LogError(ex, ex.Message);
                 return Ok(0);
             }
             catch (Exception ex)
@@ -82,7 +83,7 @@ namespace AlpineHub.Web.Controllers
             {
                 await cartService.DeleteItem(itemId, GetUserId());
                 return RedirectToAction(nameof(Index));
-            }           
+            }
             catch (Exception ex)
             {
                 logger.LogError(ex, ex.Message);

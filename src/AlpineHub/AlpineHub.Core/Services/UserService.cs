@@ -133,7 +133,11 @@ namespace AlpineHub.Core.Services
                 return null;
             }
 
-            ApplicationUser? user = await userManager.FindByIdAsync(userId!) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, userId));
+            ApplicationUser? user = await userManager.FindByIdAsync(userId!);
+            if (user is null)
+            {
+                return null;
+            }
             return user;
         }
 

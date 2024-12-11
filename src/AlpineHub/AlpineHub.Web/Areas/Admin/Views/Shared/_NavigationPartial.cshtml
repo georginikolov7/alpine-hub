@@ -1,4 +1,11 @@
-﻿
+﻿@{
+
+    string? controller = (string?)ViewContext.RouteData.Values["controller"];
+
+
+
+    ;
+}
 <div class="sidebar sidebar-admin d-flex flex-column ">
     <div class="d-flex justify-content-center">
         <a href="/" class="text-center  link-dark text-decoration-none">
@@ -8,13 +15,13 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
         <li>
-            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="nav-link link-dark active">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="nav-link link-dark @(controller=="Home"? "active":"")">
                 <i class="fa-solid fa-gauge"></i>
                 Dashboard
             </a>
         </li>
         <li>
-            <a asp-area="Admin" asp-controller="Users" asp-action="Index" class="nav-link link-dark">
+            <a asp-area="Admin" asp-controller="Users" asp-action="Index" class="nav-link link-dark @((string?)ViewContext.RouteData.Values["controller"]=="Users"? "active":"")">
                 <i class="fa-solid fa-users"></i>
                 Users
             </a>

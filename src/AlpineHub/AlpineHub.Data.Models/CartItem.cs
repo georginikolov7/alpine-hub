@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AlpineHub.Data.Models.Contracts;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AlpineHub.Data.Models
 {
-    public class CartItem
+    public class CartItem : ISoftDeletable
     {
         [Key]
         [Comment("Primary key of table")]
@@ -24,5 +25,6 @@ namespace AlpineHub.Data.Models
         public Guid CartId { get; set; }
         [ForeignKey(nameof(CartId))]
         public virtual UserCart Cart { get; set; } = null!;
+        public bool IsDeleted { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }

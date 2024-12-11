@@ -15,6 +15,10 @@
     using AlpineHub.Web.AuthorizationHandlers;
 
     using static AlpineHub.Common.EntityValidationConstraints;
+    using AlpineHub.Core.Contracts.Pass;
+    using AlpineHub.Core.Contracts.Slope;
+    using AlpineHub.Core.Contracts.Lift;
+
     public static class ServiceCollectionExtensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
@@ -22,13 +26,20 @@
             services.AddScoped<SlopeService>();
             services.AddScoped<ISlopeService>(provider => provider.GetRequiredService<SlopeService>());
             services.AddScoped<IManageableSlopeService>(provider => provider.GetRequiredService<SlopeService>());
+
             services.AddScoped<LiftService>();
             services.AddScoped<ILiftService>(provider => provider.GetRequiredService<LiftService>());
             services.AddScoped<IManageableLiftService>(provider => provider.GetRequiredService<LiftService>());
-            services.AddScoped<IManagerService, ManagerService>();
+
             services.AddScoped<IAuthorizationHandler, ManagerIdClaimHandler>();
+            services.AddScoped<IManagerService, ManagerService>();
+            services.AddScoped<IManageablePassPeriodService, PassPeriodService>();
+            services.AddScoped<IManageablePassAgeService, PassAgeGroupService>();
             services.AddScoped<IUserService, UserService>();
+
+
             services.AddScoped<IPassService, PassService>();
+            services.AddScoped<IManageablePassService, ManagePassService>();
             services.AddScoped<ICartService, CartService>();
             return services;
         }
@@ -40,7 +51,6 @@
             services.AddScoped<LiftService>();
             services.AddScoped<ILiftService>(provider => provider.GetRequiredService<LiftService>());
             services.AddScoped<IManageableLiftService>(provider => provider.GetRequiredService<LiftService>());
-            services.AddScoped<ICartService, CartService>();
             return services;
         }
 

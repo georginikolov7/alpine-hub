@@ -17,6 +17,6 @@ namespace AlpineHub.Data.Models
         public string Name { get; set; } = null!;
 
         //Mapping property:
-        public virtual IEnumerable<Lift> Lifts { get; set; } = new HashSet<Lift>();
+        public virtual ICollection<Lift> Lifts { get; set; } = new HashSet<Lift>();
     }
 }

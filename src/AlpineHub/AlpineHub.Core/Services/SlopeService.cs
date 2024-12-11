@@ -1,13 +1,16 @@
-﻿using AlpineHub.Core.Contracts;
-using AlpineHub.Data.Contracts;
-using AlpineHub.Data.Models;
-using AlpineHub.Core.ViewModels.Slope;
-using Microsoft.EntityFrameworkCore;
-using static AlpineHub.Common.ErrorMessages;
-using System;
-using AlpineHub.Core.DTOs;
+﻿
 namespace AlpineHub.Core.Services
 {
+    using Microsoft.EntityFrameworkCore;
+
+    using AlpineHub.Data.Contracts;
+    using AlpineHub.Data.Models;
+    using AlpineHub.Core.ViewModels.Slope;
+    using AlpineHub.Core.DTOs;
+    using AlpineHub.Core.Contracts.Slope;
+
+    using static AlpineHub.Common.ErrorMessages;
+
     public class SlopeService(IRepo repo) : BaseService(repo), ISlopeService, IManageableSlopeService
     {
         public async Task<IEnumerable<AllSlopesViewModel>> GetAllSlopesAsync()
@@ -104,15 +107,12 @@ namespace AlpineHub.Core.Services
 
         public async Task<EditSlopeFormModel> GetSlopeForEditAsync(string? id)
         {
-            if (!IsGuidValid(id, out Guid guid))
-            {
-                throw new ArgumentException(string.Format(InvalidId, "Slope", id));
-            }
-            Slope? slope = await repo.GetByIdAsync<Slope>(guid) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, guid));
+
+            Slope slope = await GetSlopeAsync(id);
 
             EditSlopeFormModel model = new EditSlopeFormModel()
             {
-                Id = slope.Id,
+                Id = slope.Id.ToString(),
                 Name = slope.Name,
                 Difficulty = slope.Difficulty,
                 SlopeCondition = slope.SlopeCondition,
@@ -127,7 +127,7 @@ namespace AlpineHub.Core.Services
 
         public async Task EditSlopeAsync(EditSlopeFormModel model)
         {
-            Slope? slope = await repo.GetByIdAsync<Slope>(model.Id) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, model.Id));
+            Slope slope = await GetSlopeAsync(model.Id);
 
             slope.Name = model.Name;
             slope.Difficulty = model.Difficulty;
@@ -142,12 +142,8 @@ namespace AlpineHub.Core.Services
 
         public async Task<DeleteSlopeViewModel> GetSlopeForDeleteAsync(string? id)
         {
-            if (!IsGuidValid(id, out Guid guid))
-            {
-                throw new ArgumentException(string.Format(InvalidId, "Slope", id));
-            }
+            Slope slope = await GetSlopeAsync(id);
 
-            Slope slope = await repo.GetByIdAsync<Slope>(guid) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, guid));
             DeleteSlopeViewModel model = new DeleteSlopeViewModel()
             {
                 Id = slope.Id.ToString(),
@@ -158,11 +154,8 @@ namespace AlpineHub.Core.Services
 
         public async Task DeleteSlopeAsync(DeleteSlopeViewModel model)
         {
-            if(IsGuidValid(model.Id, out Guid id) == false)
-            {
-                throw new ArgumentException(string.Format(InvalidId, "Slope", model.Id));
-            }
-            Slope slope = await repo.GetByIdAsync<Slope>(id) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, id));
+            Slope slope = await GetSlopeAsync(model.Id);
+
             repo.Delete<Slope>(slope);
             await repo.SaveChangesAsync();
         }
@@ -183,12 +176,7 @@ namespace AlpineHub.Core.Services
 
         public async Task<SlopeDetailsDto> GetSlopeDetailsForMapAsync(string? id)
         {
-            if (!IsGuidValid(id, out Guid guid))
-            {
-                throw new ArgumentException(string.Format(InvalidId, "Slope", id));
-            }
-
-            Slope? slope = await repo.GetByIdAsync<Slope>(guid) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, guid));
+            Slope slope = await GetSlopeAsync(id);
 
             SlopeDetailsDto model = new SlopeDetailsDto()
             {
@@ -202,6 +190,14 @@ namespace AlpineHub.Core.Services
             };
             return model;
         }
-
+        private async Task<Slope> GetSlopeAsync(string? id)
+        {
+            if (!IsGuidValid(id, out Guid guid))
+            {
+                throw new ArgumentException(string.Format(InvalidId, "Slope", id));
+            }
+            Slope? slope = await repo.GetByIdAsync<Slope>(guid) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, guid));
+            return slope;
+        }
     }
 }

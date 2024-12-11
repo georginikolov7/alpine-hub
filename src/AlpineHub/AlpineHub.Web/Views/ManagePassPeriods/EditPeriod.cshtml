@@ -1,0 +1,44 @@
+﻿@using AlpineHub.Core.ViewModels.PassPeriod
+@model EditPeriodFormModel
+@{
+    ViewData["Title"] = "Edit Pass Period";
+    Layout = "_ManagerLayout";
+}
+
+
+<div class="container w-75 mt-3">
+    <h1 class="mb-0">@ViewBag.Title</h1>
+    <hr class="mb-4" />
+
+    <form asp-action="EdtPeriod" method="post">
+        @Html.AntiForgeryToken()
+        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+        <input type="hidden" asp-for=Id />
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label">Name</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ValidFromHour" class="form-label">Start time</label>
+            <input asp-for="ValidFromHour" type="time" class="form-control" />
+            <span asp-validation-for="ValidFromHour" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ValidToHour" class="form-label">End time</label>
+            <input asp-for="ValidToHour" type="time" class="form-control" />
+            <span asp-validation-for="ValidToHour" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="DaysCount" class="form-label">Days count</label>
+            <input asp-for="DaysCount" type="number" class="form-select" />
+            <span asp-validation-for="DaysCount" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

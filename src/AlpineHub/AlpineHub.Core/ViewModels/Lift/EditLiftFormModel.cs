@@ -7,7 +7,7 @@ namespace AlpineHub.Core.ViewModels.Lift
     public class EditLiftFormModel
     {
         [Required]
-        public Guid Id { get; set; }
+        public string Id { get; set; } = null!;
         [Required]
         [StringLength(LiftNameMaxLength, MinimumLength = LiftNameMinLength, ErrorMessage = FieldLengthError)]
         public string Name { get; set; } = null!;
@@ -19,13 +19,13 @@ namespace AlpineHub.Core.ViewModels.Lift
         [Range(MinVerticalAscend, MaxVerticalAscend, ErrorMessage = LengthOutOfRange)]
         public int VerticalAscend { get; set; }
 
-        [Range(LiftMinCapacity, LiftMaxCapacity, ErrorMessage = CapacityOutOfRange)]
+        [Range(LiftMinCapacity, LiftMaxCapacity, ErrorMessage = NumberOutOfRangeGeneral)]
         public int Capacity { get; set; }
 
         [Range(LiftMinAscendTime, LiftMaxAscendTime, ErrorMessage = TimeOutOfRange)]
         public int AverageAscendTime { get; set; }
 
-        [Range(LiftMinNumberOfSeats, LiftMaxNumberOfSeats, ErrorMessage = CapacityOutOfRange)]
+        [Range(LiftMinNumberOfSeats, LiftMaxNumberOfSeats, ErrorMessage = NumberOutOfRangeGeneral)]
         public int SeatsCount { get; set; }
 
         [Required]

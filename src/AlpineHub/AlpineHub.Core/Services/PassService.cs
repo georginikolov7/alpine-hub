@@ -1,11 +1,15 @@
-﻿using AlpineHub.Core.Contracts;
-using AlpineHub.Core.ViewModels.Pass;
-using AlpineHub.Data.Contracts;
-using AlpineHub.Data.Models;
-using Microsoft.EntityFrameworkCore;
-
+﻿
 namespace AlpineHub.Core.Services
 {
+    using Microsoft.EntityFrameworkCore;
+
+    using AlpineHub.Core.Contracts.Pass;
+    using AlpineHub.Core.ViewModels.Pass;
+    using AlpineHub.Data.Contracts;
+    using AlpineHub.Data.Models;
+
+
+
     public class PassService(IRepo repo) : BaseService(repo), IPassService
     {
         public async Task<IEnumerable<string>> GetAllAgeGroupsAsync()
@@ -27,7 +31,7 @@ namespace AlpineHub.Core.Services
             return periods;
         }
 
-        public async Task<AllPassesSearchFilterViewModel> GetAllPasses(AllPassesSearchFilterViewModel inputModel)
+        public async Task<AllPassesSearchFilterViewModel> GetAllPassesAsync(AllPassesSearchFilterViewModel inputModel)
         {
             IQueryable<Pass> passesQuery = repo.GetAllReadonly<Pass>()
                 .Include(p => p.PassAgeGroup)
@@ -87,9 +91,6 @@ namespace AlpineHub.Core.Services
 
         }
 
-        public Task AddToCart(string? passId, string? userId, int quantity)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

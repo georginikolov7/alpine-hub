@@ -1,0 +1,64 @@
+﻿@using AlpineHub.Core.Contracts.Pass
+@using AlpineHub.Core.ViewModels.Pass
+@model AddPassFormModel
+@inject IManageablePassService passService
+@{
+    ViewData["Title"] = "Add Pass";
+    Layout = "_ManagerLayout";
+
+    IEnumerable<SelectListItem>? periods = (await passService.GetAllPeriodsListAsync())?
+    .Select(p => new SelectListItem
+            {
+                Text = p.Name,
+                Value = p.Id.ToString()
+            });
+    IEnumerable<SelectListItem>? ageGroups = (await passService.GetAllAgeGroupsListAsync())?
+    .Select(g => new SelectListItem
+            {
+                Text = g.Name,
+                Value = g.Id.ToString()
+            });
+}
+
+
+<div class="container w-75 mt-3">
+    <h1 class="mb-0">@ViewBag.Title</h1>
+    <hr class="mb-4" />
+
+    <form asp-action="AddPass" method="post">
+        @Html.AntiForgeryToken()
+        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label">Name</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label">Description</label>
+            <textarea asp-for="Description" type="text" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Price" class="form-label">Price</label>
+            <input asp-for="Price" type="number" class="form-control"/>
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="PeriodId" class="form-label">Period</label>
+            <select asp-for="PeriodId" asp-items="@periods" class="form-select"></select>
+            <span asp-validation-for="PeriodId" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="AgeGroupId" class="form-label">Age group</label>
+            <select asp-for="AgeGroupId" asp-items="@ageGroups" class="form-select"></select>
+            <span asp-validation-for="AgeGroupId" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

@@ -1,4 +1,4 @@
-﻿using AlpineHub.Core.Contracts;
+﻿using AlpineHub.Core.Contracts.Slope;
 using AlpineHub.Core.ViewModels.Slope;
 using Microsoft.AspNetCore.Mvc;
 

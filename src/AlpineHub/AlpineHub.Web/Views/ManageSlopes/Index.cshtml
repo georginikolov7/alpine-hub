@@ -5,6 +5,7 @@
     Layout = "_ManagerLayout";
     ViewData["Title"] = "Manage Slopes";
 }
+
 <div class="container-fluid py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <!-- Page Title -->
@@ -87,8 +88,4 @@
         </table>
     </div>
 </div>
-
-<!-- Delete Slope Confirmation Modal -->
-<div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
-    <!-- Modal will be loaded here-->
-</div>
+<partial name="_DeleteConfirmationModalContainer" />

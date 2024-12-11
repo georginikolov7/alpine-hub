@@ -1,0 +1,54 @@
+﻿@using AlpineHub.Core.ViewModels.PassAgeGroup
+@model IEnumerable<AgeGroupViewModel>
+@{
+    ViewData["Title"] = "Manage Age Groups";
+    Layout = "_ManagerLayout";
+
+}
+
+
+<div class="container-fluid py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <!-- Page Title -->
+        <h1>@ViewBag.Title</h1>
+
+        <!-- Add New Slope Button -->
+        <a class="btn btn-success" asp-area="" asp-controller="ManagePassAgeGroups" asp-action="AddAgeGroup">
+            <i class="fas fa-plus"></i> Add New Age Group
+        </a>
+    </div>
+
+    <!-- Slopes Table -->
+    <div class="table-responsive text-center">
+        <table class="table table-hover">
+            <thead class="">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Min Age</th>
+                    <th scope="col">Max Age</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var period in Model)
+                {
+                    <tr>
+                        <td hidden>@period.Id</td>
+                        <td>@period.Name</td>
+                        <td>@period.MinAge</td>
+                        <td>@period.MaxAge</td>
+                        <td>
+                            <a class="btn btn-sm btn-warning" asp-area="" asp-controller="ManagePassAgeGroups" asp-action="EditAgeGroup" asp-route-id="@period.Id">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <button class="btn btn-sm btn-danger delete-age-group-button">
+                                <i class="fas fa-edit"></i> Delete
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<partial name="_DeleteConfirmationModalContainer" />

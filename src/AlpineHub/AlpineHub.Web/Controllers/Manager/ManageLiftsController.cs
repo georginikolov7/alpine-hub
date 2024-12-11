@@ -1,15 +1,15 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using AlpineHub.Core.Contracts;
-using AlpineHub.Core.ViewModels.Slope;
-using static AlpineHub.Common.ErrorMessages;
-using static AlpineHub.Common.EntityValidationMessages;
-using static AlpineHub.Data.Constants.CustomClaims;
-using AlpineHub.Core.ViewModels.Lift;
-using AlpineHub.Core.ViewModels.LiftType;
-
-namespace AlpineHub.Web.Controllers.Manager
+﻿namespace AlpineHub.Web.Controllers.Manager
 {
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+
+    using AlpineHub.Core.ViewModels.Lift;
+    using AlpineHub.Core.ViewModels.LiftType;
+    using AlpineHub.Core.Contracts.Lift;
+
+    using static AlpineHub.Common.ErrorMessages;
+    using static AlpineHub.Data.Constants.CustomClaims;
+
     [Authorize(Policy = ManagerPolicyName)]
     public class ManageLiftsController(ILogger<ManageLiftsController> _logger, IManageableLiftService liftService) : BaseController(_logger)
     {
@@ -42,12 +42,6 @@ namespace AlpineHub.Web.Controllers.Manager
                 await liftService.AddLiftTypeAsync(model);
                 return RedirectToAction(nameof(Index));
             }
-            catch (ArgumentException ex)
-            {
-                //If id is invalid return to Slopes page (supposed attack)
-                logger.LogError(ex, ex.Message);
-                return RedirectToAction(nameof(Index));
-            }
             catch (Exception ex)
             {
                 logger.LogError(ex, ex.Message);
@@ -63,12 +57,7 @@ namespace AlpineHub.Web.Controllers.Manager
                 EditLiftFormModel model = await liftService.GetLiftForEditAsync(id);
                 return View(model);
             }
-             catch (ArgumentException ex)
-            {
-                //If id is invalid return to Slopes page (supposed attack)
-                logger.LogError(ex, ex.Message);
-                return RedirectToAction(nameof(Index));
-            }
+
             catch (Exception ex)
             {
                 logger.LogError(ex, ex.Message);
@@ -89,12 +78,6 @@ namespace AlpineHub.Web.Controllers.Manager
                 await liftService.EditLiftAsync(model);
                 return RedirectToAction(nameof(Index));
             }
-            catch (ArgumentException ex)
-            {
-                //If id is invalid return to Slopes page (supposed attack)
-                logger.LogError(ex, ex.Message);
-                return RedirectToAction(nameof(Index));
-            }
             catch (Exception ex)
             {
                 logger.LogError(ex, ex.Message);
@@ -110,12 +93,6 @@ namespace AlpineHub.Web.Controllers.Manager
                 DeleteLiftTypeViewModel model = await liftService.GetLiftTypeForDeleteAsync(id);
                 return PartialView("_DeleteConfirmationModal", model);
             }
-            catch (ArgumentException ex)
-            {
-                //If id is invalid return to Slopes page (supposed attack)
-                logger.LogError(ex, ex.Message);
-                return RedirectToAction(nameof(Index));
-            }
             catch (Exception ex)
             {
                 logger.LogError(ex, ex.Message);
@@ -130,12 +107,6 @@ namespace AlpineHub.Web.Controllers.Manager
             try
             {
                 await liftService.DeleteLiftAsync(model);
-                return RedirectToAction(nameof(Index));
-            }
-            catch (ArgumentException ex)
-            {
-                //If id is invalid return to Slopes page (supposed attack)
-                logger.LogError(ex, ex.Message);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
@@ -164,12 +135,6 @@ namespace AlpineHub.Web.Controllers.Manager
                 await liftService.AddLiftAsync(model);
                 return RedirectToAction(nameof(Index));
             }
-            catch (ArgumentException ex)
-            {
-                //If id is invalid return to Slopes page (supposed attack)
-                logger.LogError(ex, ex.Message);
-                return RedirectToAction(nameof(Index));
-            }
             catch (Exception ex)
             {
                 logger.LogError(ex, ex.Message);
@@ -185,12 +150,6 @@ namespace AlpineHub.Web.Controllers.Manager
             {
                 EditLiftTypeFormModel model = await liftService.GetLiftTypeForEditAsync(id);
                 return View(model);
-            }
-            catch (ArgumentException ex)
-            {
-                //If id is invalid return to Slopes page (supposed attack)
-                logger.LogError(ex, ex.Message);
-                return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
@@ -212,12 +171,6 @@ namespace AlpineHub.Web.Controllers.Manager
                 await liftService.EditLiftTypeAsync(model);
                 return RedirectToAction(nameof(Index));
             }
-            catch (ArgumentException ex)
-            {
-                //If id is invalid return to Slopes page (supposed attack)
-                logger.LogError(ex, ex.Message);
-                return RedirectToAction(nameof(Index));
-            }
             catch (Exception ex)
             {
                 logger.LogError(ex, ex.Message);
@@ -233,12 +186,6 @@ namespace AlpineHub.Web.Controllers.Manager
                 DeleteLiftViewModel model = await liftService.GetLiftForDeleteAsync(id);
                 return PartialView("_DeleteConfirmationModal", model);
             }
-            catch (ArgumentException ex)
-            {
-                //If id is invalid return to Slopes page (supposed attack)
-                logger.LogError(ex, ex.Message);
-                return RedirectToAction(nameof(Index));
-            }
             catch (Exception ex)
             {
                 logger.LogError(ex, ex.Message);
@@ -253,12 +200,6 @@ namespace AlpineHub.Web.Controllers.Manager
             try
             {
                 await liftService.DeleteLiftTypeAsync(model);
-                return RedirectToAction(nameof(Index));
-            }
-            catch (ArgumentException ex)
-            {
-                //If id is invalid return to Slopes page (supposed attack)
-                logger.LogError(ex, ex.Message);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
