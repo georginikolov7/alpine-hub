@@ -1,8 +1,8 @@
-﻿
+﻿using AlpineHub.Core.ViewModels.Admin;
+using AlpineHub.Core.ViewModels.User;
+
 namespace AlpineHub.Core.Contracts
 {
-    using AlpineHub.Core.ViewModels.Admin;
-    using AlpineHub.Core.ViewModels.User;
     public interface IUserService
     {
         Task<IEnumerable<AllUsersViewModel>> GetAllUsersAsync();

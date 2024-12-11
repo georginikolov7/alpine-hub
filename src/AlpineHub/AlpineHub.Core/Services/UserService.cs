@@ -1,20 +1,19 @@
-﻿
+﻿using Microsoft.AspNetCore.Identity;
+
+using AlpineHub.Core.Contracts;
+using AlpineHub.Core.ViewModels.User;
+using AlpineHub.Data.Models;
+using AlpineHub.Data.Contracts;
+using Microsoft.EntityFrameworkCore;
+
+using static AlpineHub.Common.ApplicationConstants;
+using static AlpineHub.Common.ErrorMessages;
+using static AlpineHub.Common.Formats;
+using Microsoft.Extensions.Configuration;
+using AlpineHub.Core.ViewModels.Admin;
+
 namespace AlpineHub.Core.Services
 {
-    using Microsoft.AspNetCore.Identity;
-
-    using AlpineHub.Core.Contracts;
-    using AlpineHub.Core.ViewModels.User;
-    using AlpineHub.Data.Models;
-    using AlpineHub.Data.Contracts;
-    using Microsoft.EntityFrameworkCore;
-
-    using static AlpineHub.Common.ApplicationConstants;
-    using static AlpineHub.Common.ErrorMessages;
-    using static AlpineHub.Common.Formats;
-    using Microsoft.Extensions.Configuration;
-    using AlpineHub.Core.ViewModels.Admin;
-
     public class UserService(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole<Guid>> roleManager, IManagerService managerService, IConfiguration config, IRepo repo) : BaseService(repo), IUserService
     {
         public async Task ConfirmDeleteUser(DeleteUserViewModel model)

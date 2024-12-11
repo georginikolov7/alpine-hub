@@ -1,24 +1,24 @@
-﻿namespace AlpineHub.Web.Infrastructure.Extensions
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authorization;
+
+using AlpineHub.Data;
+using AlpineHub.Data.Contracts;
+using AlpineHub.Data.Models;
+using AlpineHub.Data.Repos;
+using AlpineHub.Core.Contracts;
+using AlpineHub.Core.Services;
+using AlpineHub.Web.AuthorizationHandlers;
+
+using static AlpineHub.Common.EntityValidationConstraints;
+using AlpineHub.Core.Contracts.Pass;
+using AlpineHub.Core.Contracts.Slope;
+using AlpineHub.Core.Contracts.Lift;
+
+namespace AlpineHub.Web.Infrastructure.Extensions
 {
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.AspNetCore.Authorization;
-
-    using AlpineHub.Data;
-    using AlpineHub.Data.Contracts;
-    using AlpineHub.Data.Models;
-    using AlpineHub.Data.Repos;
-    using AlpineHub.Core.Contracts;
-    using AlpineHub.Core.Services;
-    using AlpineHub.Web.AuthorizationHandlers;
-
-    using static AlpineHub.Common.EntityValidationConstraints;
-    using AlpineHub.Core.Contracts.Pass;
-    using AlpineHub.Core.Contracts.Slope;
-    using AlpineHub.Core.Contracts.Lift;
-
     public static class ServiceCollectionExtensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
@@ -30,7 +30,7 @@
             services.AddScoped<LiftService>();
             services.AddScoped<ILiftService>(provider => provider.GetRequiredService<LiftService>());
             services.AddScoped<IManageableLiftService>(provider => provider.GetRequiredService<LiftService>());
-
+            services.AddScoped<IManageableLiftTypeService, LiftTypeService>();
             services.AddScoped<IAuthorizationHandler, ManagerIdClaimHandler>();
             services.AddScoped<IManagerService, ManagerService>();
             services.AddScoped<IManageablePassPeriodService, PassPeriodService>();

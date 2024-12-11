@@ -1,15 +1,14 @@
-﻿
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+
+using AlpineHub.Core.Contracts.Pass;
+using AlpineHub.Core.ViewModels.PassAgeGroup;
+
+using static AlpineHub.Data.Constants.CustomClaims;
+using static AlpineHub.Common.ErrorMessages;
+
 namespace AlpineHub.Web.Controllers.Manager
 {
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Authorization;
-
-    using AlpineHub.Core.Contracts.Pass;
-    using AlpineHub.Core.ViewModels.PassAgeGroup;
-
-    using static AlpineHub.Data.Constants.CustomClaims;
-    using static AlpineHub.Common.ErrorMessages;
-
     [Authorize(Policy = ManagerPolicyName)]
     public class ManagePassAgeGroupsController(ILogger<ManagePassAgeGroupsController> _logger, IManageablePassAgeService service) : BaseController(_logger)
     {

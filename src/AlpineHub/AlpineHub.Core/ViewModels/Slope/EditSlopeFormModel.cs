@@ -1,11 +1,11 @@
 ﻿using AlpineHub.Common.Enums;
 using AlpineHub.Core.ValidationProperties;
 using System.ComponentModel.DataAnnotations;
+using static AlpineHub.Common.EntityValidationConstraints;
+using static AlpineHub.Common.EntityValidationMessages;
 
 namespace AlpineHub.Core.ViewModels.Slope
 {
-    using static Common.EntityValidationConstraints;
-    using static Common.EntityValidationMessages;
     public class EditSlopeFormModel
     {
         [Required]

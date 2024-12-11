@@ -1,13 +1,13 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using AlpineHub.Data.Models.Contracts;
+
+using static AlpineHub.Common.EntityValidationConstraints;
+
 namespace AlpineHub.Data.Models
 {
-    using static Common.EntityValidationConstraints;
-
-    using Microsoft.EntityFrameworkCore;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using AlpineHub.Data.Models.Contracts;
-
     public class Pass : ISoftDeletable
     {
         [Key]
@@ -24,7 +24,7 @@ namespace AlpineHub.Data.Models
         public string? Description { get; set; }
         [Required]
         [Column(TypeName = "decimal(18,2)")]
-        [Comment("Pass price. Pass type discount is automatically deduced")]
+        [Comment("Pass price. ")]
         public decimal Price { get; set; }
 
         [Required]

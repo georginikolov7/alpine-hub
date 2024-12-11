@@ -1,11 +1,12 @@
-﻿namespace AlpineHub.Core.ViewModels.PassAgeGroup
-{
-    using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-    using AlpineHub.Core.ValidationProperties;
-    
-    using static AlpineHub.Common.EntityValidationConstraints;
-    using static AlpineHub.Common.EntityValidationMessages;
+using AlpineHub.Core.ValidationProperties;
+
+using static AlpineHub.Common.EntityValidationConstraints;
+using static AlpineHub.Common.EntityValidationMessages;
+
+namespace AlpineHub.Core.ViewModels.PassAgeGroup
+{
     public class AddAgeGroupFormModel
     {
         [Required]

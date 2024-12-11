@@ -1,16 +1,16 @@
-﻿
+﻿using Microsoft.EntityFrameworkCore;
+
+using AlpineHub.Data.Contracts;
+using AlpineHub.Data.Models;
+using AlpineHub.Core.ViewModels.Slope;
+using AlpineHub.Core.DTOs;
+using AlpineHub.Core.Contracts.Slope;
+
+using static AlpineHub.Common.ErrorMessages;
+
+
 namespace AlpineHub.Core.Services
 {
-    using Microsoft.EntityFrameworkCore;
-
-    using AlpineHub.Data.Contracts;
-    using AlpineHub.Data.Models;
-    using AlpineHub.Core.ViewModels.Slope;
-    using AlpineHub.Core.DTOs;
-    using AlpineHub.Core.Contracts.Slope;
-
-    using static AlpineHub.Common.ErrorMessages;
-
     public class SlopeService(IRepo repo) : BaseService(repo), ISlopeService, IManageableSlopeService
     {
         public async Task<IEnumerable<AllSlopesViewModel>> GetAllSlopesAsync()

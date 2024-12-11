@@ -55,6 +55,7 @@ namespace AlpineHub.Web.Controllers
                 return BadRequest();
             }
         }
+
         [HttpGet]
         public async Task<IActionResult> GetCartCount()
         {

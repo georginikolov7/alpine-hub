@@ -1,7 +1,7 @@
-﻿
+﻿using AlpineHub.Core.ViewModels.PassPeriod;
+
 namespace AlpineHub.Core.Contracts.Pass
 {
-    using AlpineHub.Core.ViewModels.PassPeriod;
     public interface IManageablePassPeriodService
     {
         Task<IEnumerable<PeriodViewModel>> GetAllPeriods();

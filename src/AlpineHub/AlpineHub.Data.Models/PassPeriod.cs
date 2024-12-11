@@ -1,11 +1,11 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+
+using static AlpineHub.Common.EntityValidationConstraints;
+
 namespace AlpineHub.Data.Models
 {
-    using static Common.EntityValidationConstraints;
-
-    using Microsoft.EntityFrameworkCore;
-    using System.ComponentModel.DataAnnotations;
-
     public class PassPeriod
     {
         [Key]
@@ -20,13 +20,14 @@ namespace AlpineHub.Data.Models
         [Required]
         [Comment("Starting hour of pass period")]
         public TimeOnly ValidFromHour { get; set; }
-        [Required]
 
+        [Required]
         [Comment("Ending hour of pass period")]
         public TimeOnly ValidToHour { get; set; }
 
         [Comment("Number of days for pass validity")]
         public int DaysCount { get; set; }
+
         public virtual ICollection<Pass> Passes { get; set; } = new HashSet<Pass>();
 
     }

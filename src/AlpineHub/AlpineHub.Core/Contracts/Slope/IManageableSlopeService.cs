@@ -1,7 +1,7 @@
-﻿
+﻿using AlpineHub.Core.ViewModels.Slope;
+
 namespace AlpineHub.Core.Contracts.Slope
 {
-    using AlpineHub.Core.ViewModels.Slope;
     public interface IManageableSlopeService
     {
         Task<IEnumerable<SlopeDetailsViewModel>> GetAllManagerSlopesAsync();

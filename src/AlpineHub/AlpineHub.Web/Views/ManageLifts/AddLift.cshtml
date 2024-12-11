@@ -2,18 +2,17 @@
 @using AlpineHub.Core.ViewModels.Lift
 @model AddLiftFormModel
 @inject IManageableLiftService liftService
+@inject IManageableLiftTypeService liftTypeService
 @{
     Layout = "_ManagerLayout";
     ViewData["Title"] = "Add Lift";
 
-    IEnumerable<SelectListItem>? liftTypes = (await liftService.GetAllLiftTypesAsync())?
+    IEnumerable<SelectListItem>? liftTypes = (await liftTypeService.GetAllLiftTypesAsync())?
     .Select(lt => new SelectListItem
             {
                 Text = lt.Name,
                 Value = lt.Id.ToString()
             });
-
-    //TODO PRITIFY FORMS
 }
 
 

@@ -1,8 +1,9 @@
-﻿
+﻿using AlpineHub.Data.Models;
+using AlpineHub.Common.Enums;
+using Microsoft.AspNetCore.Identity;
+
 namespace AlpineHub.Data.Configurations
 {
-    using AlpineHub.Data.Models;
-    using AlpineHub.Common.Enums;
 #nullable disable
     internal class SeedingData
     {
@@ -14,14 +15,16 @@ namespace AlpineHub.Data.Configurations
             SeedPassAges();
             SeedPassPeriods();
             SeedPasses();
+            SeedUsers();
         }
 
-       
+
 
         public Slope FirstSlope { get; set; }
         public Slope SecondSlope { get; set; }
         public Slope ThirdSlope { get; set; }
-
+        public Slope FourthSlope { get; set; }
+        public Slope FifthSlope { get; set; }
         public LiftType GondolaLiftType { get; set; }
         public LiftType ChairliftType { get; set; }
         public LiftType Drag { get; set; }
@@ -46,7 +49,9 @@ namespace AlpineHub.Data.Configurations
         public Pass AfternoonAdultPass { get; set; }
         public Pass AfternoonStudentPass { get; set; }
         public Pass AfternoonChildPass { get; set; }
-
+        public ApplicationUser NormalUser { get; set; }
+        public ApplicationUser ManagerUser { get; set; }
+        public ResortManager ResortManager { get; set; }
         private void SeedPasses()
         {
             AllDayAdultPass = new Pass
@@ -83,7 +88,7 @@ namespace AlpineHub.Data.Configurations
 
             MorningAdultPass = new Pass()
             {
-                Id=Guid.NewGuid(),
+                Id = Guid.NewGuid(),
                 Name = "Morning adult pass",
                 Price = 30,
                 PassPeriodId = Morning.Id,
@@ -301,6 +306,62 @@ namespace AlpineHub.Data.Configurations
                 LowerPointAltitude = 1350,
                 IsOpen = true,
                 SlopeCondition = SlopeCondition.NotGroomed
+            };
+            FourthSlope = new()
+            {
+                Id = Guid.NewGuid(),
+                Name = "The wall",
+                Difficulty = SlopeDifficulty.Hard,
+                Length = 500,
+                UpperPointAltitude = 2000,
+                LowerPointAltitude = 1700,
+                IsOpen = true,
+                SlopeCondition = SlopeCondition.Mogul
+            };
+            FifthSlope = new()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Stone slope",
+                Difficulty = SlopeDifficulty.Intermediate,
+                SlopeCondition = SlopeCondition.NotGroomed,
+                Length = 1000,
+                UpperPointAltitude = 1800,
+                LowerPointAltitude = 1300,
+                IsOpen = true
+            };
+        }
+        private void SeedUsers()
+        {
+            PasswordHasher<ApplicationUser> hasher = new();
+            NormalUser = new()
+            {
+                Id = Guid.NewGuid(),
+                UserName = "Skier",
+                NormalizedUserName = "SKIER",
+                Email = "user@test.com",
+                NormalizedEmail = "USER@TEST.COM",
+                FirstName = "John",
+                LastName = "Doe",
+                Birthdate = new DateTime(1990, 1, 1),
+                AccessFailedCount = 0
+            };
+            NormalUser.PasswordHash = hasher.HashPassword(NormalUser, "1q2w3e4r");
+            ManagerUser = new()
+            {
+                Id = Guid.Parse("9C2A65AE-5259-410A-96C3-F4667516F42C"),
+                UserName = "Manager",
+                Email = "dimitrichko@test.com",
+                FirstName = "Dimitrichko",
+                LastName = "Chorbadjiski",
+                Birthdate = new DateTime(2000, 2, 29),
+                AccessFailedCount = 0
+            };
+            ManagerUser.PasswordHash = hasher.HashPassword(ManagerUser, "1q2w3e4r");
+
+            ResortManager = new()
+            {
+                Id = Guid.Parse("29A945EC-9C3B-41AC-8065-EDFB32974AA6"),
+                ApplicationUserId = ManagerUser.Id,
             };
         }
     }

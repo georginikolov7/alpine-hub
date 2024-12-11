@@ -1,24 +1,24 @@
-﻿namespace AlpineHub.Web.Controllers.Manager
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+using AlpineHub.Core.ViewModels.Lift;
+using AlpineHub.Core.ViewModels.LiftType;
+using AlpineHub.Core.Contracts.Lift;
+
+using static AlpineHub.Common.ErrorMessages;
+using static AlpineHub.Data.Constants.CustomClaims;
+
+namespace AlpineHub.Web.Controllers.Manager
 {
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Mvc;
-
-    using AlpineHub.Core.ViewModels.Lift;
-    using AlpineHub.Core.ViewModels.LiftType;
-    using AlpineHub.Core.Contracts.Lift;
-
-    using static AlpineHub.Common.ErrorMessages;
-    using static AlpineHub.Data.Constants.CustomClaims;
-
     [Authorize(Policy = ManagerPolicyName)]
-    public class ManageLiftsController(ILogger<ManageLiftsController> _logger, IManageableLiftService liftService) : BaseController(_logger)
+    public class ManageLiftsController(ILogger<ManageLiftsController> _logger, IManageableLiftService liftService, IManageableLiftTypeService liftTypeService) : BaseController(_logger)
     {
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             IEnumerable<LiftDetailsViewModel> model = await liftService.GetAllLiftsAsync();
 
-            IEnumerable<DeleteLiftTypeViewModel>? liftTypesModel = await liftService.GetAllLiftTypesAsync();
+            IEnumerable<DeleteLiftTypeViewModel>? liftTypesModel = await liftTypeService.GetAllLiftTypesAsync();
             ViewBag.LiftTypes = liftTypesModel;
             return View(model);
         }
@@ -39,7 +39,99 @@
 
             try
             {
-                await liftService.AddLiftTypeAsync(model);
+                await liftTypeService.AddLiftTypeAsync(model);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, ex.Message);
+                TempData["ErrorMessage"] = UnexpectedError;
+                return View(model);
+            }
+        }
+        [HttpGet]
+        public async Task<IActionResult> EditLiftType(string? id)
+        {
+            try
+            {
+                EditLiftTypeFormModel model = await liftTypeService.GetLiftTypeForEditAsync(id);
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, ex.Message);
+                TempData["ErrorMessage"] = UnexpectedError;
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditLiftType(EditLiftTypeFormModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            try
+            {
+                await liftTypeService.EditLiftTypeAsync(model);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, ex.Message);
+                TempData["ErrorMessage"] = UnexpectedError;
+                return View(model);
+            }
+        }
+        [HttpGet]
+        public async Task<IActionResult> DeleteLiftType(string? id)
+        {
+            try
+            {
+                DeleteLiftTypeViewModel model = await liftTypeService.GetLiftTypeForDeleteAsync(id);
+                return PartialView("_DeleteConfirmationModal", model);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, ex.Message);
+                TempData["ErrorMessage"] = UnexpectedError;
+                return RedirectToAction(nameof(Index));
+            }
+
+        }
+        [HttpPost]
+        public async Task<IActionResult> ConfirmDeleteLiftType(DeleteLiftTypeViewModel model)
+        {
+            try
+            {
+                await liftTypeService.DeleteLiftTypeAsync(model);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, ex.Message);
+                TempData["ErrorMessage"] = UnexpectedError;
+                return RedirectToAction(nameof(Index));
+            }
+        }
+        [HttpGet]
+        public IActionResult AddLift()
+        {
+            AddLiftFormModel model = new();
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddLift(AddLiftFormModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            try
+            {
+                await liftService.AddLiftAsync(model);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
@@ -86,11 +178,11 @@
             }
         }
         [HttpGet]
-        public async Task<IActionResult> DeleteLiftType(string? id)
+        public async Task<IActionResult> DeleteLift(string? id)
         {
             try
             {
-                DeleteLiftTypeViewModel model = await liftService.GetLiftTypeForDeleteAsync(id);
+                DeleteLiftViewModel model = await liftService.GetLiftForDeleteAsync(id);
                 return PartialView("_DeleteConfirmationModal", model);
             }
             catch (Exception ex)
@@ -116,98 +208,6 @@
                 return RedirectToAction(nameof(Index));
             }
         }
-        [HttpGet]
-        public IActionResult AddLift()
-        {
-            AddLiftFormModel model = new();
-            return View(model);
-        }
-        [HttpPost]
-        public async Task<IActionResult> AddLift(AddLiftFormModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
 
-            try
-            {
-                await liftService.AddLiftAsync(model);
-                return RedirectToAction(nameof(Index));
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(ex, ex.Message);
-                TempData["ErrorMessage"] = UnexpectedError;
-                return View(model);
-            }
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> EditLiftType(string? id)
-        {
-            try
-            {
-                EditLiftTypeFormModel model = await liftService.GetLiftTypeForEditAsync(id);
-                return View(model);
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(ex, ex.Message);
-                TempData["ErrorMessage"] = UnexpectedError;
-                return RedirectToAction(nameof(Index));
-            }
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> EditLiftType(EditLiftTypeFormModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-            try
-            {
-                await liftService.EditLiftTypeAsync(model);
-                return RedirectToAction(nameof(Index));
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(ex, ex.Message);
-                TempData["ErrorMessage"] = UnexpectedError;
-                return View(model);
-            }
-        }
-        [HttpGet]
-        public async Task<IActionResult> DeleteLift(string? id)
-        {
-            try
-            {
-                DeleteLiftViewModel model = await liftService.GetLiftForDeleteAsync(id);
-                return PartialView("_DeleteConfirmationModal", model);
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(ex, ex.Message);
-                TempData["ErrorMessage"] = UnexpectedError;
-                return RedirectToAction(nameof(Index));
-            }
-
-        }
-        [HttpPost]
-        public async Task<IActionResult> ConfirmDeleteLiftType(DeleteLiftTypeViewModel model)
-        {
-            try
-            {
-                await liftService.DeleteLiftTypeAsync(model);
-                return RedirectToAction(nameof(Index));
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(ex, ex.Message);
-                TempData["ErrorMessage"] = UnexpectedError;
-                return RedirectToAction(nameof(Index));
-            }
-        }
     }
 }

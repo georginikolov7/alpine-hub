@@ -1,10 +1,11 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+
+using static AlpineHub.Common.EntityValidationConstraints;
+
 namespace AlpineHub.Data.Models
 {
-    using static Common.EntityValidationConstraints;
-
-    using Microsoft.EntityFrameworkCore;
-    using System.ComponentModel.DataAnnotations;
     public class PassAgeGroup
     {
         [Key]

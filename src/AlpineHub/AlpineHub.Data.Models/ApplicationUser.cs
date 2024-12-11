@@ -1,12 +1,11 @@
-﻿
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+
+using static AlpineHub.Common.EntityValidationConstraints;
+
 namespace AlpineHub.Data.Models
 {
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.EntityFrameworkCore;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using static Common.EntityValidationConstraints;
-
     public class ApplicationUser : IdentityUser<Guid>
     {
         public ApplicationUser()

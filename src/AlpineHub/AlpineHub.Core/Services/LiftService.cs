@@ -1,16 +1,17 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
+
+using AlpineHub.Core.Contracts.Lift;
+using AlpineHub.Core.DTOs;
+using AlpineHub.Core.ViewModels.Lift;
+using AlpineHub.Data.Contracts;
+using AlpineHub.Data.Models;
+
+using static AlpineHub.Common.ErrorMessages;
+using static AlpineHub.Common.Formats;
+
 namespace AlpineHub.Core.Services
 {
-    using System;
-    using AlpineHub.Core.Contracts.Lift;
-    using AlpineHub.Core.DTOs;
-    using AlpineHub.Core.ViewModels.Lift;
-    using AlpineHub.Core.ViewModels.LiftType;
-    using AlpineHub.Data.Contracts;
-    using AlpineHub.Data.Models;
-    using Microsoft.EntityFrameworkCore;
-    using static AlpineHub.Common.ErrorMessages;
-    using static AlpineHub.Common.Formats;
     public class LiftService(IRepo repo) : BaseService(repo), ILiftService, IManageableLiftService
     {
         public async Task<IEnumerable<AllLiftsViewModel>> GetAllLiftsDetailsAsync()
@@ -42,12 +43,6 @@ namespace AlpineHub.Core.Services
         {
             Lift lift = await GetLiftAsync(id);
 
-
-            if (lift is null)
-            {
-                return null;
-            }
-
             LiftDetailsViewModel model = new LiftDetailsViewModel()
             {
                 Id = lift.Id.ToString(),
@@ -68,12 +63,6 @@ namespace AlpineHub.Core.Services
         {
             return await repo.GetAllReadonly<Lift>().AnyAsync(l => l.Id == id);
         }
-        private static bool IsLiftOpen(Lift lift)
-        {
-            var currentTime = TimeOnly.FromDateTime(DateTime.Now);
-            return currentTime >= lift.OpenningTime && currentTime <= lift.ClosingTime;
-        }
-
         public async Task<IEnumerable<LiftDetailsViewModel>> GetAllLiftsAsync()
         {
             IEnumerable<LiftDetailsViewModel> model = await repo.GetAllReadonly<Lift>()
@@ -192,18 +181,7 @@ namespace AlpineHub.Core.Services
             await repo.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<DeleteLiftTypeViewModel>?> GetAllLiftTypesAsync()
-        {
-            IEnumerable<DeleteLiftTypeViewModel> model = await repo.GetAllReadonly<LiftType>()
-                .Select(lt => new DeleteLiftTypeViewModel()
-                {
-                    Id = lt.Id.ToString(),
-                    Name = lt.Name
-                })
-                .ToListAsync();
-
-            return model;
-        }
+        
 
         public async Task<IEnumerable<AllLiftsDto>?> GetAllLiftsForMapAsync()
         {
@@ -240,60 +218,12 @@ namespace AlpineHub.Core.Services
             return dto;
         }
 
-        public async Task<EditLiftTypeFormModel> GetLiftTypeForEditAsync(string? id)
+        
+
+        private static bool IsLiftOpen(Lift lift)
         {
-            if (!IsGuidValid(id, out Guid guid))
-            {
-                throw new ArgumentException(string.Format(InvalidId, "LiftType", id));
-            }
-            LiftType liftType = await repo.GetByIdAsync<LiftType>(guid) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, id));
-
-            return new EditLiftTypeFormModel() { Id = liftType.Id.ToString(), Name = liftType.Name };
-        }
-
-        public async Task AddLiftTypeAsync(AddLiftTypeFormModel model)
-        {
-            await repo.AddAsync(new LiftType() { Name = model.Name });
-            await repo.SaveChangesAsync();
-        }
-
-        public async Task<DeleteLiftTypeViewModel> GetLiftTypeForDeleteAsync(string? id)
-        {
-            if (!IsGuidValid(id, out Guid guid))
-            {
-                throw new ArgumentException(string.Format(InvalidId, "Lift", id));
-            }
-
-            LiftType? liftType = await repo.GetByIdAsync<LiftType>(guid) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, id));
-
-            DeleteLiftTypeViewModel model = new DeleteLiftTypeViewModel()
-            {
-                Id = liftType.Id.ToString(),
-                Name = liftType.Name
-            };
-            return model;
-        }
-
-        public async Task DeleteLiftTypeAsync(DeleteLiftTypeViewModel model)
-        {
-            if (!IsGuidValid(model.Id, out Guid guid))
-            {
-                throw new ArgumentException(string.Format(InvalidId, "LiftType", model.Id));
-            }
-            await repo.DeleteByIdAsync<LiftType>(guid);
-            await repo.SaveChangesAsync();
-        }
-
-        public async Task EditLiftTypeAsync(EditLiftTypeFormModel model)
-        {
-            if (!IsGuidValid(model.Id, out Guid guid))
-            {
-                throw new ArgumentException(string.Format(InvalidId, "LiftType", model.Id));
-            }
-            LiftType? liftType = await repo.GetByIdAsync<LiftType>(guid) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, model.Id));
-
-            liftType.Name = model.Name;
-            await repo.SaveChangesAsync();
+            var currentTime = TimeOnly.FromDateTime(DateTime.Now);
+            return currentTime >= lift.OpenningTime && currentTime <= lift.ClosingTime;
         }
 
         private async Task<Lift> GetLiftAsync(string? id)

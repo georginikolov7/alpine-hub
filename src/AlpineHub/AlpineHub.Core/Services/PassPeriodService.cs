@@ -1,15 +1,15 @@
-﻿namespace AlpineHub.Core.Services
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using AlpineHub.Core.Contracts.Pass;
+using AlpineHub.Core.ViewModels.PassPeriod;
+using AlpineHub.Data.Contracts;
+using AlpineHub.Data.Models;
+
+using static AlpineHub.Common.ErrorMessages;
+
+namespace AlpineHub.Core.Services
 {
-    using Microsoft.EntityFrameworkCore;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using AlpineHub.Core.Contracts.Pass;
-    using AlpineHub.Core.ViewModels.PassPeriod;
-    using AlpineHub.Data.Contracts;
-    using AlpineHub.Data.Models;
-
-    using static AlpineHub.Common.ErrorMessages;
-
     public class PassPeriodService(IRepo repo) : BaseService(repo), IManageablePassPeriodService
     {
         public async Task<IEnumerable<PeriodViewModel>> GetAllPeriods()

@@ -10,7 +10,7 @@ using static AlpineHub.Data.Constants.CustomClaims;
 
 namespace AlpineHub.Tests
 {
-    public class Tests
+    public class ManagerServiceTests
     {
         private Mock<IRepo> repoMock;
         private Mock<UserManager<ApplicationUser>> userManagerMock;

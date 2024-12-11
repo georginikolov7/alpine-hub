@@ -1,9 +1,10 @@
-﻿namespace AlpineHub.Core.ViewModels.Lift
-{
-    using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-    using static AlpineHub.Common.EntityValidationConstraints;
-    using static AlpineHub.Common.EntityValidationMessages;
+using static AlpineHub.Common.EntityValidationConstraints;
+using static AlpineHub.Common.EntityValidationMessages;
+
+namespace AlpineHub.Core.ViewModels.Lift
+{
     public class AddLiftFormModel
     {
         [Required]

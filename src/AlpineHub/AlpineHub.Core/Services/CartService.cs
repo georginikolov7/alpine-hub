@@ -1,14 +1,15 @@
-﻿namespace AlpineHub.Core.Services
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
+using AlpineHub.Core.Contracts;
+using AlpineHub.Core.ViewModels.Cart;
+using AlpineHub.Data.Contracts;
+using AlpineHub.Data.Models;
+
+using static AlpineHub.Common.ErrorMessages;
+
+namespace AlpineHub.Core.Services
 {
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.EntityFrameworkCore;
-
-    using AlpineHub.Core.Contracts;
-    using AlpineHub.Core.ViewModels.Cart;
-    using AlpineHub.Data.Contracts;
-    using AlpineHub.Data.Models;
-
-    using static AlpineHub.Common.ErrorMessages;
     public class CartService(IRepo repo, UserManager<ApplicationUser> userManager) : BaseService(repo), ICartService
     {
         public async Task<int> AddToCart(string? passId, string? userId, int quantity)
@@ -19,6 +20,10 @@
                 throw new ArgumentException(string.Format(InvalidId, "Pass", passId));
             }
 
+            if (quantity < 0)
+            {
+                throw new ArgumentException("Negative quantity");
+            }
             //Get user:
             ApplicationUser user = await GetUser(userId);
 
@@ -43,9 +48,11 @@
             //Check if the pass is already in the cart:
             CartItem? cartItem = cart.CartItems
                 .FirstOrDefault(ci => ci.PassId == passGuid);
+
             if (cartItem is not null)
             {
                 cartItem.Quantity += quantity;
+                cartItem.TotalPrice = pass.Price * cartItem.Quantity;
             }
             else
             {
@@ -59,6 +66,7 @@
                 };
                 await repo.AddAsync(cartItem);
             }
+
             await repo.SaveChangesAsync();
 
             return cart.CartItems.Count;
@@ -131,7 +139,7 @@
 
         public async Task<int> GetCartCount(string? userId)
         {
-            if(userId is null)
+            if (!IsGuidValid(userId, out Guid guid))
             {
                 return 0;
             }
@@ -164,8 +172,15 @@
                 .Include(ci => ci.Pass)
                 .FirstOrDefaultAsync(ci => ci.Id == itemGuid) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, itemId));
 
-            item.Quantity = quantity;
-            item.TotalPrice = quantity * item.Pass.Price;
+            if (quantity == 0)
+            {
+                repo.Delete(item);
+            }
+            else
+            {
+                item.Quantity = quantity;
+                item.TotalPrice = quantity * item.Pass.Price;
+            }
             await repo.SaveChangesAsync();
         }
 

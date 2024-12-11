@@ -1,14 +1,13 @@
-﻿
+﻿using AlpineHub.Core.Contracts.Pass;
+using AlpineHub.Core.ViewModels.Pass;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+using static AlpineHub.Common.ErrorMessages;
+using static AlpineHub.Data.Constants.CustomClaims;
+
 namespace AlpineHub.Web.Controllers.Manager
 {
-    using AlpineHub.Core.Contracts.Pass;
-    using AlpineHub.Core.ViewModels.Pass;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Mvc;
-
-    using static AlpineHub.Common.ErrorMessages;
-    using static AlpineHub.Data.Constants.CustomClaims;
-
     [Authorize(Policy = ManagerPolicyName)]
     public class ManagePassesController(ILogger<ManagePassesController> _logger, IManageablePassService passService) : BaseController(_logger)
     {
@@ -24,7 +23,7 @@ namespace AlpineHub.Web.Controllers.Manager
             return View(model);
         }
         [HttpPost]
-        public IActionResult AddPass(AddPassFormModel model)
+        public async Task<IActionResult> AddPass(AddPassFormModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -33,10 +32,10 @@ namespace AlpineHub.Web.Controllers.Manager
 
             try
             {
-                passService.AddPassAsync(model);
+                await passService.AddPassAsync(model);
                 return RedirectToAction(nameof(Index));
             }
-            catch(ArgumentException ex)
+            catch (ArgumentException ex)
             {
                 logger.LogError(ex, ex.Message);
                 return BadRequest();

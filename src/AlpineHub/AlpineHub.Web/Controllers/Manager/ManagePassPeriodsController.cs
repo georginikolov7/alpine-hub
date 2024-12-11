@@ -1,15 +1,15 @@
-﻿namespace AlpineHub.Web.Controllers.Manager
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+
+using AlpineHub.Core.Contracts.Pass;
+using AlpineHub.Core.ViewModels.PassPeriod;
+
+using static AlpineHub.Data.Constants.CustomClaims;
+using static AlpineHub.Common.ErrorMessages;
+
+namespace AlpineHub.Web.Controllers.Manager
 {
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Mvc;
-    using System.Collections.Generic;
-
-    using AlpineHub.Core.Contracts.Pass;
-    using AlpineHub.Core.ViewModels.PassPeriod;
-
-    using static AlpineHub.Data.Constants.CustomClaims;
-    using static AlpineHub.Common.ErrorMessages;
-
     [Authorize(Policy = ManagerPolicyName)]
     public class ManagePassPeriodsController(ILogger<ManagePassPeriodsController> _logger, IManageablePassPeriodService passPeriodService) : BaseController(_logger)
     {

@@ -1,12 +1,14 @@
-﻿namespace AlpineHub.Data.Models
+﻿
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+
+using AlpineHub.Data.Models.Contracts;
+using AlpineHub.Common.Enums;
+
+using static AlpineHub.Common.EntityValidationConstraints;
+
+namespace AlpineHub.Data.Models
 {
-    using static Common.EntityValidationConstraints;
-
-    using AlpineHub.Common.Enums;
-    using Microsoft.EntityFrameworkCore;
-    using System.ComponentModel.DataAnnotations;
-    using AlpineHub.Data.Models.Contracts;
-
     public class Slope : ISoftDeletable
     {
         [Key]

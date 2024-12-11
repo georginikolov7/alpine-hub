@@ -1,8 +1,9 @@
-﻿namespace AlpineHub.Core.ViewModels.PassPeriod
+﻿using System.ComponentModel.DataAnnotations;
+using static AlpineHub.Common.EntityValidationConstraints;
+using static AlpineHub.Common.EntityValidationMessages;
+
+namespace AlpineHub.Core.ViewModels.PassPeriod
 {
-    using System.ComponentModel.DataAnnotations;
-    using static Common.EntityValidationConstraints;
-    using static Common.EntityValidationMessages;
     public class AddPeriodFormModel
     {
         [Required]

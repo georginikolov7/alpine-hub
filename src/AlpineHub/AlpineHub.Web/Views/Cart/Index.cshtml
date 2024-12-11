@@ -1,5 +1,4 @@
 ﻿@using AlpineHub.Core.ViewModels.Cart
-
 @model CartViewModel?
 
 <div class="container pt-4">
@@ -22,11 +21,11 @@
                 {
                     <tr>
                         <td>@item.Name</td>
-                        <td>$@item.Price</td>
+                        <td>@PriceCurrency@item.Price</td>
                         <td style="max-width:20px;">
                             <form class="update-quantity-form">
                                 <input type="hidden" name="itemId" value="@item.Id" />
-                                <input type="number" name="quantity" value="@item.Quantity" min="1" class="form-control" />
+                                <input type="number" name="quantity" value="@item.Quantity" min="0" class="form-control" />
 
                             </form>
                         </td>

@@ -4,13 +4,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace AlpineHub.Data.Configurations
 {
-    public class LiftConfiguration : IEntityTypeConfiguration<Lift>
+    public class ResortManagerConfiguraion : IEntityTypeConfiguration<ResortManager>
     {
-        public void Configure(EntityTypeBuilder<Lift> builder)
+        public void Configure(EntityTypeBuilder<ResortManager> builder)
         {
             var data = new SeedingData();
-
-            builder.HasData([data.GondolaLift, data.ChairLift, data.SecondChairLift]);
+            builder.HasData(data.ResortManager);
         }
     }
 }

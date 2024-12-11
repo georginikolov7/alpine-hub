@@ -1,7 +1,7 @@
-﻿
+﻿using AlpineHub.Core.ViewModels.PassAgeGroup;
+
 namespace AlpineHub.Core.Contracts.Pass
 {
-    using AlpineHub.Core.ViewModels.PassAgeGroup;
     public interface IManageablePassAgeService
     {
         Task<IEnumerable<AgeGroupViewModel>> GetAllAgeGroupsAsync();

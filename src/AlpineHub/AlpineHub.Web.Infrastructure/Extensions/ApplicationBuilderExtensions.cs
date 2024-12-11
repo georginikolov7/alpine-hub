@@ -1,14 +1,14 @@
-﻿
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
+
+using AlpineHub.Data.Models;
+
+using static AlpineHub.Common.ApplicationConstants;
+using static AlpineHub.Common.ErrorMessages;
+
 namespace AlpineHub.Web.Infrastructure.Extensions
 {
-    using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.Extensions.DependencyInjection;
-
-    using AlpineHub.Data.Models;
-
-    using static AlpineHub.Common.ApplicationConstants;
-    using static AlpineHub.Common.ErrorMessages;
     public static class ApplicationBuilderExtensions
     {
 

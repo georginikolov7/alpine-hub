@@ -1,11 +1,14 @@
-﻿using AlpineHub.Core.Contracts.Pass;
+﻿using Microsoft.EntityFrameworkCore;
+
+using AlpineHub.Core.Contracts.Pass;
 using AlpineHub.Core.ViewModels.Pass;
 using AlpineHub.Core.ViewModels.PassAgeGroup;
 using AlpineHub.Core.ViewModels.PassPeriod;
 using AlpineHub.Data.Contracts;
 using AlpineHub.Data.Models;
-using Microsoft.EntityFrameworkCore;
+
 using static AlpineHub.Common.ErrorMessages;
+
 namespace AlpineHub.Core.Services
 {
     public class ManagePassService(IRepo repo) : BaseService(repo), IManageablePassService
@@ -30,24 +33,18 @@ namespace AlpineHub.Core.Services
 
         public async Task AddPassAsync(AddPassFormModel model)
         {
-            //PassAgeGroup ageGroup = await GetAgeGroup(model.AgeGroupId);
-            //PassPeriod period = await GetPeriod(model.PeriodId);
 
-            if (!IsGuidValid(model.PeriodId, out Guid periodGuid))
-            {
+            PassAgeGroup ageGroup = await GetAgeGroup(model.AgeGroupId);
+            PassPeriod period = await GetPeriod(model.PeriodId);
 
-            }
-            if (!IsGuidValid(model.AgeGroupId, out Guid ageGroupGuid))
-            {
-
-            }
             Pass pass = new()
             {
                 Name = model.Name,
                 Description = model.Description,
                 Price = model.Price,
-                PassPeriodId = periodGuid,
-                PassAgeGroupId = ageGroupGuid
+                PassPeriod = period,
+                PassAgeGroup = ageGroup,
+                IsDeleted = false
             };
 
             await repo.AddAsync(pass);
@@ -143,8 +140,7 @@ namespace AlpineHub.Core.Services
                 throw new ArgumentException(string.Format(InvalidId, "Age group", id));
             }
             PassAgeGroup? ageGroup = await repo
-                .GetAll<PassAgeGroup>()
-                .FirstOrDefaultAsync(g => g.Id == ageGuid) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, id));
+               .GetByIdAsync<PassAgeGroup>(ageGuid) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, id));
             return ageGroup;
         }
         private async Task<PassPeriod> GetPeriod(string? id)
@@ -154,8 +150,7 @@ namespace AlpineHub.Core.Services
                 throw new ArgumentException(string.Format(InvalidId, "PassPeriod", id));
             }
 
-            PassPeriod? period = await repo.GetAll<PassPeriod>()
-                .FirstOrDefaultAsync(p => p.Id == guid) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, id));
+            PassPeriod? period = await repo.GetByIdAsync<PassPeriod>(guid) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, id));
             return period;
         }
     }
