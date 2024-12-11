@@ -8,7 +8,7 @@
         public string? PeriodFilter { get; set; }
         public int? CurrentPage { get; set; } = 1;
         public int? TotalPasses { get; set; }
-        public int PassesPerPage { get; set; } = 8;
+        public int PassesPerPage { get; set; } = 4;
         public int? TotalPages { get; set; }
     }
 }

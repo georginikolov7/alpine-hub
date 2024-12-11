@@ -36,6 +36,11 @@ namespace AlpineHub.Web.Controllers.Manager
                 passService.AddPassAsync(model);
                 return RedirectToAction(nameof(Index));
             }
+            catch(ArgumentException ex)
+            {
+                logger.LogError(ex, ex.Message);
+                return BadRequest();
+            }
             catch (Exception ex)
             {
                 logger.LogError(ex, ex.Message);
@@ -51,6 +56,11 @@ namespace AlpineHub.Web.Controllers.Manager
             {
                 EditPassFormModel model = await passService.GetPassForEditAsync(id);
                 return View(model);
+            }
+            catch (ArgumentException ex)
+            {
+                logger.LogError(ex, ex.Message);
+                return BadRequest();
             }
             catch (Exception ex)
             {
@@ -73,6 +83,11 @@ namespace AlpineHub.Web.Controllers.Manager
                 await passService.EditPassAsync(model);
                 return RedirectToAction(nameof(Index));
             }
+            catch (ArgumentException ex)
+            {
+                logger.LogError(ex, ex.Message);
+                return BadRequest();
+            }
             catch (Exception ex)
             {
                 logger.LogError(ex, ex.Message);
@@ -87,6 +102,11 @@ namespace AlpineHub.Web.Controllers.Manager
             {
                 DeletePassViewModel model = await passService.GetPassForDeleteAsync(id);
                 return PartialView("_DeleteConfirmationModal", model);
+            }
+            catch (ArgumentException ex)
+            {
+                logger.LogError(ex, ex.Message);
+                return BadRequest();
             }
             catch (Exception ex)
             {
@@ -104,6 +124,11 @@ namespace AlpineHub.Web.Controllers.Manager
             {
                 await passService.DeletePassAsync(model);
                 return RedirectToAction(nameof(Index));
+            }
+            catch (ArgumentException ex)
+            {
+                logger.LogError(ex, ex.Message);
+                return BadRequest();
             }
             catch (Exception ex)
             {

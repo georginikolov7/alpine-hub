@@ -30,7 +30,6 @@ namespace AlpineHub.Web
             builder.Services.ConfigureApplicationCookie(cfg =>
             {
                 cfg.LoginPath = "/Identity/Account/Login";
-                cfg.AccessDeniedPath = "/Home/Error/401";
             });
 
             builder.Services.AddAuthorization(opt =>
@@ -61,7 +60,8 @@ namespace AlpineHub.Web
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Home/Error/500");
+                app.UseStatusCodePagesWithReExecute("/Home/Error", "?statusCode={0}");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }

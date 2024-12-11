@@ -38,6 +38,11 @@
                 passPeriodService.AddPeriodAsync(model);
                 return RedirectToAction(nameof(Index));
             }
+            catch (ArgumentException ex)
+            {
+                logger.LogError(ex, ex.Message);
+                return BadRequest();
+            }
             catch (Exception ex)
             {
                 logger.LogError(ex, ex.Message);
@@ -54,6 +59,11 @@
             {
                 EditPeriodFormModel model = await passPeriodService.GetPeriodForEditAsync(id);
                 return View(model);
+            }
+            catch (ArgumentException ex)
+            {
+                logger.LogError(ex, ex.Message);
+                return BadRequest();
             }
             catch (Exception ex)
             {
@@ -76,6 +86,11 @@
                 await passPeriodService.EditPeriodAsync(model);
                 return RedirectToAction(nameof(Index));
             }
+            catch (ArgumentException ex)
+            {
+                logger.LogError(ex, ex.Message);
+                return BadRequest();
+            }
             catch (Exception ex)
             {
                 logger.LogError(ex, ex.Message);
@@ -90,6 +105,11 @@
             {
                 DeletePeriodViewModel model = await passPeriodService.GetPeriodForDeleteAsync(id);
                 return PartialView("_DeleteConfirmationModal", model);
+            }
+            catch (ArgumentException ex)
+            {
+                logger.LogError(ex, ex.Message);
+                return BadRequest();
             }
             catch (Exception ex)
             {
@@ -107,6 +127,11 @@
             {
                 await passPeriodService.DeletePeriodAsync(model);
                 return RedirectToAction(nameof(Index));
+            }
+            catch (ArgumentException ex)
+            {
+                logger.LogError(ex, ex.Message);
+                return BadRequest();
             }
             catch (Exception ex)
             {

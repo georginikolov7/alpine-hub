@@ -38,6 +38,11 @@
                 var model = await userService.DeleteUser(id);
                 return PartialView("_DeleteConfirmationModal", model);
             }
+            catch (ArgumentException ex)
+            {
+                logger.LogError(ex, ex.Message);
+                return BadRequest();
+            }
             catch (Exception ex)
             {
                 // Log the exception
@@ -57,8 +62,7 @@
             catch (ArgumentException ex)
             {
                 logger.LogError(ex, ex.Message);
-                TempData["ErrorMessage"] = "Cannot delete user with admin role";
-                return RedirectToAction(nameof(Index));
+                return BadRequest();
             }
             catch (Exception ex)
             {
@@ -91,6 +95,11 @@
                 return RedirectToAction(nameof(Index));
 
             }
+            catch (ArgumentException ex)
+            {
+                logger.LogError(ex, ex.Message);
+                return BadRequest();
+            }
             catch (Exception ex)
             {
                 logger.LogError(ex, ex.Message);
@@ -120,6 +129,11 @@
                 await userService.RemoveRole(model);
                 return RedirectToAction(nameof(Index));
 
+            }
+            catch (ArgumentException ex)
+            {
+                logger.LogError(ex, ex.Message);
+                return BadRequest();
             }
             catch (Exception ex)
             {

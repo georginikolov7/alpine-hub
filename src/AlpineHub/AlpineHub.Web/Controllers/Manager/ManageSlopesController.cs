@@ -53,6 +53,11 @@ namespace AlpineHub.Web.Controllers.Manager
                 EditSlopeFormModel model = await slopeService.GetSlopeForEditAsync(id);
                 return View(model);
             }
+            catch (ArgumentException ex)
+            {
+                logger.LogError(ex, ex.Message);
+                return BadRequest();
+            }
             catch (Exception ex)
             {
                 logger.LogError(ex, ex.Message);
@@ -74,6 +79,11 @@ namespace AlpineHub.Web.Controllers.Manager
                 await slopeService.EditSlopeAsync(model);
                 return RedirectToAction(nameof(Index));
             }
+            catch (ArgumentException ex)
+            {
+                logger.LogError(ex, ex.Message);
+                return BadRequest();
+            }
             catch (Exception ex)
             {
                 logger.LogError(ex, ex.Message);
@@ -88,6 +98,11 @@ namespace AlpineHub.Web.Controllers.Manager
             {
                 DeleteSlopeViewModel model = await slopeService.GetSlopeForDeleteAsync(id);
                 return PartialView("_DeleteConfirmationModal", model);
+            }
+            catch (ArgumentException ex)
+            {
+                logger.LogError(ex, ex.Message);
+                return BadRequest();
             }
             catch (Exception ex)
             {
@@ -105,6 +120,11 @@ namespace AlpineHub.Web.Controllers.Manager
             {
                 await slopeService.DeleteSlopeAsync(model);
                 return RedirectToAction(nameof(Index));
+            }
+            catch (ArgumentException ex)
+            {
+                logger.LogError(ex, ex.Message);
+                return BadRequest();
             }
             catch (Exception ex)
             {

@@ -21,7 +21,6 @@ namespace AlpineHub.Web.Controllers
 
             if (model == null)
             {
-                //TODO: implement not found message
                 return BadRequest();
             }
             return PartialView("_SlopeDetailsModal", model);

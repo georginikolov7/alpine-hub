@@ -84,6 +84,11 @@ namespace AlpineHub.Web.Controllers
                 await cartService.DeleteItem(itemId, GetUserId());
                 return RedirectToAction(nameof(Index));
             }
+            catch (ArgumentException ex)
+            {
+                logger.LogError(ex, ex.Message);
+                return BadRequest();
+            }
             catch (Exception ex)
             {
                 logger.LogError(ex, ex.Message);

@@ -1,6 +1,5 @@
 ﻿using AlpineHub.Core.DTOs;
 using AlpineHub.Core.ViewModels.Lift;
-using AlpineHub.Core.ViewModels.LiftType;
 
 namespace AlpineHub.Core.Contracts.Lift
 {
