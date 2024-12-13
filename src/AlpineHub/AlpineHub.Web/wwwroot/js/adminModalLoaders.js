@@ -8,8 +8,8 @@ $(function () {
 
         $.ajax({ method: 'GET', url: '/Admin/Users/DeleteUser', data: { id: id } })
             .done(function success(data) {
-                $('#deleteUserModal').html(data);
-                $('#deleteUserModal').modal('show');
+                $('#deleteConfirmModal').html(data);
+                $('#deleteConfirmModal').modal('show');
             })
             .fail(function fail(data) {
                 //TODO handle error

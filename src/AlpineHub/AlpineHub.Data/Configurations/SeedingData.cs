@@ -343,7 +343,8 @@ namespace AlpineHub.Data.Configurations
                 FirstName = "John",
                 LastName = "Doe",
                 Birthdate = new DateTime(1990, 1, 1),
-                AccessFailedCount = 0
+                AccessFailedCount = 0,
+                SecurityStamp = "9C2F65AE-5259-410A-96C3-F4667516F42C"
             };
             NormalUser.PasswordHash = hasher.HashPassword(NormalUser, "1q2w3e4r");
             ManagerUser = new()
@@ -354,7 +355,8 @@ namespace AlpineHub.Data.Configurations
                 FirstName = "Dimitrichko",
                 LastName = "Chorbadjiski",
                 Birthdate = new DateTime(2000, 2, 29),
-                AccessFailedCount = 0
+                AccessFailedCount = 0,
+                SecurityStamp = "9C2A65AE-5259-410A-96C3-F4667516F42A"
             };
             ManagerUser.PasswordHash = hasher.HashPassword(ManagerUser, "1q2w3e4r");
 
