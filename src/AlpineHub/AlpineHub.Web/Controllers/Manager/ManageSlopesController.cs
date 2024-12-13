@@ -24,7 +24,7 @@ namespace AlpineHub.Web.Controllers.Manager
             return View(model);
         }
         [HttpPost]
-        public IActionResult AddSlope(AddSlopeFormModel model)
+        public async Task<IActionResult> AddSlope(AddSlopeFormModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -33,7 +33,7 @@ namespace AlpineHub.Web.Controllers.Manager
 
             try
             {
-                slopeService.AddSlopeAsync(model);
+                await slopeService.AddSlopeAsync(model);
                 return RedirectToAction(nameof(Index));
             }          
             catch (Exception ex)

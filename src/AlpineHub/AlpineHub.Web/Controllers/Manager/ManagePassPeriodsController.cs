@@ -26,7 +26,7 @@ namespace AlpineHub.Web.Controllers.Manager
             return View(model);
         }
         [HttpPost]
-        public IActionResult AddPeriod(AddPeriodFormModel model)
+        public async Task<IActionResult> AddPeriod(AddPeriodFormModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -35,7 +35,7 @@ namespace AlpineHub.Web.Controllers.Manager
 
             try
             {
-                passPeriodService.AddPeriodAsync(model);
+               await  passPeriodService.AddPeriodAsync(model);
                 return RedirectToAction(nameof(Index));
             }
             catch (ArgumentException ex)

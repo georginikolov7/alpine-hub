@@ -17,6 +17,7 @@ namespace AlpineHub.Web.Controllers.Manager
             var model = await service.GetAllAgeGroupsAsync();
             return View(model);
         }
+
         [HttpGet]
         public IActionResult AddAgeGroup()
         {
@@ -24,7 +25,7 @@ namespace AlpineHub.Web.Controllers.Manager
             return View(model);
         }
         [HttpPost]
-        public IActionResult AddAgeGroup(AddAgeGroupFormModel model)
+        public async Task<IActionResult> AddAgeGroup(AddAgeGroupFormModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -33,7 +34,7 @@ namespace AlpineHub.Web.Controllers.Manager
 
             try
             {
-                service.AddAgeGroupAsync(model);
+                await service.AddAgeGroupAsync(model);
                 return RedirectToAction(nameof(Index));
             }
             catch (ArgumentException ex)
