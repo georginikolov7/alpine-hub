@@ -234,7 +234,7 @@ namespace AlpineHub.Core.Services
             }
 
             Lift? lift = await repo
-                .GetAllReadonly<Lift>()
+                .GetAll<Lift>()
                 .Include(l => l.LiftType)
                 .FirstOrDefaultAsync(l => l.Id == guid) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, id));
             return lift;
