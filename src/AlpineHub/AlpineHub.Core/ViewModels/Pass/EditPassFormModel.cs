@@ -3,7 +3,6 @@
 using static AlpineHub.Common.EntityValidationConstraints;
 using static AlpineHub.Common.EntityValidationMessages;
 
-
 namespace AlpineHub.Core.ViewModels.Pass
 {
     public class EditPassFormModel

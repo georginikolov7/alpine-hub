@@ -1,7 +1,8 @@
-﻿using AlpineHub.Core.Contracts.Pass;
-using AlpineHub.Core.ViewModels.Pass;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
+using AlpineHub.Core.Contracts.Pass;
+using AlpineHub.Core.ViewModels.Pass;
 
 using static AlpineHub.Common.ErrorMessages;
 using static AlpineHub.Data.Constants.CustomClaims;

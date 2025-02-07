@@ -19,4 +19,3 @@ namespace AlpineHub.Core.ViewModels.PassPeriod
         public int DaysCount { get; set; }
     }
 }
-

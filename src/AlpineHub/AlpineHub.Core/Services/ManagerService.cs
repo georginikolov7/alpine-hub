@@ -1,14 +1,15 @@
-﻿namespace AlpineHub.Core.Services
+﻿using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+
+using AlpineHub.Core.Contracts;
+using AlpineHub.Data.Contracts;
+using AlpineHub.Data.Models;
+
+using static AlpineHub.Data.Constants.CustomClaims;
+
+namespace AlpineHub.Core.Services
 {
-    using System.Security.Claims;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.AspNetCore.Identity;
-
-    using AlpineHub.Core.Contracts;
-    using AlpineHub.Data.Contracts;
-    using AlpineHub.Data.Models;
-
-    using static AlpineHub.Data.Constants.CustomClaims;
     public class ManagerService(IRepo repo, UserManager<ApplicationUser> userManager) : BaseService(repo), IManagerService
     {
         public async Task<bool> IsManagerIdValid(string? managerId, string? userId)

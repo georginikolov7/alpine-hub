@@ -1,14 +1,13 @@
-﻿
+﻿using Microsoft.EntityFrameworkCore;
+
+using AlpineHub.Core.Contracts.Pass;
+using AlpineHub.Core.ViewModels.PassAgeGroup;
+using AlpineHub.Data.Contracts;
+using AlpineHub.Data.Models;
+using static AlpineHub.Common.ErrorMessages;
+
 namespace AlpineHub.Core.Services
 {
-    using Microsoft.EntityFrameworkCore;
-
-    using AlpineHub.Core.Contracts.Pass;
-    using AlpineHub.Core.ViewModels.PassAgeGroup;
-    using AlpineHub.Data.Contracts;
-    using AlpineHub.Data.Models;
-    using static AlpineHub.Common.ErrorMessages;
-
     public class PassAgeGroupService(IRepo repo) : BaseService(repo), IManageablePassAgeService
     {
         public async Task<IEnumerable<AgeGroupViewModel>> GetAllAgeGroupsAsync()

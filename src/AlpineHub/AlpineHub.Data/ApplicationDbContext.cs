@@ -1,16 +1,13 @@
-﻿
+﻿using AlpineHub.Data.Configurations;
+using AlpineHub.Data.Models;
+using AlpineHub.Data.Models.Contracts;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
+
 namespace AlpineHub.Data
 {
-    using AlpineHub.Data.Configurations;
-    using AlpineHub.Data.Models;
-    using AlpineHub.Data.Models.Contracts;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore;
-    using System.Linq.Expressions;
-    using System.Threading;
-    using System.Threading.Tasks;
-
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
     {
         public DbSet<Slope> Slopes { get; set; }

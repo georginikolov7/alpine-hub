@@ -1,9 +1,8 @@
-﻿
+﻿using AlpineHub.Data.Contracts;
+using Microsoft.EntityFrameworkCore;
+
 namespace AlpineHub.Data.Repos
 {
-    using AlpineHub.Data.Contracts;
-    using Microsoft.EntityFrameworkCore;
-
     public class Repo : IRepo
     {
         private readonly ApplicationDbContext context;

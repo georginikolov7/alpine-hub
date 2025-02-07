@@ -22,7 +22,7 @@ namespace AlpineHub.Core.Services
 
             if (await userManager.IsInRoleAsync(user, AdminRoleName))
             {
-                throw new ArgumentException(CannotDeleteAdmin);
+                throw new InvalidOperationException(CannotDeleteAdmin);
             }
             await userManager.DeleteAsync(user);
         }
@@ -92,6 +92,7 @@ namespace AlpineHub.Core.Services
             }
             return users;
         }
+
         public async Task AssignRole(RoleFormModel model)
         {
             var user = await userManager.FindByIdAsync(model.UserId) ?? throw new ArgumentException(string.Format(EntityWithIdNotFound, model.UserId));
@@ -119,25 +120,10 @@ namespace AlpineHub.Core.Services
                 string? masterAdminUsername = config["Identity:Admin:Username"];
                 if (model.RoleName == AdminRoleName && user.UserName == masterAdminUsername)
                 {
-                    return;
+                    throw new InvalidOperationException(CannotRemoveAdminRole); 
                 }
                 await userManager.RemoveFromRoleAsync(user, model.RoleName);
             }
-        }
-
-        private async Task<ApplicationUser?> GetUserById(string? userId)
-        {
-            if (!IsGuidValid(userId, out Guid guid))
-            {
-                return null;
-            }
-
-            ApplicationUser? user = await userManager.FindByIdAsync(userId!);
-            if (user is null)
-            {
-                return null;
-            }
-            return user;
         }
 
         public async Task<bool> IsUserAdmin(string? userId)
@@ -157,6 +143,21 @@ namespace AlpineHub.Core.Services
             model.TotalManagers = await repo.GetAllReadonly<ResortManager>().CountAsync();
             model.TotalAdmins = (await userManager.GetUsersInRoleAsync(AdminRoleName)).Count();
             return model;
+        }
+
+        private async Task<ApplicationUser?> GetUserById(string? userId)
+        {
+            if (!IsGuidValid(userId, out Guid guid))
+            {
+                return null;
+            }
+
+            ApplicationUser? user = await userManager.FindByIdAsync(userId!);
+            if (user is null)
+            {
+                return null;
+            }
+            return user;
         }
     }
 }

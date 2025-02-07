@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
 using AlpineHub.Core.ViewModels.Slope;
-using static AlpineHub.Common.ErrorMessages;
-using static AlpineHub.Data.Constants.CustomClaims;
 using AlpineHub.Core.Contracts.Slope;
+
+using static AlpineHub.Data.Constants.CustomClaims;
+using static AlpineHub.Common.ErrorMessages;
 
 namespace AlpineHub.Web.Controllers.Manager
 {
@@ -35,7 +37,7 @@ namespace AlpineHub.Web.Controllers.Manager
             {
                 await slopeService.AddSlopeAsync(model);
                 return RedirectToAction(nameof(Index));
-            }          
+            }
             catch (Exception ex)
             {
                 logger.LogError(ex, ex.Message);

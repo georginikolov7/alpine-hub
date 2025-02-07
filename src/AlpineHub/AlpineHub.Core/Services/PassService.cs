@@ -30,6 +30,7 @@ namespace AlpineHub.Core.Services
 
         public async Task<AllPassesSearchFilterViewModel> GetAllPassesAsync(AllPassesSearchFilterViewModel inputModel)
         {
+
             IQueryable<Pass> passesQuery = repo.GetAllReadonly<Pass>()
                 .Include(p => p.PassAgeGroup)
                 .Include(p => p.PassPeriod);
@@ -87,7 +88,5 @@ namespace AlpineHub.Core.Services
             return result;
 
         }
-
-        
     }
 }

@@ -1,8 +1,7 @@
-﻿
+﻿using System.ComponentModel.DataAnnotations;
+
 namespace AlpineHub.Core.ValidationProperties
 {
-    using System.ComponentModel.DataAnnotations;
-
     public class ValueHigherThanPropertyAttribute(string propertyToCompare) : ValidationAttribute
     {
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
@@ -27,6 +26,7 @@ namespace AlpineHub.Core.ValidationProperties
                     }
                 }
             }
+
             return ValidationResult.Success;
         }
     }

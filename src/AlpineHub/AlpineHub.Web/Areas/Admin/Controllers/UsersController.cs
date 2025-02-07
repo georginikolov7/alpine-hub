@@ -59,6 +59,12 @@ namespace AlpineHub.Web.Areas.Admin.Controllers
                 await userService.ConfirmDeleteUser(model);
                 return RedirectToAction(nameof(Index));
             }
+            catch(InvalidOperationException ex)
+            {
+                logger.LogError(ex, ex.Message);
+                TempData["ErrorMessage"] = CannotDeleteAdmin;
+                return RedirectToAction(nameof(Index));
+            }
             catch (ArgumentException ex)
             {
                 logger.LogError(ex, ex.Message);
@@ -129,6 +135,12 @@ namespace AlpineHub.Web.Areas.Admin.Controllers
                 await userService.RemoveRole(model);
                 return RedirectToAction(nameof(Index));
 
+            }
+            catch(InvalidOperationException ex)
+            {
+                logger.LogError(ex, ex.Message);
+                TempData["ErrorMessage"] = CannotRemoveAdminRole;
+                return RedirectToAction(nameof(Index));
             }
             catch (ArgumentException ex)
             {

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 using AlpineHub.Core.Contracts.Pass;
 using AlpineHub.Core.ViewModels.PassPeriod;

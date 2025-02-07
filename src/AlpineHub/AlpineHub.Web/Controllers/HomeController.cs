@@ -1,7 +1,6 @@
-using AlpineHub.Core.Contracts;
-using AlpineHub.Web.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+
+using AlpineHub.Web.Models;
 
 namespace AlpineHub.Web.Controllers
 {

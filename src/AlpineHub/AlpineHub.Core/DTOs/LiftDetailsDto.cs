@@ -1,8 +1,6 @@
 ﻿
-
 namespace AlpineHub.Core.DTOs
 {
-
     public class LiftDetailsDto
     {
         public string Name { get; set; } = string.Empty;

@@ -1,13 +1,14 @@
+using Microsoft.AspNetCore.Mvc;
+
+using AlpineHub.Web.AuthorizationRequirements;
+using AlpineHub.Web.Infrastructure.Binders;
+using AlpineHub.Web.Infrastructure.Extensions;
+
+using static AlpineHub.Common.Formats;
+using static AlpineHub.Data.Constants.CustomClaims;
 
 namespace AlpineHub.Web
 {
-    using AlpineHub.Web.AuthorizationRequirements;
-    using AlpineHub.Web.Infrastructure.Binders;
-    using AlpineHub.Web.Infrastructure.Extensions;
-    using static Common.Formats;
-    using static AlpineHub.Data.Constants.CustomClaims;
-    using Microsoft.AspNetCore.Mvc;
-
     public class Program
     {
         public static void Main(string[] args)

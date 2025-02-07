@@ -1,7 +1,10 @@
-﻿using AlpineHub.Core.Contracts;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
+using AlpineHub.Core.Contracts;
+
 using static AlpineHub.Common.ErrorMessages;
+
 namespace AlpineHub.Web.Controllers
 {
     public class CartController(ILogger<CartController> _logger, ICartService cartService) : BaseController(_logger)

@@ -1,5 +1,4 @@
 ﻿using AlpineHub.Data.Contracts;
-using AlpineHub.Data.Models;
 
 namespace AlpineHub.Core.Services
 {
@@ -26,8 +25,5 @@ namespace AlpineHub.Core.Services
             }
             return false;
         }
-
-
-        
     }
 }

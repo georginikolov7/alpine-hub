@@ -13,6 +13,7 @@
         public const string UnexpectedError = "Unexpected error occurred. Please try again later or contact administrator.";
         public const string UserNotFound = "User with id {0} not found";
         public const string CartNotFound = "Cart for user with id {0} not found";
+        public const string CannotRemoveAdminRole = "Cannot remove master admin user";
 
 
     }

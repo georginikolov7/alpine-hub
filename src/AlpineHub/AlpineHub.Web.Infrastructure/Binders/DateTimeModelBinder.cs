@@ -1,9 +1,8 @@
-﻿
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Globalization;
 
 namespace AlpineHub.Web.Infrastructure.Binders
 {
-    using Microsoft.AspNetCore.Mvc.ModelBinding;
-    using System.Globalization;
     public class DateTimeModelBinder : IModelBinder
     {
         private readonly string customFormat;

@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using AlpineHub.Core.Contracts.Pass;
 using AlpineHub.Core.ViewModels.PassPeriod;
 using AlpineHub.Data.Contracts;

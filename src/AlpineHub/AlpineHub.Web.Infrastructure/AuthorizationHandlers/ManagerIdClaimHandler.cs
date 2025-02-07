@@ -1,8 +1,11 @@
-﻿using AlpineHub.Core.Contracts;
-using AlpineHub.Web.AuthorizationRequirements;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+
+using AlpineHub.Core.Contracts;
+using AlpineHub.Web.AuthorizationRequirements;
+
 using static AlpineHub.Data.Constants.CustomClaims;
+
 namespace AlpineHub.Web.AuthorizationHandlers
 {
     public class ManagerIdClaimHandler(IManagerService managerService) : AuthorizationHandler<ManagerIdRequirement>

@@ -1,6 +1,7 @@
-﻿using AlpineHub.Core.Contracts.Pass;
+﻿using Microsoft.AspNetCore.Mvc;
+
+using AlpineHub.Core.Contracts.Pass;
 using AlpineHub.Core.ViewModels.Pass;
-using Microsoft.AspNetCore.Mvc;
 
 namespace AlpineHub.Web.Controllers
 {

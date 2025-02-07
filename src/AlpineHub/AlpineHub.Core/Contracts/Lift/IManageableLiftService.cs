@@ -3,8 +3,6 @@ namespace AlpineHub.Core.Contracts.Lift
 {
     public interface IManageableLiftService
     {
-        
-
         Task<IEnumerable<LiftDetailsViewModel>> GetAllLiftsAsync();
         Task AddLiftAsync(AddLiftFormModel model);
 

@@ -1,6 +1,7 @@
-﻿using AlpineHub.Core.Contracts.Lift;
+﻿using Microsoft.AspNetCore.Mvc;
+
+using AlpineHub.Core.Contracts.Lift;
 using AlpineHub.Core.ViewModels.Lift;
-using Microsoft.AspNetCore.Mvc;
 
 namespace AlpineHub.Web.Controllers
 {
