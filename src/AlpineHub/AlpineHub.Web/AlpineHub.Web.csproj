@@ -4,8 +4,8 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-AlpineHub.Web-5720203f-0c54-4e34-bf99-77a171c9af85</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <UserSecretsId>3ef5a54d-c21b-41e3-ac16-8e00da353129</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
