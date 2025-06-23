@@ -21,9 +21,9 @@ $(function () {
     const map = new maplibregl.Map({
         container: 'map',
         style: `https://api.maptiler.com/maps/${mapId}/style.json?key=${mapKey}`,
-        minZoom:  13,
-        maxZoom:  15,
-        maxPitch: 35
+        center: [23.34389, 42.03932],
+        minZoom: 13,
+        maxZoom: 15
     });
 
     $.when(fetchGeoJson(), fetchSlopes(), fetchLifts())

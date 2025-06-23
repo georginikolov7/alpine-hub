@@ -21,7 +21,10 @@ namespace AlpineHub.Data
         public DbSet<UserCart> UserCarts { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
 
-
+        public ApplicationDbContext()
+        {
+            
+        }
         public ApplicationDbContext(DbContextOptions options)
             : base(options)
         {

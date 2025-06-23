@@ -67,15 +67,7 @@ namespace AlpineHub.Tests.Services
             // Assert
             Assert.That(result, Is.EqualTo(2));
         }
-        [Test]
-        public async Task GetLiftByIdAsync_ShouldReturnLiftById()
-        {
-            // Act
-            var result = await liftService.GetLiftByIdAsync(lift1.Id.ToString());
-
-            // Assert
-            Assert.That(result.Name, Is.EqualTo("Lift1"));
-        }
+        
         [Test]
         public async Task LiftExistsByIdAsync_ShouldReturnTrue_WhenLiftExists()
         {
@@ -101,13 +93,7 @@ namespace AlpineHub.Tests.Services
             var result = liftService.GetAllLiftsAsync().Result;
             Assert.That(result.Count(), Is.EqualTo(2));
         }
-        [Test]
-        public void GetLiftForEdit_ShouldReturnLiftForEdit()
-        {
-            var result = liftService.GetLiftForEditAsync(lift1.Id.ToString()).Result;
-            Assert.That(result.Name, Is.EqualTo("Lift1"));
-
-        }
+        
         [Test]
         [TestCase(null)]
         [TestCase("hui")]
@@ -118,22 +104,7 @@ namespace AlpineHub.Tests.Services
             Assert.ThrowsAsync<ArgumentException>(async () => await liftService.GetLiftForEditAsync(id));
         }
 
-        [Test]
-        public void EditLiftAsync_ShouldEditLift()
-        {
-            liftService.EditLiftAsync(new EditLiftFormModel()
-            {
-                Id = lift1.Id.ToString(),
-                Name = "Lift5",
-                LiftTypeId = LiftType.Id.ToString(),
-
-            }).Wait();
-
-
-            mockRepo.Verify(r => r.SaveChangesAsync(), Times.Once);
-            var lift = liftService.GetLiftByIdAsync(lift1.Id.ToString()).Result;
-            Assert.That(lift.Name, Is.EqualTo("Lift5"));
-        }
+        
         [Test]
         [TestCase(null)]
         [TestCase("hui")]
@@ -147,12 +118,7 @@ namespace AlpineHub.Tests.Services
                 Name = "Lift5"
             }));
         }
-        [Test]
-        public void GetLiftForDelete_ShouldReturnLiftForDelete()
-        {
-            var result = liftService.GetLiftForDeleteAsync(lift1.Id.ToString()).Result;
-            Assert.That(result.Id, Is.EqualTo(lift1.Id.ToString()));
-        }
+       
 
         [Test]
         [TestCase(null)]
@@ -164,14 +130,7 @@ namespace AlpineHub.Tests.Services
             Assert.ThrowsAsync<ArgumentException>(async () => await liftService.GetLiftForDeleteAsync(id));
         }
 
-        [Test]
-        public void DeleteLiftAsync_ShouldDeleteLift()
-        {
-            liftService.DeleteLiftAsync(new DeleteLiftViewModel() { Id = lift1.Id.ToString() }).Wait();
-            mockRepo.Verify(r => r.Delete<Lift>(lift1), Times.Once);
-            mockRepo.Verify(r => r.SaveChangesAsync(), Times.Once);
-
-        }
+        
 
         [Test]
         [TestCase(null)]

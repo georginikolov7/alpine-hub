@@ -19,7 +19,6 @@ namespace AlpineHub.Data.Configurations
         }
 
 
-
         public Slope FirstSlope { get; set; }
         public Slope SecondSlope { get; set; }
         public Slope ThirdSlope { get; set; }
@@ -351,7 +350,9 @@ namespace AlpineHub.Data.Configurations
             {
                 Id = Guid.Parse("9C2A65AE-5259-410A-96C3-F4667516F42C"),
                 UserName = "Manager",
+                NormalizedUserName = "MANAGER",
                 Email = "dimitrichko@test.com",
+                NormalizedEmail = "DIMITRICHKO@TEST.COM",
                 FirstName = "Dimitrichko",
                 LastName = "Chorbadjiski",
                 Birthdate = new DateTime(2000, 2, 29),
@@ -365,6 +366,8 @@ namespace AlpineHub.Data.Configurations
                 Id = Guid.Parse("29A945EC-9C3B-41AC-8065-EDFB32974AA6"),
                 ApplicationUserId = ManagerUser.Id,
             };
+
+
         }
     }
 }
