@@ -29,4 +29,10 @@
     <ProjectReference Include="..\AlpineHub.Web.Infrastructure\AlpineHub.Web.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="..\.dockerignore">
+      <Link>.dockerignore</Link>
+    </Content>
+  </ItemGroup>
+
 </Project>
