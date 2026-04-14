@@ -1,9 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-
 using AlpineHub.Web.AuthorizationRequirements;
 using AlpineHub.Web.Infrastructure.Binders;
 using AlpineHub.Web.Infrastructure.Extensions;
-
 using static AlpineHub.Common.Formats;
 using static AlpineHub.Data.Constants.CustomClaims;
 
@@ -13,8 +11,6 @@ namespace AlpineHub.Web
     {
         public static void Main(string[] args)
         {
-
-
             var builder = WebApplication.CreateBuilder(args);
             string adminUserName = builder.Configuration.GetValue<string>("Identity:Admin:Username")!;
             string adminEmail = builder.Configuration.GetValue<string>("Identity:Admin:Email")!;
@@ -28,17 +24,12 @@ namespace AlpineHub.Web
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 
-            builder.Services.ConfigureApplicationCookie(cfg =>
-            {
-                cfg.LoginPath = "/Identity/Account/Login";
-            });
+            builder.Services.ConfigureApplicationCookie(cfg => { cfg.LoginPath = "/Identity/Account/Login"; });
 
             builder.Services.AddAuthorization(opt =>
             {
-                opt.AddPolicy(ManagerPolicyName, policy =>
-                {
-                    policy.Requirements.Add(new ManagerIdRequirement());
-                });
+                opt.AddPolicy(ManagerPolicyName,
+                    policy => { policy.Requirements.Add(new ManagerIdRequirement()); });
             });
 
 
@@ -76,12 +67,12 @@ namespace AlpineHub.Web
             app.UseAuthorization();
 
             app.MapControllerRoute(
-                  name: "areas",
-                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                name: "areas",
+                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
             app.MapControllerRoute(
-                  name: "default",
-                  pattern: "{controller=Home}/{action=Index}/{id?}");
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}");
 
 
             app.MapRazorPages();

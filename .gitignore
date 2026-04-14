@@ -9,6 +9,7 @@
 # Build results
 .vs
 .env
+.idea/
 **/[Dd]ebug/
 **/[Rr]elease/
 **/x64/
