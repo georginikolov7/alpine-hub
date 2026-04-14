@@ -10,7 +10,7 @@
 .vs
 .env
 appsettings.json
-appsettings.development.json
+appsettings.Development.json
 .idea/
 **/[Dd]ebug/
 **/[Rr]elease/
