@@ -9,6 +9,8 @@
 # Build results
 .vs
 .env
+appsettings.json
+appsettings.development.json
 .idea/
 **/[Dd]ebug/
 **/[Rr]elease/
